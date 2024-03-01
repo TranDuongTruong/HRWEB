@@ -1,8 +1,10 @@
 ﻿import React, { useState } from 'react';
 import Index from '../Admin/Index';
-import { Routes,Route ,Link} from 'react-router-dom';
+
 
 const CreatePersonal = () => {
+
+  
   const [formData, setFormData] = useState({
     employee_ID: '',
     first_Name: '',
@@ -34,6 +36,7 @@ const CreatePersonal = () => {
     // Thực hiện xử lý gửi biểu mẫu ở đây
   };
 
+  console.log("gfffffffffffffffffffffffff")
   return (
     <>
     
@@ -77,17 +80,21 @@ const CreatePersonal = () => {
               <div className="col-md-offset-2 controls">
                 <input type="submit" value="Create" className="btn btn-default" />
                 {/* Nút "Back to List" sẽ được xử lý bằng React Router */}
-                <Link to="/index" className="btn btn-default">Back to List</Link>
 
               </div>
             </div>
           </div>
         </form>
       </div>
-    </div>
-    <Routers>
+      <div className="span9">
+      {/* <Routers>
       <Router path='/index' element={Index}></Router>
-    </Routers>
+
+      </Routers> */}
+      </div>
+
+    </div>
+    
     </>
 
   )

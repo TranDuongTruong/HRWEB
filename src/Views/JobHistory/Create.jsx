@@ -1,4 +1,5 @@
 ﻿import React, { useState } from 'react';
+import { Routes,Route ,Link} from 'react-router-dom';
 
 function CreateJobHistory() {
     const [employeeId, setEmployeeId] = useState('');
@@ -20,8 +21,11 @@ function CreateJobHistory() {
         e.preventDefault();
         // Code to handle form submission goes here
     };
+    console.log("gfffffffffffffffffffffffff")
 
     return (
+<>
+        
         <div className="form-horizontal">
             <h2>Create</h2>
             <form onSubmit={handleSubmit}>
@@ -47,7 +51,8 @@ function CreateJobHistory() {
                 <a href="/index">Back to List</a>
             </div>
         </div>
-    );
+        </>
+    )
 }
 
 export default CreateJobHistory;

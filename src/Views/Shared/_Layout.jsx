@@ -33,18 +33,366 @@ import Login from '../Login/Login';
 //import AdminDashboard from this;
 
 const personalsData = [
-    {
-      Employee_ID: 1,
-      First_Name: "John",
-      Last_Name: "Doe",
-      City: "New York",
-      Email: "john.doe@example.com",
-      Phone_Number: "1234567890",
-      Gender: true,
-      Shareholder_Status: true
-    },
-    // Thêm các đối tượng khác vào mảng personals nếu cần
-  ];
+  {
+    Employee_ID: 1,
+    First_Name: "John",
+    Last_Name: "Doe",
+    City: "New York",
+    Email: "john.doe@example.com",
+    Phone_Number: "1234567890",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 2,
+    First_Name: "Jane",
+    Last_Name: "Smith",
+    City: "Los Angeles",
+    Email: "jane.smith@example.com",
+    Phone_Number: "9876543210",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 3,
+    First_Name: "Alice",
+    Last_Name: "Johnson",
+    City: "Chicago",
+    Email: "alice.johnson@example.com",
+    Phone_Number: "5551234567",
+    Gender: false,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 4,
+    First_Name: "Michael",
+    Last_Name: "Williams",
+    City: "Houston",
+    Email: "michael.williams@example.com",
+    Phone_Number: "4445678901",
+    Gender: true,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 5,
+    First_Name: "Emily",
+    Last_Name: "Brown",
+    City: "Seattle",
+    Email: "emily.brown@example.com",
+    Phone_Number: "3337890123",
+    Gender: false,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 6,
+    First_Name: "David",
+    Last_Name: "Garcia",
+    City: "Miami",
+    Email: "david.garcia@example.com",
+    Phone_Number: "2228901234",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 7,
+    First_Name: "Olivia",
+    Last_Name: "Martinez",
+    City: "Dallas",
+    Email: "olivia.martinez@example.com",
+    Phone_Number: "1119012345",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 8,
+    First_Name: "James",
+    Last_Name: "Lopez",
+    City: "San Francisco",
+    Email: "james.lopez@example.com",
+    Phone_Number: "9990123456",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 9,
+    First_Name: "Sophia",
+    Last_Name: "Gonzalez",
+    City: "Boston",
+    Email: "sophia.gonzalez@example.com",
+    Phone_Number: "8881234567",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 10,
+    First_Name: "William",
+    Last_Name: "Hernandez",
+    City: "Denver",
+    Email: "william.hernandez@example.com",
+    Phone_Number: "7772345678",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 11,
+    First_Name: "Emma",
+    Last_Name: "Wilson",
+    City: "Portland",
+    Email: "emma.wilson@example.com",
+    Phone_Number: "6663456789",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 12,
+    First_Name: "Daniel",
+    Last_Name: "Lopez",
+    City: "Austin",
+    Email: "daniel.lopez@example.com",
+    Phone_Number: "5554567890",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 13,
+    First_Name: "Ava",
+    Last_Name: "Thompson",
+    City: "Phoenix",
+    Email: "ava.thompson@example.com",
+    Phone_Number: "4445678901",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 14,
+    First_Name: "Matthew",
+    Last_Name: "White",
+    City: "Las Vegas",
+    Email: "matthew.white@example.com",
+    Phone_Number: "3336789012",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 15,
+    First_Name: "Ella",
+    Last_Name: "Jones",
+    City: "Orlando",
+    Email: "ella.jones@example.com",
+    Phone_Number: "2227890123",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 16,
+    First_Name: "Logan",
+    Last_Name: "Lee",
+    City: "Atlanta",
+    Email: "logan.lee@example.com",
+    Phone_Number: "1118901234",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 17,
+    First_Name: "Mia",
+    Last_Name: "Gonzalez",
+    City: "Nashville",
+    Email: "mia.gonzalez@example.com",
+    Phone_Number: "9999012345",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 18,
+    First_Name: "Jackson",
+    Last_Name: "Taylor",
+    City: "Charlotte",
+    Email: "jackson.taylor@example.com",
+    Phone_Number: "8880123456",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 19,
+    First_Name: "Scarlett",
+    Last_Name: "Harris",
+    City: "San Diego",
+    Email: "scarlett.harris@example.com",
+    Phone_Number: "7771234567",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 20,
+    First_Name: "Lucas",
+    Last_Name: "Clark",
+    City: "Philadelphia",
+    Email: "lucas.clark@example.com",
+    Phone_Number: "6662345678",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 21,
+    First_Name: "Chloe",
+    Last_Name: "Lewis",
+    City: "Minneapolis",
+    Email: "chloe.lewis@example.com",
+    Phone_Number: "5553456789",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 22,
+    First_Name: "Gabriel",
+    Last_Name: "Walker",
+    City: "Detroit",
+    Email: "gabriel.walker@example.com",
+    Phone_Number: "4444567890",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 23,
+    First_Name: "Lily",
+    Last_Name: "Perez",
+    City: "Salt Lake City",
+    Email: "lily.perez@example.com",
+    Phone_Number: "3335678901",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 24,
+    First_Name: "Henry",
+    Last_Name: "Roberts",
+    City: "Kansas City",
+    Email: "henry.roberts@example.com",
+    Phone_Number: "2226789012",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 25,
+    First_Name: "Zoey",
+    Last_Name: "Cook",
+    City: "Memphis",
+    Email: "zoey.cook@example.com",
+    Phone_Number: "1117890123",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 26,
+    First_Name: "Wyatt",
+    Last_Name: "Murphy",
+    City: "Raleigh",
+    Email: "wyatt.murphy@example.com",
+    Phone_Number: "9998901234",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 27,
+    First_Name: "Nora",
+    Last_Name: "Bell",
+    City: "Tampa",
+    Email: "nora.bell@example.com",
+    Phone_Number: "8889012345",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 28,
+    First_Name: "Eli",
+    Last_Name: "Howard",
+    City: "Indianapolis",
+    Email: "eli.howard@example.com",
+    Phone_Number: "7770123456",
+    Gender: true,
+    Shareholder_Status: true
+  },
+  {
+    Employee_ID: 29,
+    First_Name: "Hannah",
+    Last_Name: "Ward",
+    City: "Columbus",
+    Email: "hannah.ward@example.com",
+    Phone_Number: "6661234567",
+    Gender: false,
+    Shareholder_Status: false
+  },
+  {
+    Employee_ID: 30,
+    First_Name: "Isaac",
+    Last_Name: "Adams",
+    City: "Seattle",
+    Email: "isaac.adams@example.com",
+    Phone_Number: "5552345678",
+    Gender: true,
+    Shareholder_Status: true
+  }
+  // Thêm các đối tượng khác vào mảng personalsData nếu cần
+];
+
+
+const benefitPlanData = [
+  {
+      Benefit_Plan_ID: 1,
+      Plan_Name: "Plan A",
+      Deductable: "$1000",
+      Percentage_CoPay: "20%",
+  },
+  {
+      Benefit_Plan_ID: 2,
+      Plan_Name: "Plan B",
+      Deductable: "$1500",
+      Percentage_CoPay: "25%",
+  },
+  {
+      Benefit_Plan_ID: 3,
+      Plan_Name: "Plan C",
+      Deductable: "$2000",
+      Percentage_CoPay: "30%",
+  },
+  // Thêm các đối tượng khác vào mảng benefitPlanData nếu cần
+];
+const jobHistoryData = [
+  {
+      ID: 1,
+      Personal: {
+          First_Name: "John",
+          Last_Name: "Doe"
+      },
+      Department: "Sales",
+      Division: "Retail",
+      Start_Date: "2023-01-01",
+      End_Date: "2023-06-30",
+      Job_Category: "Associate",
+      Location: "New York"
+  },
+  {
+      ID: 2,
+      Personal: {
+          First_Name: "Jane",
+          Last_Name: "Doe"
+      },
+      Department: "Marketing",
+      Division: "Digital",
+      Start_Date: "2022-08-15",
+      End_Date: "2023-02-28",
+      Job_Category: "Manager",
+      Location: "Los Angeles"
+  },
+  // Thêm các đối tượng khác vào mảng jobHistoryData nếu cần
+];
+
+
+
+
+
+
  function AdminDashboard() {
 
 
@@ -131,6 +479,12 @@ const personalsData = [
             <div className="span9">
             <Routes>
                  <Route path='/' element={<Index />} />
+                 <Route path='/personals' element={<PersonalIndex
+                 personals={personalsData}
+                 />} />
+                 <Route path='/benefitplans'element={<BenefitPlanIndex  benefitPlans={benefitPlanData}/>} />
+
+                 <Route path='/jobhistory'element={<JobHistoryIndex jobHistories={jobHistoryData}/>} />
             </Routes>
             </div>
           </div>
@@ -145,24 +499,25 @@ const personalsData = [
     
 
     <Routes>  
-         <Route path='/personals' element={PersonalIndex} ></Route>  
-       <Route path='/personals' element={PersonalDetails}></Route>        
+         {/* <Route path='/personals' element={PersonalIndex} ></Route>  
+        <Route path='/personals' element={PersonalDetails}></Route>        
         <Route path='/personals' element={DeletePersonal}></Route>
-        <Route path='/personals' element={EditPersonal}></Route> 
-      
+        <Route path='/personals' element={EditPersonal}></Route>  
+       <Route path='/benefitplans' element={JobHistoryIndex}></Route>
         
         <Route path='/benefitplans' element={JobHistoryDetails}></Route>
-        <Route path='/benefitplans' element={CreateJobHistory}></Route>
-        <Route path='/benefitplans' element={JobHistoryIndex}></Route>
+       <Route path='/benefitplans' element={CreateJobHistory}></Route>
+       
+       
         <Route path='/benefitplans' element={EditJobHistory}></Route>
         <Route path='/benefitplans' element={DeleteJobHistory}></Route>
-        <Route path='/jobhistory' element={BenefitPlanDetails}></Route>
+        <Route path='/jobhistory' element={BenefitPlanDetails}></Route> 
         <Route path='/jobhistory' element={BenefitPlanForm}></Route>
-        <Route path='/jobhistory' element={BenefitPlanIndex}></Route>
+     
         <Route path='/jobhistory' element={EditBenefitPlan}></Route>
-        <Route path='/jobhistory' element={DeleteBenefitPlan}></Route>
+        <Route path='/jobhistory' element={DeleteBenefitPlan}></Route> 
 
-        <Route path='/' element={PersonalIndex}></Route>
+        <Route path='/' element={PersonalIndex}></Route> */}
     {/* <Route path='/personals/details' element={PersonalDetails}></Route>
     <Route path='/personals/create' element={CreatePersonal}></Route>
     <Route path='/personals/delete' element={DeletePersonal}></Route>

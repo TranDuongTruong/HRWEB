@@ -12,7 +12,7 @@ import '../src/images/icons/css/font-awesome.css';
 
 
 import  {initializeCommonFunctions}  from '../src/Scripts/common.js'
- import '../src/Scripts/jquery-1.9.1min.js'
+ import './Scripts/jquery-191min.js'
 import '../src/Scripts/jquery-ui-1.10.1.custommin.js'
 import '../src/bootstrap/js/bootstrapmin.js'
  import '../src/Scripts/flot/jquery.flot.js'

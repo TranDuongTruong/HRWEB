@@ -1,12 +1,22 @@
 ﻿import React from 'react';
+import CreateJobHistory from '../JobHistory/Create'
+import { Routes,Route ,Link} from 'react-router-dom';
 
 function JobHistoryIndex({ jobHistories }) {
     // Assume jobHistories is passed as props containing an array of job history objects
     return (
+        
+<>
+        <div className="span9">
+        <Routes>
+        <Route path='/create' element={<CreateJobHistory />} />
+        </Routes>
+        </div>
+  
         <div>
             <h2>Index</h2>
             <p>
-                <a href="/create">Create New</a>
+            <Link to="/create">Create New</Link>
             </p>
             <table className="table">
                 <thead>
@@ -41,7 +51,8 @@ function JobHistoryIndex({ jobHistories }) {
                 </tbody>
             </table>
         </div>
-    );
+        </>
+    )
 }
 
 export default JobHistoryIndex;

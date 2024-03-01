@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom'; // Import Link từ react-router-dom
 
 function BenefitPlanForm() {
     const [planName, setPlanName] = useState('');
@@ -59,7 +60,7 @@ function BenefitPlanForm() {
                 </div>
             </form>
             <div>
-                <a href="index.html">Back to List</a>
+            <Link to="/benefitplans">Back to List</Link>
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
 ﻿import React, { useState } from 'react';
-import { Routes,Route ,Link} from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom'; // Import Link từ react-router-dom
 
-function CreateJobHistory() {
+const CreateJobHistory = () => {
+    // Khởi tạo các trường nhập với giá trị mặc định là rỗng
     const [employeeId, setEmployeeId] = useState('');
     const [department, setDepartment] = useState('');
     const [division, setDivision] = useState('');
@@ -19,40 +20,32 @@ function CreateJobHistory() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Code to handle form submission goes here
+        // Thực hiện xử lý gửi biểu mẫu ở đây
     };
-    console.log("gfffffffffffffffffffffffff")
 
     return (
-<>
-        
-        <div className="form-horizontal">
+        <div>
             <h2>Create</h2>
             <form onSubmit={handleSubmit}>
+                {/* Các trường nhập */}
                 <div className="form-group">
-                    <label htmlFor="Employee_ID" className="control-label col-md-2">Employee_ID</label>
-                    <div className="col-md-10">
-                        <select id="Employee_ID" className="form-control" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)}>
-                            {/* Options for Employee_ID dropdown */}
-                        </select>
-                    </div>
+                    <label htmlFor="employeeId">Employee ID</label>
+                    <input type="text" id="employeeId" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} className="form-control" />
                 </div>
+                {/* Các trường nhập khác tương tự */}
 
-                {/* Other form fields go here with similar structure */}
-                
+                {/* Nút gửi biểu mẫu */}
                 <div className="form-group">
-                    <div className="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" className="btn btn-default" />
-                    </div>
+                    <button type="submit" className="btn btn-default">Create</button>
                 </div>
             </form>
 
+            {/* Link "Back to List" */}
             <div>
-                <a href="/index">Back to List</a>
+               
             </div>
         </div>
-        </>
-    )
-}
+    );
+};
 
 export default CreateJobHistory;

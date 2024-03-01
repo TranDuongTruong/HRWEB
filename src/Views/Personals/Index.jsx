@@ -1,26 +1,17 @@
 ﻿import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom'; // Import Link từ react-router-dom
 
-import PersonalDetails from '../Personals/Details';
-import CreatePersonal from '../Personals/Create' ;
-import EditPersonal from '../Personals/Edit'; 
-import DeletePersonal from '../Personals/Delete';
+
 const PersonalIndex = ({ personals }) => {
 
   return (
     <>
-    <div className="span9">
-      <Routes>
-      <Route path='/create' element={<CreatePersonal />} />
-      <Route path='/edit/:id' element={<EditPersonal />} /> 
-      <Route path='/delete/:id' element={<DeletePersonal />} />
-      </Routes>
-      </div>
+
 
       
     <div className="module">
     <div className="module-head">
-        <h3>Personals - <Link to="/create">Create New</Link></h3> {/* Sử dụng Link thay vì thẻ a */}
+        <h3>Personals - <Link to="/personals/create">Create New</Link></h3> {/* Sử dụng Link thay vì thẻ a */}
       </div>
       <div className="module-body table">
       
@@ -60,9 +51,9 @@ const PersonalIndex = ({ personals }) => {
                 <td className="center">{item.Gender ? "Male" : "Female"}</td>
                 <td className="center">{item.Shareholder_Status ? "Yes" : "No"}</td>
                 <td>
-                  <Link to={`/edit/${item.Employee_ID}`}>Edit</Link> | {/* Sử dụng Link thay vì thẻ a */}
+                  <Link to={`/personals/edit/${item.Employee_ID}`}>Edit</Link> | {/* Sử dụng Link thay vì thẻ a */}
                   {/*<Link to={`/details/${item.Employee_ID}`}>Details</Link> |*/}
-                  <Link to={`/delete/${item.Employee_ID}`}>Delete</Link>
+                  <Link to={`/personals/delete/${item.Employee_ID}`}>Delete</Link>
                 </td>
               </tr>
             ))}

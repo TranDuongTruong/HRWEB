@@ -482,9 +482,29 @@ const jobHistoryData = [
                  <Route path='/personals' element={<PersonalIndex
                  personals={personalsData}
                  />} />
+                 <Route path='/personals/create' element={<CreatePersonal />} />
+                <Route path='/personals/edit/:id' element={<EditPersonal />} /> 
+                <Route path='/personals/delete/:id' element={<DeletePersonal />} />
+
+
+
+
+                
                  <Route path='/benefitplans'element={<BenefitPlanIndex  benefitPlans={benefitPlanData}/>} />
+               
+                 <Route path='/benefitplans/details/:id' element={<BenefitPlanDetails />} />
+                 <Route path='/benefitplans/create'  element={<BenefitPlanForm />} />
+                 <Route path='/benefitplans/delete/:id'  element={<DeleteBenefitPlan />} />
+                  <Route path='/benefitplans/edit/:id'  element={<EditBenefitPlan />} />
+
 
                  <Route path='/jobhistory'element={<JobHistoryIndex jobHistories={jobHistoryData}/>} />
+                 
+                 <Route path='/jobhistory/details/:id'  element={<JobHistoryDetails />} />
+                 <Route path='/jobhistory/create' element={<CreateJobHistory />} />
+                 <Route path='/jobhistory/delete/:id'  element={<DeleteJobHistory />} />
+
+                
             </Routes>
             </div>
           </div>

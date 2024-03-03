@@ -6,9 +6,6 @@ const PersonalIndex = ({ personals }) => {
 
   return (
     <>
-
-
-      
     <div className="module">
     <div className="module-head">
         <h3>Personals - <Link to="/personals/create">Create New</Link></h3> {/* Sử dụng Link thay vì thẻ a */}
@@ -30,35 +27,39 @@ const PersonalIndex = ({ personals }) => {
 
 
         <table className="datatable-1 table table-bordered table-striped display" width="100%">
-          <thead>
-            <tr>
-              <th>Full Name</th>
-              <th>City</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-              <th>Gender</th>
-              <th>Shareholder</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {personals.map((item) => (
-              <tr key={item.Employee_ID} className="odd gradeX">
-                <td>{item.First_Name} {item.Last_Name}</td>
-                <td>{item.City}</td>
-                <td>{item.Email}</td>
-                <td>{item.Phone_Number}</td>
-                <td className="center">{item.Gender ? "Male" : "Female"}</td>
-                <td className="center">{item.Shareholder_Status ? "Yes" : "No"}</td>
-                <td>
-                  <Link to={`/personals/edit/${item.Employee_ID}`}>Edit</Link> | {/* Sử dụng Link thay vì thẻ a */}
-                  {/*<Link to={`/details/${item.Employee_ID}`}>Details</Link> |*/}
-                  <Link to={`/personals/delete/${item.Employee_ID}`}>Delete</Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+  <thead>
+    <tr>
+      
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Vacation Days</th>
+      <th>Paid To Date</th>
+      <th>Paid Last Year</th>
+      <th>Pay Rate</th>
+      <th>Pay Rate ID</th>
+     
+    </tr>
+  </thead>
+  <tbody>
+    {personals.map((item) => (
+      <tr key={item.employeeId} className="odd gradeX">
+      
+        <td>{item.firstName}</td>
+        <td>{item.lastName}</td>
+        <td>{item.vacationDays}</td>
+        <td>{item.paidToDate}</td>
+        <td>{item.paidLastYear}</td>
+        <td>{item.payRate}</td>
+        <td>{item.payRateId}</td>
+        <td>
+          <Link to={`/personals/edit/${item.employeeId}`}>Edit</Link> | {/* Sử dụng Link thay vì thẻ a */}
+          <Link to={`/personals/delete/${item.employeeId}`}>Delete</Link>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
         <div class="dataTables_info" id="DataTables_Table_0_info">Showing 1 to 10 of 50 entries</div>
         <div class="dataTables_paginate paging_two_button btn-group datatable-pagination" id="DataTables_Table_0_paginate">
           <a class="paginate_disabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous" aria-controls="DataTables_Table_0">

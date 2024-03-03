@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter} from 'react-router-dom';
 import AdminDashboard from './Views/Shared/_Layout.jsx';
 import App from './App.jsx';

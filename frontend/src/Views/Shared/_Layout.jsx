@@ -162,7 +162,7 @@ const employeeData=[];
                     </Link>
                   </li> 
                   <li >
-                    <Link to="/personals"><i className="menu-icon icon-bullhorn"></i >Personal List</Link>
+                    <Link to="/personals"><i className="menu-icon icon-bullhorn"></i >Employee</Link>
                   </li>
                   <li>
                     <Link to="/benefitplans">

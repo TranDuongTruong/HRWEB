@@ -107,6 +107,7 @@ const employeeData=[];
       console.log('Error fetching employee data:', error);
     }
   };
+  
  const test=()=>{
 
   console.log(employeeData);
@@ -162,7 +163,7 @@ const employeeData=[];
                     </Link>
                   </li> 
                   <li >
-                    <Link to="/personals"><i className="menu-icon icon-bullhorn"></i >Employee</Link>
+                    <Link to="/employee"><i className="menu-icon icon-bullhorn"></i >Employee</Link>
                   </li>
                   <li>
                     <Link to="/benefitplans">
@@ -195,12 +196,12 @@ const employeeData=[];
             <div className="span9">
             <Routes>
                  <Route path='/' element={<Index />} />
-                 <Route path='/personals' element={<PersonalIndex
+                 <Route path='/employee' element={<PersonalIndex
                  personals={employeeData.data}
                  />} />
-                 <Route path='/personals/create' element={<CreatePersonal />} />
-                <Route path='/personals/edit/:id' element={<EditPersonal />} /> 
-                <Route path='/personals/delete/:id' element={<DeletePersonal />} />
+                 <Route path='/employee/create' element={<CreatePersonal />} />
+                <Route path='/employee/edit/:id' element={<EditPersonal />} /> 
+                <Route path='/employee/delete/:id' element={<DeletePersonal />} />
 
 
 

@@ -11,17 +11,16 @@ import {
 } from 'recharts';
 
 const data = [
-    { name: 'Month 0', Profits: 0 },
-    { name: 'Month 1', Profits: 1 },
-    { name: 'Month 2', Profits: 4 },
-    { name: 'Month 3', Profits: 8 },
-    { name: 'Month 4', Profits: 12 },
-    { name: 'Month 5', Profits: 16 },
-    { name: 'Month 6', Profits: 20 },
-    { name: 'Month 7', Profits: 24 },
-    { name: 'Month 8', Profits: 28 },
+    { name: 'Month 0', Expenses: 0, Profits: 0 },
+    { name: 'Month 1', Expenses: 2, Profits: 1 },
+    { name: 'Month 2', Expenses: 4, Profits: 4 },
+    { name: 'Month 3', Expenses: 6, Profits: 8 },
+    { name: 'Month 4', Expenses: 8, Profits: 12 },
+    { name: 'Month 5', Expenses: 10, Profits: 16 },
+    { name: 'Month 6', Expenses: 12, Profits: 20 },
+    { name: 'Month 7', Expenses: 14, Profits: 24 },
+    { name: 'Month 8', Expenses: 16, Profits: 28 },
 ];
-
 
 function Index() {
     return (
@@ -114,7 +113,8 @@ function Index() {
                             <CartesianGrid strokeDasharray="3 3" />
                             <Tooltip />
                             <Legend />
-                            <Bar dataKey="Profits" fill="#54b8a3" />
+                            <Bar dataKey="Expenses" fill="#ff7f0e" name="Expenses" />
+                            <Bar dataKey="Profits" fill="#54b8a3" name="Profits" />
                         </BarChart>
                     </ResponsiveContainer>
                 </div>

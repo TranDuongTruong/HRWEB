@@ -22,6 +22,7 @@ const data = [
     { name: 'Month 8', Profits: 28 },
 ];
 
+
 function Index() {
     return (
         <div className="content">
@@ -152,22 +153,22 @@ function Index() {
                         <div className="dataTables_filter" id="DataTables_Table_0_filter">
                             <label>Search: <input type="text" aria-controls="DataTables_Table_0" /></label>
                         </div>
-                        <table cellpadding="0" cellspacing="0" border="0" className="datatable-1 table table-bordered table-striped display dataTable" width="100%" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style={{ width: '100%' }}>
+                        <table cellPadding="0" cellSpacing="0" border="0" className="datatable-1 table table-bordered table-striped display dataTable" width="100%" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info" style={{ width: '100%' }}>
                             <thead>
                                 <tr role="row">
-                                    <th className="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style={{ width: '135px' }}>
+                                    <th className="sorting_asc" role="columnheader" tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1" colSpan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style={{ width: '135px' }}>
                                         Rendering engine
                                     </th>
-                                    <th className="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style={{ width: '202.889px' }}>
+                                    <th className="sorting" role="columnheader" tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1" colSpan="1" aria-label="Browser: activate to sort column ascending" style={{ width: '202.889px' }}>
                                         Browser
                                     </th>
-                                    <th className="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style={{ width: '182.889px' }}>
+                                    <th className="sorting" role="columnheader" tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1" colSpan="1" aria-label="Platform(s): activate to sort column ascending" style={{ width: '182.889px' }}>
                                         Platform(s)
                                     </th>
-                                    <th className="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style={{ width: '113.889px' }}>
+                                    <th className="sorting" role="columnheader" tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1" colSpan="1" aria-label="Engine version: activate to sort column ascending" style={{ width: '113.889px' }}>
                                         Engine version
                                     </th>
-                                    <th className="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style={{ width: '78.8889px' }}>
+                                    <th className="sorting" role="columnheader" tabIndex="0" aria-controls="DataTables_Table_0" rowSpan="1" colSpan="1" aria-label="CSS grade: activate to sort column ascending" style={{ width: '78.8889px' }}>
                                         CSS grade
                                     </th>
                                 </tr>
@@ -175,934 +176,934 @@ function Index() {
 
                             <tfoot>
                                 <tr>
-                                    <th rowspan="1" colspan="1">
+                                    <th rowSpan="1" colSpan="1">
                                         Rendering engine
                                     </th>
-                                    <th rowspan="1" colspan="1">
+                                    <th rowSpan="1" colSpan="1">
                                         Browser
                                     </th>
-                                    <th rowspan="1" colspan="1">
+                                    <th rowSpan="1" colSpan="1">
                                         Platform(s)
                                     </th>
-                                    <th rowspan="1" colspan="1">
+                                    <th rowSpan="1" colSpan="1">
                                         Engine version
                                     </th>
-                                    <th rowspan="1" colspan="1">
+                                    <th rowSpan="1" colSpan="1">
                                         CSS grade
                                     </th>
                                 </tr>
                             </tfoot>
                             <tbody role="alert" aria-live="polite" aria-relevant="all">
-                                <tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                <tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Firefox 1.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.7
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Firefox 1.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Firefox 2.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Firefox 3.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 2k+ / OSX.3+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.9
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Camino 1.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Camino 1.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OSX.3+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Netscape 7.2
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / Mac OS 8.6-9.2
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.7
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Netscape Browser 8
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98SE+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.7
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Netscape Navigator 9
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.1
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.2
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.2
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.3
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.3
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.4
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.4
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.5
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.6
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.6
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.7
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.7
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mozilla 1.8
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Seamonkey 1.1
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Gecko
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Epiphany 2.20
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Gnome
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeC odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeC odd">
+                                    <td className="  sorting_1">
                                         KHTML
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Konqureror 3.1
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         KDE 3.1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         3.1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         KHTML
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Konqureror 3.3
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         KDE 3.3
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         3.3
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         KHTML
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Konqureror 3.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         KDE 3.5
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         3.5
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Misc
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         NetFront 3.1
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Embedded devices
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Misc
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         NetFront 3.4
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Embedded devices
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeX even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeX even">
+                                    <td className="  sorting_1">
                                         Misc
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Dillo 0.8
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Embedded devices
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         X
                                     </td>
-                                </tr><tr class="gradeX odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeX odd">
+                                    <td className="  sorting_1">
                                         Misc
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Links
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Text only
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         X
                                     </td>
-                                </tr><tr class="gradeX even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeX even">
+                                    <td className="  sorting_1">
                                         Misc
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Lynx
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Text only
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         X
                                     </td>
-                                </tr><tr class="gradeC odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeC odd">
+                                    <td className="  sorting_1">
                                         Misc
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         IE Mobile
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Windows Mobile 6
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C
                                     </td>
-                                </tr><tr class="gradeC even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeC even">
+                                    <td className="  sorting_1">
                                         Misc
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         PSP browser
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         PSP
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C
                                     </td>
-                                </tr><tr class="gradeU odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeU odd">
+                                    <td className="  sorting_1">
                                         Other browsers
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         All others
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         U
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera 7.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.1+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera 7.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera 8.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera 8.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera 9.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+ / OSX.3+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera 9.2
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 88+ / OSX.3+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera 9.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 88+ / OSX.3+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Opera for Wii
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Wii
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Nokia N800
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         N800
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Presto
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Nintendo DS browser
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Nintendo DS
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         8.5
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C/A<sup>1</sup>
                                     </td>
-                                </tr><tr class="gradeX even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeX even">
+                                    <td className="  sorting_1">
                                         Tasman
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 4.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mac OS 8-9
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         -
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         X
                                     </td>
-                                </tr><tr class="gradeC odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeC odd">
+                                    <td className="  sorting_1">
                                         Tasman
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 5.1
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mac OS 7.6-9
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C
                                     </td>
-                                </tr><tr class="gradeC even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeC even">
+                                    <td className="  sorting_1">
                                         Tasman
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 5.2
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Mac OS 8-X
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C
                                     </td>
-                                </tr><tr class="gradeX odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeX odd">
+                                    <td className="  sorting_1">
                                         Trident
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 4.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         4
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         X
                                     </td>
-                                </tr><tr class="gradeC even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeC even">
+                                    <td className="  sorting_1">
                                         Trident
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 5.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         5
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         C
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Trident
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 5.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 95+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         5.5
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Trident
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 6
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win 98+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         6
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Trident
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Internet Explorer 7
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win XP SP2+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         7
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Trident
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         AOL browser (AOL desktop)
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Win XP
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         6
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Webkit
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Safari 1.2
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OSX.3
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         125.5
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Webkit
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Safari 1.3
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OSX.3
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         312.8
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Webkit
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Safari 2.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OSX.4+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         419.3
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Webkit
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         Safari 3.0
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OSX.4+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         522.1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Webkit
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OmniWeb 5.5
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         OSX.4+
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         420
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA even">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA even">
+                                    <td className="  sorting_1">
                                         Webkit
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         iPod Touch / iPhone
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         iPod
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         420.1
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
-                                </tr><tr class="gradeA odd">
-                                    <td class="  sorting_1">
+                                </tr><tr className="gradeA odd">
+                                    <td className="  sorting_1">
                                         Webkit
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         S60
                                     </td>
-                                    <td class=" ">
+                                    <td className=" ">
                                         S60
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         413
                                     </td>
-                                    <td class="center ">
+                                    <td className="center ">
                                         A
                                     </td>
                                 </tr>
@@ -1113,10 +1114,10 @@ function Index() {
                             Showing 11 to 20 of 57 entries
                         </div>
                         <div className="dataTables_paginate paging_two_button btn-group datatable-pagination" id="DataTables_Table_0_paginate">
-                            <a className="paginate_enabled_previous" tabindex="0" role="button" id="DataTables_Table_0_previous" aria-controls="DataTables_Table_0">
+                            <a className="paginate_enabled_previous" tabIndex="0" role="button" id="DataTables_Table_0_previous" aria-controls="DataTables_Table_0">
                                 <span>Previous</span><i className="icon-chevron-left shaded"></i>
                             </a>
-                            <a className="paginate_enabled_next" tabindex="0" role="button" id="DataTables_Table_0_next" aria-controls="DataTables_Table_0">
+                            <a className="paginate_enabled_next" tabIndex="0" role="button" id="DataTables_Table_0_next" aria-controls="DataTables_Table_0">
                                 <span>Next</span><i className="icon-chevron-right shaded"></i>
                             </a>
                         </div>

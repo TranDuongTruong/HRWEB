@@ -1,6 +1,8 @@
 ﻿import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 import axios from 'axios';
+
+
 
 const CreatePersonal = () => {
   const [formData, setFormData] = useState({
@@ -18,12 +20,15 @@ const CreatePersonal = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+  const navigate = useNavigate(); // Sử dụng hook useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:4000/api/employee', formData);    
       console.log('New employee data created:', formData);
+      navigate('/employee');
+
     } catch (error) {
       console.log('Error creating new employee data:', error);
     }
@@ -97,6 +102,8 @@ const CreatePersonal = () => {
 
             <div className="control-group">
               <div className="col-md-offset-2 controls">
+
+
                 <input type="submit" value="Create" className="btn btn-default" onClick={handleSubmit}/>
                 <Link to="/employee" className="btn btn-default">Back to List</Link>
               </div>

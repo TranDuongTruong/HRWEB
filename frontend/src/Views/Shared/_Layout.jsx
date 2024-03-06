@@ -90,29 +90,7 @@ const jobHistoryData = [
 const employeeData=[];
  function AdminDashboard() {
 
-  const [employeeData, setPersonalsData] = useState([]);
-
-  useEffect(() => {
-    fetchEmployee();
-    console.log(employeeData.data);
-    test();
-  }, []);
   
-  const fetchEmployee = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/api/employee');
-      console.log(response.data);
-      setPersonalsData(response.data);
-    } catch (error) {
-      console.log('Error fetching employee data:', error);
-    }
-  };
-  
- const test=()=>{
-
-  console.log(employeeData);
-
- }
   return (
     <>
 <div>
@@ -196,17 +174,13 @@ const employeeData=[];
             <div className="span9">
             <Routes>
                  <Route path='/' element={<Index />} />
-                 <Route path='/employee' element={<PersonalIndex
-                 personals={employeeData.data}
-                 />} />
+                
                  <Route path='/employee/create' element={<CreatePersonal />} />
                 <Route path='/employee/edit/:id' element={<EditPersonal />} /> 
                 <Route path='/employee/delete/:id' element={<DeletePersonal />} />
+                <Route path='/employee' element={<PersonalIndex />} />
 
-
-
-
-                
+                {/* <Route path='/employee'element={<PersonalIndex  personals={employeeData.data}/>} /> */}
                  <Route path='/benefitplans'element={<BenefitPlanIndex  benefitPlans={benefitPlanData}/>} />
                
                  <Route path='/benefitplans/details/:id' element={<BenefitPlanDetails />} />

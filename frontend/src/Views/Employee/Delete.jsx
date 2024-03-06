@@ -1,22 +1,25 @@
-﻿import React, { useEffect } from 'react';
+﻿import React, { useEffect  } from 'react';
+import { useParams } from 'react-router-dom';
+
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const DeletePersonal = ({ employeeID }) => {
+
+  let { id } = useParams();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Gửi yêu cầu xóa dữ liệu tới API
-      await axios.delete(`http://localhost:4000/api/employee/${employeeID}`);
-      console.log(`Employee with ID ${employeeID} has been deleted.`);
-      // Thực hiện chuyển hướng hoặc cập nhật UI tại đây (nếu cần)
+      await axios.delete(`http://localhost:4000/api/employee/${id}`);
+      console.log(`Employee with ID ${id} has been deleted.`);    
     } catch (error) {
       console.log('Error deleting employee:', error);
     }
   };
-
+console.log(id)
   useEffect(() => {
-    // Logic để lấy dữ liệu personal từ API hoặc props và hiển thị thông tin cần xóa
-  }, []); // Gọi API để lấy thông tin cần xóa khi component được render lần đầu tiên
+ 
+  }, []); 
 
   return (
     <div>
@@ -28,7 +31,7 @@ const DeletePersonal = ({ employeeID }) => {
         <hr />
         <form onSubmit={handleSubmit}>
           <input type="submit" value="Delete" className="btn btn-default"  />
-          <button className="btn btn-default">Back to List</button>
+          <Link to="/employee" className="btn btn-default">Back to List</Link>
         </form>
       </div>
     </div>

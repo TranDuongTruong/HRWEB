@@ -40,6 +40,7 @@ const PersonalIndex = () => {
       );
       setFilteredPersonals(filteredData);
     }
+
   };
 
   const handleEntriesPerPageChange = (event) => {
@@ -49,11 +50,12 @@ const PersonalIndex = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   const renderTableEntries = () => {
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
+    
     return filteredPersonals.slice(startIndex, endIndex).map((item) => (
+      
       <tr key={item.employeeId} className="odd gradeX">
         <td>{item.firstName}</td>
         <td>{item.lastName}</td>
@@ -166,6 +168,8 @@ const PersonalIndex = () => {
           <div className="dataTables_info" id="DataTables_Table_0_info">Showing {Math.min(entriesPerPage, filteredPersonals.length)} of {filteredPersonals.length} entries</div>
           {renderPaginationButtons()}
         </div>
+
+        
       </div>
     </>
   );

@@ -51,6 +51,7 @@ export const deleteEmployee = async (req, res, next) => {
     try {
         const employee = await Employee.findByIdAndDelete(req.params.employeeId);
         if (!employee) {
+            console.log("backend: "+employee.employeeId)
             return res.status(404).json({ success: false, message: "Employee not found" });
         }
         return res.status(200).json({ success: true, message: "Employee deleted successfully" });

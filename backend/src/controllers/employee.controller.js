@@ -46,7 +46,6 @@ export const getEmployees = async (req, res, next) => {
     const employees = await Employee.find();
     return res.json({ success: true, data: employees });
 }
-<<<<<<< HEAD
 
 export const deleteEmployee = async (req, res, next) => {
     try {

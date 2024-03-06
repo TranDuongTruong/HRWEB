@@ -11,11 +11,11 @@ import DeletePersonal from '../Employee/Delete';
 
 
 
-import JobHistoryDetails from '../JobHistory/Details';
-import CreateJobHistory from '../JobHistory/Create' ;
-import JobHistoryIndex from '../JobHistory/Index';
-import EditJobHistory from '../JobHistory/Edit'; 
-import DeleteJobHistory from '../JobHistory/Delete';
+import JobHistoryDetails from '../User/Details';
+import CreateJobHistory from '../User/Create' ;
+import JobHistoryIndex from '../User/Index';
+import EditJobHistory from '../User/Edit'; 
+import DeleteJobHistory from '../User/Delete';
 
 
 
@@ -53,35 +53,7 @@ const benefitPlanData = [
   },
   // Thêm các đối tượng khác vào mảng benefitPlanData nếu cần
 ];
-const jobHistoryData = [
-  {
-      ID: 1,
-      Personal: {
-          First_Name: "John",
-          Last_Name: "Doe"
-      },
-      Department: "Sales",
-      Division: "Retail",
-      Start_Date: "2023-01-01",
-      End_Date: "2023-06-30",
-      Job_Category: "Associate",
-      Location: "New York"
-  },
-  {
-      ID: 2,
-      Personal: {
-          First_Name: "Jane",
-          Last_Name: "Doe"
-      },
-      Department: "Marketing",
-      Division: "Digital",
-      Start_Date: "2022-08-15",
-      End_Date: "2023-02-28",
-      Job_Category: "Manager",
-      Location: "Los Angeles"
-  },
-  // Thêm các đối tượng khác vào mảng jobHistoryData nếu cần
-];
+
 
 
 
@@ -149,8 +121,8 @@ const employeeData=[];
                     </Link>
                   </li>
                   <li>
-                    <Link to="/jobhistory">
-                      <i className="menu-icon icon-inbox"></i>Job History
+                    <Link to="/user">
+                      <i className="menu-icon icon-inbox"></i>User
                     </Link>
                   </li>
                 </ul>
@@ -189,11 +161,12 @@ const employeeData=[];
                   <Route path='/benefitplans/edit/:id'  element={<EditBenefitPlan />} />
 
 
-                 <Route path='/jobhistory'element={<JobHistoryIndex jobHistories={jobHistoryData}/>} />
+               
                  
-                 <Route path='/jobhistory/details/:id'  element={<JobHistoryDetails />} />
-                 <Route path='/jobhistory/create' element={<CreateJobHistory />} />
-                 <Route path='/jobhistory/delete/:id'  element={<DeleteJobHistory />} />
+                 <Route path='/user/details/:id'  element={<JobHistoryDetails />} />
+                 <Route path='/user/create' element={<CreateJobHistory />} />
+                 <Route path='/user/delete/:id'  element={<DeleteJobHistory />} />
+                 <Route path='/user' element={<JobHistoryIndex />} />
 
                 
             </Routes>

@@ -1,28 +1,27 @@
-﻿import React from 'react';
-import {
-    BarChart,
-    Bar,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-} from 'recharts';
-
-const data = [
-    { name: 'Month 0', Expenses: 0, Profits: 0 },
-    { name: 'Month 1', Expenses: 2, Profits: 1 },
-    { name: 'Month 2', Expenses: 4, Profits: 4 },
-    { name: 'Month 3', Expenses: 6, Profits: 8 },
-    { name: 'Month 4', Expenses: 8, Profits: 12 },
-    { name: 'Month 5', Expenses: 10, Profits: 16 },
-    { name: 'Month 6', Expenses: 12, Profits: 20 },
-    { name: 'Month 7', Expenses: 14, Profits: 24 },
-    { name: 'Month 8', Expenses: 16, Profits: 28 },
-];
+﻿import React, { useEffect } from 'react';
+import Chart from 'chart.js/auto';
+import MyChart from './MyChart'; 
 
 function Index() {
+    const chartData = {
+        labels: ['0', '1', '2', '3', '4', '5', '6', '7','8'],
+        datasets: [
+          {
+            label: 'Profits',
+             data: [1, 14, 5, 4, 5, 1, 14,5,5],
+             fill: false,
+                borderColor: 'rgb(85, 243, 192)',
+            tension: 0.1
+          },
+          {
+            label: 'Expenses',
+            data: [5,2,10,3,4,5,2,10,8],
+            fill: false,
+            borderColor: 'rgb(13, 179, 126)',
+            tension: 0.1
+          }
+        ]
+      };
     return (
         <div className="content">
             <div className="btn-controls">
@@ -97,28 +96,21 @@ function Index() {
                     </ul>
                 </div>
             </div>
+            {/* profits chart  */}
+
             <div className="module">
-                <div className="module-head">
-                    <h3>Profit Chart</h3>
-                </div>
-                <div className="module-body">
-                    <ResponsiveContainer width="100%" height={500}>
-                        <BarChart
-                            data={data}
-                            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                            barSize={20}
-                        >
-                            <XAxis dataKey="name" />
-                            <YAxis />
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <Tooltip />
-                            <Legend />
-                            <Bar dataKey="Expenses" fill="#ff7f0e" name="Expenses" />
-                            <Bar dataKey="Profits" fill="#54b8a3" name="Profits" />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </div>
-            </div>
+        <div className="module-head">
+          <h3>Profit Chart</h3>
+        </div>
+        <div className="module-body"style={{ height: '500px', width: '98%' }}>
+            
+          <MyChart data={chartData} /> {/* Render your Chart component */}
+        </div>
+      </div>
+
+      {/* Existing chart */}
+    
+         
             <div className="module hide">
                 <div className="module-head">
                     <h3>Adjust Budget Range</h3>

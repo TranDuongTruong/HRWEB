@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createEmployee, getEmployees, getEmployee } from "../controllers/employee.controller.js";
+import { createEmployee, getEmployees, getEmployee, deleteEmployee, updateEmployee } from "../controllers/employee.controller.js";
 import { isAdmin, verifyToken } from "../middlewares/authJwt.js";
 import { checkExistingUser } from "../middlewares/verifySignup.js";
 
@@ -8,6 +8,10 @@ const router = Router();
 
 router.post("/", createEmployee);
 router.get("/", getEmployees);
+router.delete("/:employeeId", deleteEmployee); // Thêm router xoá nhân viên
+router.put("/:employeeId", updateEmployee); // Thêm router chỉnh sửa nhân viên
+
+
 // router.post("/", [verifyToken, isAdmin, checkExistingUser], createEmployee);
 // router.get("/", [verifyToken, isAdmin, checkExistingUser], getEmployees);
 router.get("/:employeeId", [verifyToken, isAdmin, checkExistingUser], getEmployee);

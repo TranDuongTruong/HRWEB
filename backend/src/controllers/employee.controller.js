@@ -46,3 +46,34 @@ export const getEmployees = async (req, res, next) => {
     const employees = await Employee.find();
     return res.json({ success: true, data: employees });
 }
+
+export const deleteEmployee = async (req, res, next) => {
+    try {
+        const employee = await Employee.findByIdAndDelete(req.params.employeeId);
+        if (!employee) {
+            return res.status(404).json({ success: false, message: "Employee not found" });
+        }
+        return res.status(200).json({ success: true, message: "Employee deleted successfully" });
+    } catch (error) {
+        console.error({ success: false, data: error });
+        return res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+};
+
+export const updateEmployee = async (req, res, next) => {
+    try {
+        const { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = req.body;
+        const updatedEmployee = await Employee.findByIdAndUpdate(
+            req.params.employeeId,
+            { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId },
+            { new: true }
+        );
+        if (!updatedEmployee) {
+            return res.status(404).json({ success: false, message: "Employee not found" });
+        }
+        return res.status(200).json({ success: true, data: updatedEmployee });
+    } catch (error) {
+        console.error({ success: false, data: error });
+        return res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+}

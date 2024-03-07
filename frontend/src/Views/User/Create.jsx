@@ -4,6 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom'; // Import Link từ reac
 const CreateJobHistory = () => {
     // Khởi tạo các trường nhập với giá trị mặc định là rỗng
     const [employeeId, setEmployeeId] = useState('');
+    const [username,setUsername]=useState('');
     const [department, setDepartment] = useState('');
     const [division, setDivision] = useState('');
     const [startDate, setStartDate] = useState('');
@@ -32,9 +33,10 @@ const CreateJobHistory = () => {
                     <label htmlFor="employeeId">Employee ID</label>
                     <input type="text" id="employeeId" value={employeeId} onChange={(e) => setEmployeeId(e.target.value)} className="form-control" />
                 </div>
-                {/* Các trường nhập khác tương tự */}
-
-                {/* Nút gửi biểu mẫu */}
+                <div className='form-group'>
+                    <label htmlFor="username">User name</label>
+                    <input type="text" id="username" value={username} onChange={(e)=>setUsername(e.target.value)} className="form-control"/>
+                </div>
                 <div className="form-group">
                     <button type="submit" className="btn btn-default">Create</button>
                 </div>

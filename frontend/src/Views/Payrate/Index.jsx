@@ -55,23 +55,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { usePayrateContext } from './PayrateContext';
+
 
 const PayrateIndex = () => {
-    const [payrates, setPayrates] = useState([]);
+    const { state, fetchPayrates } = usePayrateContext();
+    const { payrates } = state;
 
     useEffect(() => {
         fetchPayrates();
     }, []);
 
-    const fetchPayrates = async () => {
-        try {
-            const response = await axios.get('http://localhost:4000/api/payrate');
-            console.log(response.data);
-            setPayrates(response.data.data); // Lấy dữ liệu từ response.data.data
-        } catch (error) {
-            console.log('Error fetching payrates:', error);
-        }
-    };
     return (
         <>
             <div>

@@ -1,69 +1,64 @@
-﻿import React from 'react';
+﻿// DeletePayrate.js
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-function DeleteJobHistory() {
-    // Assume jobHistoryData is passed as props containing job history details
-    const { Personal, Department, Division, Start_Date, End_Date, Job_Title, Supervisor, Job_Category, Location, Departmen_Code, Salary_Type, Pay_Period, Hours_per_Week, Hazardous_Training } = jobHistoryData;
+function DeletePayrate() {
+    const [payrateData, setPayrateData] = useState(null);
+    const { id } = useParams(); // Access the route parameter
+
+    useEffect(() => {
+        const fetchPayrate = async () => {
+            try {
+                const response = await axios.get(`http://localhost:4000/api/payrate/${id}`);
+                setPayrateData(response.data.data); // Set the fetched payrate data
+            } catch (error) {
+                console.log('Error fetching payrate:', error);
+            }
+        };
+
+        fetchPayrate(); // Fetch payrate data when the component mounts
+    }, [id]);
 
     const handleDelete = (e) => {
         e.preventDefault();
         // Code to handle deletion goes here
     };
 
+    if (!payrateData) {
+        return <div>Loading...</div>;
+    }
+
+    const { name, value, taxPercentage, type, amount } = payrateData;
+
     return (
         <div>
             <h2>Delete</h2>
             <h3>Are you sure you want to delete this?</h3>
             <div>
-                <h4>Job_History</h4>
+                <h4>Payrate</h4>
                 <hr />
                 <dl className="dl-horizontal">
-                    <dt>First Name</dt>
-                    <dd>{Personal.First_Name}</dd>
+                    <dt>Name</dt>
+                    <dd>{name}</dd>
 
-                    <dt>Department</dt>
-                    <dd>{Department}</dd>
+                    <dt>Value</dt>
+                    <dd>{value}</dd>
 
-                    <dt>Division</dt>
-                    <dd>{Division}</dd>
+                    <dt>Tax Percentage</dt>
+                    <dd>{taxPercentage}</dd>
 
-                    <dt>Start Date</dt>
-                    <dd>{Start_Date}</dd>
+                    <dt>Type</dt>
+                    <dd>{type}</dd>
 
-                    <dt>End Date</dt>
-                    <dd>{End_Date}</dd>
-
-                    <dt>Job Title</dt>
-                    <dd>{Job_Title}</dd>
-
-                    <dt>Supervisor</dt>
-                    <dd>{Supervisor}</dd>
-
-                    <dt>Job Category</dt>
-                    <dd>{Job_Category}</dd>
-
-                    <dt>Location</dt>
-                    <dd>{Location}</dd>
-
-                    <dt>Department Code</dt>
-                    <dd>{Departmen_Code}</dd>
-
-                    <dt>Salary Type</dt>
-                    <dd>{Salary_Type}</dd>
-
-                    <dt>Pay Period</dt>
-                    <dd>{Pay_Period}</dd>
-
-                    <dt>Hours per Week</dt>
-                    <dd>{Hours_per_Week}</dd>
-
-                    <dt>Hazardous Training</dt>
-                    <dd>{Hazardous_Training}</dd>
+                    <dt>Amount</dt>
+                    <dd>{amount}</dd>
                 </dl>
 
                 <form onSubmit={handleDelete}>
                     <div className="form-actions no-color">
                         <input type="submit" value="Delete" className="btn btn-default" /> |
-                        <a href="/index">Back to List</a>
+                        <a href="/payrate">Back to List</a>
                     </div>
                 </form>
             </div>
@@ -71,4 +66,4 @@ function DeleteJobHistory() {
     );
 }
 
-export default DeleteJobHistory;
+export default DeletePayrate;

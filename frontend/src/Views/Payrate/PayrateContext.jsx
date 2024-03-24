@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
 import axios from 'axios';
 
 const PayrateContext = createContext();
@@ -16,11 +16,6 @@ const reducer = (state, action) => {
                 ...state,
                 payrates: [...state.payrates, action.payload],
             };
-        case 'FETCH_PAYRATES_SUCCESS':
-            return {
-                ...state,
-                payrates: action.payload,
-            };
         case 'DELETE_PAGE_SUCCESS':
             return {
                 ...state,
@@ -30,20 +25,11 @@ const reducer = (state, action) => {
         default:
             return state;
     }
-
 };
 
 export const PayrateProvider = ({ children }) => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const fetchPayrates = async () => {
-        try {
-            const response = await axios.get('http://localhost:4000/api/payrate');
-            dispatch({ type: 'FETCH_PAYRATES_SUCCESS', payload: response.data.data });
-        } catch (error) {
-            console.log('Error fetch payrate:', error);
-        }
-    };
     const addPayrate = async (payrateData) => {
         try {
             const response = await axios.post('http://localhost:4000/api/payrate', payrateData);
@@ -52,6 +38,7 @@ export const PayrateProvider = ({ children }) => {
             console.log('Error adding payrate:', error);
         }
     };
+
     const deletePayrate = async (id) => {
         try {
             await axios.delete(`http://localhost:4000/api/payrate/${id}`);
@@ -62,7 +49,7 @@ export const PayrateProvider = ({ children }) => {
     };
 
     return (
-        <PayrateContext.Provider value={{ state, addPayrate, fetchPayrates, deletePayrate }}>
+        <PayrateContext.Provider value={{ state, addPayrate, deletePayrate }}>
             {children}
         </PayrateContext.Provider>
     );

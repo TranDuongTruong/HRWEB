@@ -1,4 +1,4 @@
-﻿// CreatePayrate.js
+﻿// CreatePayrate.jsx
 import React, { useState } from 'react';
 import { usePayrateContext } from './PayrateContext';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const CreatePayrate = () => {
-    const { addPayrate, fetchPayrates } = usePayrateContext();
+    const { addPayrate } = usePayrateContext();
     const [name, setName] = useState('');
     const [value, setValue] = useState(0);
     const [taxPercentage, setTaxPercentage] = useState(0.1);
@@ -23,11 +23,9 @@ const CreatePayrate = () => {
         setTaxPercentage(0.1);
         setType('');
         setAmount('');
-        // Cập nhật danh sách payrates
-        fetchPayrates();
+        
         // Quay lại trang /payrate sau khi thêm mới thành công
         navigate('/payrate')
-
 
     };
 

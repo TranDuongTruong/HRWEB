@@ -21,7 +21,11 @@ const reducer = (state, action) => {
                 ...state,
                 payrates: action.payload,
             };
-        
+        case 'DELETE_PAGE_SUCCESS':
+            return {
+                ...state,
+                payrates: state.payrates.filter(payrate => payrate._id !== action.payload),
+            };
         // Xử lý các action khác nếu cần
         default:
             return state;
@@ -37,7 +41,7 @@ export const PayrateProvider = ({ children }) => {
             const response = await axios.get('http://localhost:4000/api/payrate');
             dispatch({ type: 'FETCH_PAYRATES_SUCCESS', payload: response.data.data });
         } catch (error) {
-            dispatch({ type: 'FETCH_PAYRATES_ERROR', payload: error });
+            console.log('Error fetch payrate:', error);
         }
     };
     const addPayrate = async (payrateData) => {
@@ -48,9 +52,17 @@ export const PayrateProvider = ({ children }) => {
             console.log('Error adding payrate:', error);
         }
     };
+    const deletePayrate = async (id) => {
+        try {
+            await axios.delete(`http://localhost:4000/api/payrate/${id}`);
+            dispatch({ type: 'DELETE_PAGE_SUCCESS', payload: id });
+        } catch (error) {
+            console.log('Error deleting page:', error);
+        }
+    };
 
     return (
-        <PayrateContext.Provider value={{ state, addPayrate, fetchPayrates  }}>
+        <PayrateContext.Provider value={{ state, addPayrate, fetchPayrates, deletePayrate }}>
             {children}
         </PayrateContext.Provider>
     );

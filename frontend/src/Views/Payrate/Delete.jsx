@@ -1,28 +1,36 @@
-﻿// DeletePayrate.js
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { usePayrateContext } from './PayrateContext';  
+
 
 function DeletePayrate() {
     const [payrateData, setPayrateData] = useState(null);
-    const { id } = useParams(); // Access the route parameter
+    const { id } = useParams();
+    const { deletePayrate } = usePayrateContext(); 
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchPayrate = async () => {
             try {
                 const response = await axios.get(`http://localhost:4000/api/payrate/${id}`);
-                setPayrateData(response.data.data); // Set the fetched payrate data
+                setPayrateData(response.data.data);
             } catch (error) {
                 console.log('Error fetching payrate:', error);
             }
         };
 
-        fetchPayrate(); // Fetch payrate data when the component mounts
+        fetchPayrate();
     }, [id]);
 
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         e.preventDefault();
-        // Code to handle deletion goes here
+        try {
+            await deletePayrate(id); 
+            navigate('/payrate')
+        } catch (error) {
+            console.log('Error deleting payrate:', error);
+        }
     };
 
     if (!payrateData) {
@@ -58,7 +66,7 @@ function DeletePayrate() {
                 <form onSubmit={handleDelete}>
                     <div className="form-actions no-color">
                         <input type="submit" value="Delete" className="btn btn-default" /> |
-                        <a href="/payrate">Back to List</a>
+                        <Link to="/payrate">Back to List</Link>
                     </div>
                 </form>
             </div>

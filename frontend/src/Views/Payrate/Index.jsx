@@ -12,7 +12,6 @@ const PayrateIndex = () => {
     const fetchPayrates = async () => {
         try {
             const response = await axios.get('http://localhost:4000/api/payrate');
-            console.log(response.data);
             setPayrates(response.data.data); // Lấy dữ liệu từ response.data.data
         } catch (error) {
             console.log('Error fetching payrates:', error);
@@ -45,6 +44,7 @@ const PayrateIndex = () => {
                                 <td>{payrate.amount}</td>
                                 <td>
                                     <Link to={`/payrate/edit/${payrate._id}`}>Edit</Link> |{' '}
+                                    <Link to={`/payrate/details/${payrate._id}`}>Details</Link> |{' '}
                                     <Link to={`/payrate/delete/${payrate._id}`}>Delete</Link>
                                 </td>
                             </tr>

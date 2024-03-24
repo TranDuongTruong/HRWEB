@@ -21,6 +21,11 @@ const reducer = (state, action) => {
                 ...state,
                 payrates: state.payrates.filter(payrate => payrate._id !== action.payload),
             };
+        case 'UPDATE_PAYRATE_SUCCESS':
+            return {
+                ...state,
+                payrates: state.payrates.map(payrate => payrate._id === action.payload._id ? action.payload : payrate),
+            };
         // Xử lý các action khác nếu cần
         default:
             return state;
@@ -47,9 +52,17 @@ export const PayrateProvider = ({ children }) => {
             console.log('Error deleting page:', error);
         }
     };
+    const updatePayrate = async (id, payrateData) => {
+        try {
+            const response = await axios.put(`http://localhost:4000/api/payrate/${id}`, payrateData);
+            dispatch({ type: 'UPDATE_PAYRATE_SUCCESS', payload: response.data });
+        } catch (error) {
+            console.log('Error updating payrate:', error);
+        }
+    };
 
     return (
-        <PayrateContext.Provider value={{ state, addPayrate, deletePayrate }}>
+        <PayrateContext.Provider value={{ state, addPayrate, deletePayrate, updatePayrate  }}>
             {children}
         </PayrateContext.Provider>
     );

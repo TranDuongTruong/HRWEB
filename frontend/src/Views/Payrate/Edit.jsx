@@ -1,12 +1,17 @@
 ﻿import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { usePayrateContext } from './PayrateContext';
+
 
 function EditPayRate() {
     const [payRateData, setPayRateData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { id } = useParams();
+    const { updatePayrate } = usePayrateContext();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,11 +28,16 @@ function EditPayRate() {
         fetchData();
     }, [id]); // Fetch data whenever id changes
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
-        // Logic to handle form submission
+        try {
+            await updatePayrate(id, payRateData);
+            navigate('/payrate')
+        } catch (error) {
+            console.error('Error updating data:', error);
+            setError(error);
+        }
     };
-
     if (loading) {
         return <div>Loading...</div>;
     }

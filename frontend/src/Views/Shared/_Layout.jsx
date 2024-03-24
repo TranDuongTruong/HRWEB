@@ -11,11 +11,11 @@ import DeletePersonal from '../Employee/Delete';
 
 
 
-import JobHistoryDetails from '../User/Details';
-import CreateJobHistory from '../User/Create' ;
-import JobHistoryIndex from '../User/Index';
-import EditJobHistory from '../User/Edit'; 
-import DeleteJobHistory from '../User/Delete';
+import JobHistoryDetails from '../Payrate/Details';
+import CreatePayrate  from '../Payrate/Create' ;
+import PayrateIndex from '../Payrate/Index';
+import EditJobHistory from '../Payrate/Edit'; 
+import DeleteJobHistory from '../Payrate/Delete';
 
 
 
@@ -121,8 +121,8 @@ const employeeData=[];
                     </Link>
                   </li>
                   <li>
-                    <Link to="/user">
-                      <i className="menu-icon icon-inbox"></i>User
+                    <Link to="/payrate">
+                      <i className="menu-icon icon-inbox"></i>Payrate
                     </Link>
                   </li>
                 </ul>
@@ -164,9 +164,9 @@ const employeeData=[];
                
                  
                  <Route path='/user/details/:id'  element={<JobHistoryDetails />} />
-                 <Route path='/user/create' element={<CreateJobHistory />} />
-                 <Route path='/user/delete/:id'  element={<DeleteJobHistory />} />
-                 <Route path='/user' element={<JobHistoryIndex />} />
+                 <Route path='/payrate/create' element={<CreatePayrate  />} />
+                 <Route path='/payrate/delete/:id'  element={<DeleteJobHistory />} />
+                 <Route path='/payrate' element={<PayrateIndex />} />
 
                 
             </Routes>

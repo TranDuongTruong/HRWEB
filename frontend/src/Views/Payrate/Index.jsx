@@ -5,10 +5,10 @@
 // function JobHistoryIndex({ jobHistories }) {
 //     // Assume jobHistories is passed as props containing an array of job history objects
 //     return (
-        
+
 // <>
-       
-  
+
+
 //         <div>
 //             <h2>Index</h2>
 //             <p>
@@ -56,62 +56,58 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const JobHistoryIndex = () => {
-    const [users, setUsers] = useState([]);
+const PayrateIndex = () => {
+    const [payrates, setPayrates] = useState([]);
 
-    const [filteredPersonals, setFilteredPersonals] = useState([]);
     useEffect(() => {
-        fetchUsers();
+        fetchPayrates();
     }, []);
 
-    const fetchUsers = async () => {
+    const fetchPayrates = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/api/users');
-            console.log(response.data)  
-            setUsers(response.data); // Sửa thành response.data
+            const response = await axios.get('http://localhost:4000/api/payrate');
+            console.log(response.data);
+            setPayrates(response.data.data); // Lấy dữ liệu từ response.data.data
         } catch (error) {
-            console.log('Error fetching users:', error);
+            console.log('Error fetching payrates:', error);
         }
     };
-    useEffect(() => {
-        if (users && users.data) {
-          setFilteredPersonals(users.data);
-        }
-      }, [users]);
-console.log(filteredPersonals)
     return (
         <>
-              <div>
-            <h2>USERS</h2>
-            <p>
-            <Link to="/user/create">Create New</Link>
-            </p>
-            <table className="table">
-                <thead>
-                <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { filteredPersonals.map(user => (
-                        <tr key={user._id}>
-                        <td>{user.username}</td>
-                        <td>{user.email}</td>
-                        <td>{user.password}</td>
-                        <td>
-                            <Link to={`/user/edit/${user._id}`}>Edit</Link> |{' '}
-                            <Link to={`/user/delete/${user._id}`}>Delete</Link>
-                        </td>
-                    </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            <div>
+                <h2>Payrates</h2>
+                <p>
+                    <Link to="/payrate/create">Create New</Link>
+                </p>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Value</th>
+                            <th>Tax Percentage</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {payrates.map(payrate => (
+                            <tr key={payrate._id}>
+                                <td>{payrate.name}</td>
+                                <td>{payrate.value}</td>
+                                <td>{payrate.taxPercentage}</td>
+                                <td>{payrate.type}</td>
+                                <td>{payrate.amount}</td>
+                                <td>
+                                    <Link to={`/payrate/edit/${payrate._id}`}>Edit</Link> |{' '}
+                                    <Link to={`/payrate/delete/${payrate._id}`}>Delete</Link>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </>
     );
 }
 
-export default JobHistoryIndex;
+export default PayrateIndex;

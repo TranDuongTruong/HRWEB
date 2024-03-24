@@ -93,6 +93,7 @@ const PayrateIndex = () => {
                                 <td>{payrate.amount}</td>
                                 <td>
                                     <Link to={`/payrate/edit/${payrate._id}`}>Edit</Link> |{' '}
+                                    <Link to={`/payrate/details/${payrate._id}`}>Details</Link> |{' '}
                                     <Link to={`/payrate/delete/${payrate._id}`}>Delete</Link>
                                 </td>
                             </tr>

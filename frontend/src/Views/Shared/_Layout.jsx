@@ -11,7 +11,7 @@ import DeletePersonal from '../Employee/Delete';
 
 
 
-import JobHistoryDetails from '../Payrate/Details';
+import PayrateDetails from '../Payrate/Details';
 import CreatePayrate  from '../Payrate/Create' ;
 import PayrateIndex from '../Payrate/Index';
 import EditJobHistory from '../Payrate/Edit'; 
@@ -163,7 +163,7 @@ const employeeData=[];
 
                
                  
-                 <Route path='/user/details/:id'  element={<JobHistoryDetails />} />
+                 <Route path='/payrate/details/:id'  element={<PayrateDetails />} />
                  <Route path='/payrate/create' element={<CreatePayrate  />} />
                  <Route path='/payrate/delete/:id'  element={<DeletePayrate />} />
                  <Route path='/payrate' element={<PayrateIndex />} />

@@ -84,7 +84,7 @@ const PayrateIndex = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {payrates.map(payrate => (
+                        {payrates.map(payrate => (
                             <tr key={payrate._id}>
                                 <td>{payrate.name}</td>
                                 <td>{payrate.value}</td>

@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 const CreatePayrate = () => {
-    const { addPayrate } = usePayrateContext();
+    const { addPayrate, fetchPayrates } = usePayrateContext();
     const [name, setName] = useState('');
     const [value, setValue] = useState(0);
     const [taxPercentage, setTaxPercentage] = useState(0.1);
     const [type, setType] = useState('');
     const [amount, setAmount] = useState('');
     const navigate = useNavigate()
+
     const handleSubmit = (e) => {
         e.preventDefault();
         addPayrate({ name, value, taxPercentage, type, amount });
@@ -22,8 +23,11 @@ const CreatePayrate = () => {
         setTaxPercentage(0.1);
         setType('');
         setAmount('');
+        // Cập nhật danh sách payrates
+        fetchPayrates();
         // Quay lại trang /payrate sau khi thêm mới thành công
         navigate('/payrate')
+
 
     };
 

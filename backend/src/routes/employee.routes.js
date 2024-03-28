@@ -16,5 +16,6 @@ router.put("/:employeeId", updateEmployee); // Thêm router chỉnh sửa nhân 
 
 // router.post("/", [verifyToken, isAdmin, checkExistingUser], createEmployee);
 // router.get("/", [verifyToken, isAdmin, checkExistingUser], getEmployees);
-router.get("/:employeeId", [verifyToken, isAdmin, checkExistingUser], getEmployee);
+//router.get("/:employeeId", [verifyToken, isAdmin, checkExistingUser], getEmployee);
+router.get("/:employeeId",  getEmployee);
 export default router;

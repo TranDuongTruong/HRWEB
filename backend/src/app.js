@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
 
+
 // Routes
 import indexRoutes from "./routes/index.routes.js";
 import productRoutes from "./routes/products.routes.js";

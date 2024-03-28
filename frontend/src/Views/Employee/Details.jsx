@@ -5,7 +5,7 @@ const PersonalDetails = ({ personal }) => {
     <div>
       <h2>Details</h2>
       <div>
-        <h4>Personal</h4>
+        <h4>Employee</h4>
         <hr />
         <dl className="dl-horizontal">
           <dt>Benefit Plan Name</dt>

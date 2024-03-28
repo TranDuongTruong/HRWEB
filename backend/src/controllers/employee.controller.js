@@ -38,7 +38,10 @@ export const createEmployee = async (req, res) => {
 };
 
 export const getEmployee = async (req, res, next) => {
-    const employee = await Employee.findById(req.params.employeeId);
+
+    const {employeeId}=req.params  
+    const employee = await Employee.findById(employeeId);
+    console.log(employee)
     return res.json({ success: true, data: employee });
 };
 

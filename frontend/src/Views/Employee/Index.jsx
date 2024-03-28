@@ -56,7 +56,7 @@ const PersonalIndex = () => {
     
     return filteredPersonals.slice(startIndex, endIndex).map((item) => (
       
-      <tr key={item.employeeId} className="odd gradeX">
+      <tr key={item._id} className="odd gradeX">
         <td>{item.firstName}</td>
         <td>{item.lastName}</td>
         <td>{item.vacationDays}</td>
@@ -65,8 +65,8 @@ const PersonalIndex = () => {
         <td>{item.payRate}</td>
         <td>{item.payRateId}</td>
         <td>
-          <Link to={`/employee/edit/${item.employeeId}`}>Edit</Link> |
-          <Link to={`/employee/delete/${item.employeeId}`}>Delete</Link>
+          <Link to={`/employee/edit/${item._id}`}>Edit</Link> |
+          <Link to={`/employee/delete/${item._id}`}>Delete</Link>
         </td>
       </tr>
     ));
@@ -122,7 +122,7 @@ const PersonalIndex = () => {
     <>
       <div className="module">
         <div className="module-head">
-          <h3>Personals - <Link to="/employee/create">Create New</Link></h3>
+          <h3>Employee - <Link to="/employee/create">Create New</Link></h3>
         </div>
         <div className="module-body table">
           <div id="DataTables_Table_0_wrapper" className="dataTables_wrapper" role="grid">

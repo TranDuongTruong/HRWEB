@@ -23,13 +23,16 @@ const CreatePersonal = () => {
   const navigate = useNavigate(); // Sử dụng hook useNavigate
 
   const handleSubmit = async (e) => {
+   
     e.preventDefault();
-    try {
-      await axios.post('http://localhost:4000/api/employee', formData);    
-      console.log('New employee data created:', formData);
+    try { 
+    
+      const response = await axios.post('http://localhost:4000/api/employee', formData);      
+      console.log('New employee data created:', response);
       navigate('/employee');
 
-    } catch (error) {
+    } catch (error) {   
+
       console.log('Error creating new employee data:', error);
     }
   };
@@ -38,7 +41,7 @@ const CreatePersonal = () => {
     <div className="content">
       <div className="module">
         <div className="module-head">
-          <h3>Create Personal</h3>
+          <h3>Create Employee</h3>
         </div>
         <form className="form-horizontal row-fluid" onSubmit={handleSubmit}>
           <div className="module-body">

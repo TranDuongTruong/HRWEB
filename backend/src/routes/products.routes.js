@@ -5,7 +5,7 @@ import {
   updateProductById,
   deleteProductById,
   getProductById,
-  searchProduct
+  searchProduct, 
 } from "../controllers/products.controller.js";
 import { verifyToken, isModerator, isAdmin } from "../middlewares/authJwt.js";
 
@@ -13,7 +13,7 @@ const router = Router();
 
 
   
-// router.get("/", getProducts);
+router.get("/", getProducts);
 // router.get("/:productId", getProductById);
 // // router.post("/", [verifyToken, isModerator], createProduct);
 // router.post("/", createProduct);

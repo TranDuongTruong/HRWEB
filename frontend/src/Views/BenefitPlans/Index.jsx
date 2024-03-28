@@ -1,32 +1,49 @@
-﻿import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Routes, Route, Link } from 'react-router-dom'; // Import Link từ react-router-dom
 
-function BenefitPlanIndex({ benefitPlans }) {
+function BenefitPlanIndex() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get('http://localhost:4000/api/products');
+            setProducts(response.data.data); // Lấy dữ liệu từ response.data.data
+        } catch (error) {
+            console.log('Error fetching products:', error);
+        }
+    };
     return (
         <div className="module">
             <div className="module-head">
-                <h3>Benefit Plans -   <Link to="/benefitplans/create">Create New</Link></h3>
+                <h3>Products -   <Link to="/benefitplans/create">Create New</Link></h3>
             </div>
             <div className="module-body table">
                 <table className="datatable-1 table table-bordered table-striped display" width="100%">
                     <thead>
                         <tr>
-                            <th>Plan Name</th>
-                            <th>Deductable</th>
-                            <th>Percentage CoPay</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>ImgURL</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {benefitPlans.map(plan => (
-                            <tr key={plan.Benefit_Plan_ID}>
-                                <td>{plan.Plan_Name}</td>
-                                <td>{plan.Deductable}</td>
-                                <td>{plan.Percentage_CoPay}</td>
+                        {products.map(product => (
+                            <tr key={product._id}>
+                                <td>{product.name}</td>
+                                <td>{product.category}</td>
+                                <td>{product.price}</td>
+                                <td>{product.imgURL}</td>
                                 <td>
-                                <Link to={`/benefitplans/edit/${plan.Benefit_Plan_ID}`}>Edit</Link> |&nbsp;
-                                <Link to={`/benefitplans/details/${plan.Benefit_Plan_ID}`}>Details</Link> |&nbsp;
-                                <Link to={`/benefitplans/delete/${plan.Benefit_Plan_ID}`}>Delete</Link>
+                                <Link to={`/benefitplans/edit/${product._id}`}>Edit</Link> |&nbsp;
+                                <Link to={`/benefitplans/details/${product._id}}`}>Details</Link> |&nbsp;
+                                <Link to={`/benefitplans/delete/${product._id}}`}>Delete</Link>
                                 </td>
                             </tr>
                         ))}

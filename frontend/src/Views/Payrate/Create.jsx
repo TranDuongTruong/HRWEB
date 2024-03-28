@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { usePayrateContext } from './PayrateContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Create.css'
 
 const CreatePayrate = () => {
@@ -30,7 +30,7 @@ const CreatePayrate = () => {
             setError({ field: 'value', message: 'Value must be numbers' });
             return;
         }
-        
+
         if (isNaN(taxPercentage)) {
             setError({ field: 'taxPercentage', message: 'Tax Percentage must be numbers' });
             return;
@@ -60,8 +60,10 @@ const CreatePayrate = () => {
 
     return (
         <div>
-            <h2>Create Payrate</h2>
+            <h2>Create</h2>
             <form onSubmit={handleSubmit}>
+                <h4>Payrate</h4>
+                <hr />
                 {/* Các trường nhập */}
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -142,7 +144,7 @@ const CreatePayrate = () => {
 
             {/* Link "Back to List" */}
             <div>
-                {/* Thêm nút hoặc liên kết để quay lại danh sách Payrate */}
+                <Link to="/payrate">Back to List</Link>
             </div>
         </div>
     );

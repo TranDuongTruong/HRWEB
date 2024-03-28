@@ -1,27 +1,27 @@
-import mongoose from "mongoose";
+  import mongoose from "mongoose";
 
-const payrateSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    value: {
-      type: Number,
-      default: 0,
-    },
-    taxPercentage: {
+  const payrateSchema = new mongoose.Schema(
+    {
+      name: {
+        type: String,
+        required: true,
+        trim: true,
+      },
+      value: {
         type: Number,
-        default: 0.1,
+        default: 0,
+      },
+      taxPercentage: {
+          type: Number,
+          default: 0.1,
+      },
+      type: Number,
+      amount: Number
     },
-    type: Number,
-    amount: Number
-  },
-  {
-    timestamps: true,
-    versionKey: false,
-  }
-);
+    {
+      timestamps: true,
+      versionKey: false,
+    }
+  );
 
-export default mongoose.model("Payrate", payrateSchema);
+  export default mongoose.model("Payrate", payrateSchema);

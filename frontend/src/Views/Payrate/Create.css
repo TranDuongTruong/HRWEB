@@ -1,0 +1,6 @@
+.error-message {
+    font-size: 0.8rem; /* Kích thước font nhỏ hơn */
+    margin-left: 10px; /* Khoảng cách bên trái */
+    display: inline-block; /* Hiển thị thông báo trên cùng dòng với input */
+    vertical-align: middle; /* Canh giữa theo chiều dọc */
+}

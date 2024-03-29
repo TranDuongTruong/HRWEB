@@ -1,7 +1,7 @@
 ﻿
 // export default EditPersonal;
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const EditPersonal = () => {
@@ -38,12 +38,15 @@ const EditPersonal = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
+  const navigate = useNavigate(); 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.put(`http://localhost:4000/api/employee/${id}`, formData);
       console.log('Employee data updated:', formData);
+      
+      navigate( '/employee' );
+
     } catch (error) {
       console.log('Error updating employee data:', error);
     }

@@ -1,17 +1,19 @@
 ﻿import React, { useEffect  } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const DeletePersonal = ({ employeeID }) => {
-
+  const navigate = useNavigate(); 
   let { id } = useParams();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axios.delete(`http://localhost:4000/api/employee/${id}`);
-      console.log(`Employee with ID ${id} has been deleted.`);    
+      console.log(`Employee with ID ${id} has been deleted.`); 
+            
+      navigate( '/employee' );   
     } catch (error) {
       console.log('Error deleting employee:', error);
     }

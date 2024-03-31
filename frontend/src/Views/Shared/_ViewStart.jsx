@@ -37,7 +37,7 @@ function Footer() {
 }
 
 // Main layout component
-function Layout({ children }) {
+function _Layout({ children }) {
   return (
     <div>
       <Header />
@@ -49,4 +49,4 @@ function Layout({ children }) {
   );
 }
 
-export default Layout;
+export default _Layout;

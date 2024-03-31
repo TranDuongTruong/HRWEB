@@ -47,14 +47,16 @@ export const signinHandler = async (req, res) => {
     const userFound = await User.findOne({ email: req.body.email }).populate(
       "roles"
     );
-
+        
     if (!userFound) return res.status(400).json({ message: "User Not Found" });
 
+    
     const matchPassword = await User.comparePassword(
       req.body.password,
       userFound.password
     );
 
+      
     if (!matchPassword)
       return res.status(401).json({
         success: false,

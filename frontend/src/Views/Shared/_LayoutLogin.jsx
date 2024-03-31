@@ -1,4 +1,6 @@
 ﻿import React from 'react';
+import LoginPage from './LoginPage.jsx';
+
 
 const Navbar = () => {
     return (
@@ -58,6 +60,7 @@ const EdminPage = () => {
                 <Navbar />
                 <div className="wrapper">
                     {/* Render other components or content here */}
+                    <LoginPage />
                 </div>
                 <Footer />
                 <script src="/scripts/jquery-1.9.1.min.js" type="text/javascript"></script>

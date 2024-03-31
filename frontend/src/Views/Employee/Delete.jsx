@@ -1,12 +1,41 @@
-﻿import React, { useEffect  } from 'react';
+﻿import React, { useState,useEffect  } from 'react';
 import { useParams,useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const DeletePersonal = ({ employeeID }) => {
+const DeletePersonal = () => {
   const navigate = useNavigate(); 
-  let { id } = useParams();
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    vacationDays: '',
+    paidToDate: '',
+    paidLastYear: '',
+    payRate: '',
+    payRateId: ''
+  });
+
+  const { id } = useParams(); // Lấy employeeID từ URL
+  
+  useEffect(() => {
+    const fetchEmployeeData = async () => {
+      try {
+     
+   const response = await axios.get(`http://localhost:4000/api/employee/${id}`);
+  
+        const { firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = response.data.data;
+        setFormData({ firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId });
+
+      } catch (error) {
+        console.log('Error fetching employee data:', error);
+      }
+    };
+
+    fetchEmployeeData();
+  }, [id]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -28,7 +57,23 @@ console.log(id)
       <h2>Delete</h2>
       <h3>Are you sure you want to delete this?</h3>
       <div>
-        <h4>Employee ID: {employeeID}</h4>
+        <h4>Employee</h4>
+      <dl className="dl-horizontal">
+                    <dt>Name</dt>
+                    <dd>{formData.firstName+formData.lastName}</dd>
+
+                    <dt>Vacation days</dt>
+                    <dd>{formData.vacationDays}</dd>
+
+                    <dt>Paid To Date</dt>
+                    <dd>{formData.paidToDate}</dd>
+
+                    <dt>Payrate</dt>
+                    <dd>{formData.payRate}</dd>
+
+                    <dt>Payrate ID</dt>
+                    <dd>{formData.payRateId}</dd>
+                </dl>
         {/* Hiển thị thông tin cần xóa ở đây */}
         <hr />
         <form onSubmit={handleSubmit}>

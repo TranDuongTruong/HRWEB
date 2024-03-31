@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { Routes, Route, Link } from 'react-router-dom'; // Import Link từ react-router-dom
 
-function BenefitPlanIndex() {
+function ProductIndex() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -54,4 +54,4 @@ function BenefitPlanIndex() {
     );
 }
 
-export default BenefitPlanIndex;
+export default ProductIndex;

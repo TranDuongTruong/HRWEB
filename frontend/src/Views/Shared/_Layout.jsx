@@ -20,11 +20,11 @@ import DeletePayrate from '../Payrate/Delete';
 
 
 
-import BenefitPlanDetails from '../BenefitPlans/Details';
-import BenefitPlanForm from '../BenefitPlans/Create' ;
-import BenefitPlanIndex from '../BenefitPlans/Index';
-import EditBenefitPlan from '../BenefitPlans/Edit.'; 
-import DeleteBenefitPlan from '../BenefitPlans/Delete';
+import BenefitPlanDetails from '../Product/Details';
+import ProductCreate from '../Product/Create' ;
+import ProductIndex from '../Product/Index';
+import EditBenefitPlan from '../Product/Edit.'; 
+import DeleteBenefitPlan from '../Product/Delete';
 
 import Index from '../Admin/Index';
 import Login from '../Login/Login';
@@ -32,32 +32,9 @@ import Login from '../Login/Login';
 
 
 
-const benefitPlanData = [
-  {
-      Benefit_Plan_ID: 1,
-      Plan_Name: "Plan A",
-      Deductable: "$1000",
-      Percentage_CoPay: "20%",
-  },
-  {
-      Benefit_Plan_ID: 2,
-      Plan_Name: "Plan B",
-      Deductable: "$1500",
-      Percentage_CoPay: "25%",
-  },
-  {
-      Benefit_Plan_ID: 3,
-      Plan_Name: "Plan C",
-      Deductable: "$2000",
-      Percentage_CoPay: "30%",
-  },
-  // Thêm các đối tượng khác vào mảng benefitPlanData nếu cần
-];
 
 
 
-
-//const personalsData=[]
 
 const employeeData=[];
  function AdminDashboard() {
@@ -117,7 +94,7 @@ const employeeData=[];
                   </li>
                   <li>
                     <Link to="/benefitplans">
-                      <i className="menu-icon icon-tasks"></i>Benefit Plans
+                      <i className="menu-icon icon-tasks"></i>Product
                     </Link>
                   </li>
                   <li>
@@ -153,10 +130,10 @@ const employeeData=[];
                 <Route path='/employee' element={<PersonalIndex />} />
 
                 {/* <Route path='/employee'element={<PersonalIndex  personals={employeeData.data}/>} /> */}
-                 <Route path='/benefitplans'element={<BenefitPlanIndex  benefitPlans={benefitPlanData}/>} />
+                 <Route path='/benefitplans'element={<ProductIndex/>} />
                
                  <Route path='/benefitplans/details/:id' element={<BenefitPlanDetails />} />
-                 <Route path='/benefitplans/create'  element={<BenefitPlanForm />} />
+                 <Route path='/benefitplans/create'  element={<ProductCreate />} />
                  <Route path='/benefitplans/delete/:id'  element={<DeleteBenefitPlan />} />
                   <Route path='/benefitplans/edit/:id'  element={<EditBenefitPlan />} />
 

@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const EditPersonal = () => {
   const [formData, setFormData] = useState({
+    employeeId:'',
     firstName: '',
     lastName: '',
     vacationDays: '',
@@ -14,6 +15,7 @@ const EditPersonal = () => {
     payRate: '',
     payRateId: ''
   });
+  const [error, setError] = useState('');
 
   const { id } = useParams(); // Lấy employeeID từ URL
  
@@ -23,9 +25,9 @@ const EditPersonal = () => {
      
    const response = await axios.get(`http://localhost:4000/api/employee/${id}`);
        
-        const { firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = response.data.data;
+        const { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = response.data.data;
   
-        setFormData({ firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId });
+        setFormData({ employeeId,firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId });
       } catch (error) {
         console.log('Error fetching employee data:', error);
       }
@@ -41,6 +43,33 @@ const EditPersonal = () => {
   const navigate = useNavigate(); 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+     // Kiểm tra xác minh trường không được null
+     const requiredFields = ['firstName', 'lastName', 'vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
+     for (const field of requiredFields) {
+       if (!formData[field]) {
+         setError(`The field ${field} is required.`);
+         setTimeout(() => {
+           setError('');
+         }, 15000); // Xóa thông báo sau 15 giây
+         return;
+       }
+     }
+ 
+     // Kiểm tra xác minh các trường số
+     const numericFields = ['vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
+     for (const field of numericFields) {
+       if (isNaN(formData[field])) {
+         setError(`The field ${field} must be a number.`);
+         setTimeout(() => {
+           setError('');
+         }, 15000); // Xóa thông báo sau 15 giây
+         return;
+       }
+     }  
+
+
+
     try {
       await axios.put(`http://localhost:4000/api/employee/${id}`, formData);
       console.log('Employee data updated:', formData);
@@ -61,6 +90,12 @@ const EditPersonal = () => {
         <form className="form-horizontal row-fluid" onSubmit={handleSubmit}>
           <div className="module-body">
 
+          <div className="control-group">
+              <label className="control-label" htmlFor="FirstName">Employee ID</label>
+              <div className="controls">
+                <input type="text" id="EmployeeId" name="employeeId" className="span6" value={formData.employeeId}  readOnly  />
+              </div>
+            </div>
             <div className="control-group">
               <label className="control-label" htmlFor="FirstName">First Name</label>
               <div className="controls">
@@ -118,6 +153,7 @@ const EditPersonal = () => {
             </div>
           </div>
         </form>
+        {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
   );

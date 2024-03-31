@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createEmployee, getEmployees, getEmployee, deleteEmployee, updateEmployee } from "../controllers/employee.controller.js";
+import { createEmployee, getEmployees, getEmployee, deleteEmployee, updateEmployee ,getEmployeeByEmployeeID} from "../controllers/employee.controller.js";
 
 import { isAdmin, verifyToken } from "../middlewares/authJwt.js";
 import { checkExistingUser } from "../middlewares/verifySignup.js";
@@ -18,4 +18,5 @@ router.put("/:employeeId", updateEmployee); // Thêm router chỉnh sửa nhân 
 // router.get("/", [verifyToken, isAdmin, checkExistingUser], getEmployees);
 //router.get("/:employeeId", [verifyToken, isAdmin, checkExistingUser], getEmployee);
 router.get("/:employeeId",  getEmployee);
+router.get("/checkEmployeeId/:employeeId", getEmployeeByEmployeeID);
 export default router;

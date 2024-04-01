@@ -1,83 +1,35 @@
-﻿import React, { useState,useEffect  } from 'react';
-import { useParams,useNavigate } from 'react-router-dom';
+import React from 'react';
 
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-const DeleteProduct = () => {
-  const navigate = useNavigate(); 
-
-  const [formData, setFormData] = useState({
-    name:'',
-    category: '',
-    price: '',
-    imgURL: ''
-  });
-
-  const { id } = useParams(); // Lấy employeeID từ URL
-  
-  useEffect(() => {
-    const fetchEmployeeData = async () => {
-      try {
-     
-   const response = await axios.get(`http://localhost:4000/api/products/${id}`);
-  
-       const { name,category,price,imgURL} = response.data.data;
-  
-      setFormData({name,category,price,imgURL });
-      } catch (error) {
-        console.log('Error fetching employee data:', error);
-      }
+function DeleteBenefitPlan({ plan }) {
+    const handleDelete = () => {
+        // Gửi yêu cầu xóa đến server hoặc xử lý logic tương ứng
+        console.log('Deleted:', plan);
     };
-
-    fetchEmployeeData();
-  }, [id]);
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await axios.delete(`http://localhost:4000/api/products/${id}`);
-      console.log(`Product with ID ${id} has been deleted.`); 
-            
-      navigate( '/product' );   
-    } catch (error) {
-      console.log('Error deleting product:', error);
-    }
-  };
-console.log(id)
-  useEffect(() => {
- 
-  }, []); 
-
 
     return (
         <div>
             <h2>Delete</h2>
             <h3>Are you sure you want to delete this?</h3>
             <div>
-                <h4>Product</h4>
+                <h4>Benefit_Plans</h4>
                 <hr />
                 <dl className="dl-horizontal">
-                    <dt>Name</dt>
-                    <dd>{formData.name}</dd>
+                    <dt>Plan Name</dt>
+                    <dd>{plan.Plan_Name}</dd>
 
-                    <dt>Category</dt>
-                    <dd>{formData.category}</dd>
+                    <dt>Deductable</dt>
+                    <dd>{plan.Deductable}</dd>
 
-                    <dt>Price</dt>
-                    <dd>{formData.price}</dd>
-
-                    <dt>ImgURL</dt>
-                    <dd>{formData.imgURL}</dd>
-
+                    <dt>Percentage CoPay</dt>
+                    <dd>{plan.Percentage_CoPay}</dd>
                 </dl>
-                <form onSubmit={handleSubmit}>
-                <input type="submit" value="Delete" className="btn btn-default"  />
-                <Link to="/employee" className="btn btn-default">Back to List</Link>
+                <form onSubmit={handleDelete}>
+                    <button type="submit" className="btn btn-default">Delete</button>
+                    <a href="index.html" className="btn btn-default">Back to List</a>
                 </form>
             </div>
         </div>
     );
 }
 
-export default DeleteProduct;
+export default DeleteBenefitPlan;

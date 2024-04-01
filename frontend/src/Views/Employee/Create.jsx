@@ -50,7 +50,8 @@ const CreatePersonal = () => {
        
         const checkEmployeeIdResponse = await axios.get(`http://localhost:4000/api/employee/checkEmployeeId/${formData.employeeId}`);
        
-        if (checkEmployeeIdResponse.data) {
+        if (checkEmployeeIdResponse.data.data !=null) {
+          console.log(checkEmployeeIdResponse.data)
           setError(`The employee ID ${formData.employeeId} already exists.`);
           return;
         }

@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams, useNavigate } from 'react-router-dom';
 
-function DeleteBenefitPlan({ plan }) {
-    const handleDelete = () => {
-        // Gửi yêu cầu xóa đến server hoặc xử lý logic tương ứng
-        console.log('Deleted:', plan);
+const DeleteBenefitPlan = () => {
+    const navigate = useNavigate();
+    const { id } = useParams();
+    const [formData, setFormData] = useState({
+        name: '',
+        category: '',
+        price: '',
+        imgURL: ''
+    });
+
+    const fetchProductData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:4000/api/products/${id}`);
+            const { name, category, price, imgURL } = response.data.data;
+            setFormData({ name, category, price, imgURL });
+        } catch (error) {
+            console.log('Error fetching product data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProductData();
+    }, [id]);
+
+    const handleDelete = async (event) => {
+        event.preventDefault();
+        try {
+            await axios.delete(`http://localhost:4000/api/products/${id}`);
+            console.log(`Product with ID ${id} has been deleted.`);
+            navigate('/benefitplans');
+        } catch (error) {
+            console.log('Error deleting product:', error);
+        }
     };
 
     return (
@@ -14,14 +45,14 @@ function DeleteBenefitPlan({ plan }) {
                 <h4>Benefit_Plans</h4>
                 <hr />
                 <dl className="dl-horizontal">
-                    <dt>Plan Name</dt>
-                    <dd>{plan.Plan_Name}</dd>
-
-                    <dt>Deductable</dt>
-                    <dd>{plan.Deductable}</dd>
-
-                    <dt>Percentage CoPay</dt>
-                    <dd>{plan.Percentage_CoPay}</dd>
+                    <dt>Name</dt>
+                    <dd>{formData.name}</dd>
+                    <dt>Category</dt>
+                    <dd>{formData.category}</dd>
+                    <dt>Price</dt>
+                    <dd>{formData.price}</dd>
+                    <dt>ImgURL</dt>
+                    <dd>{formData.imgURL}</dd>
                 </dl>
                 <form onSubmit={handleDelete}>
                     <button type="submit" className="btn btn-default">Delete</button>
@@ -30,6 +61,6 @@ function DeleteBenefitPlan({ plan }) {
             </div>
         </div>
     );
-}
+};
 
 export default DeleteBenefitPlan;

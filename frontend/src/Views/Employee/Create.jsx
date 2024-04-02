@@ -20,13 +20,41 @@ const CreatePersonal = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const navigate = useNavigate(); // Sử dụng hook useNavigate
+  const navigate = useNavigate();
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
    
     e.preventDefault();
+
+      // Kiểm tra xác minh trường không được null
+      const requiredFields = ['employeeId', 'firstName', 'lastName', 'vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
+      for (const field of requiredFields) {
+        if (!formData[field]) {
+          setError(`The field ${field} is required.`);
+          return;
+        }
+      }
+  
+      // Kiểm tra xác minh các trường số
+      const numericFields = ['vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
+      for (const field of numericFields) {
+        if (isNaN(formData[field])) {
+          setError(`The field ${field} must be a number.`);
+          return;
+        }
+      }
+
+
     try { 
-    
+       
+        const checkEmployeeIdResponse = await axios.get(`http://localhost:4000/api/employee/checkEmployeeId/${formData.employeeId}`);
+       
+        if (checkEmployeeIdResponse.data.data !=null) {
+          console.log(checkEmployeeIdResponse.data)
+          setError(`The employee ID ${formData.employeeId} already exists.`);
+          return;
+        }
       const response = await axios.post('http://localhost:4000/api/employee', formData);      
       console.log('New employee data created:', response);
       navigate('/employee');
@@ -113,6 +141,8 @@ const CreatePersonal = () => {
             </div>
           </div>
         </form>
+        {error && <div className="alert alert-danger">{error}</div>}
+
       </div>
     </div>
   );

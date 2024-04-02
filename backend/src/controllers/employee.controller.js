@@ -45,6 +45,16 @@ export const getEmployee = async (req, res, next) => {
     return res.json({ success: true, data: employee });
 };
 
+export const getEmployeeByEmployeeID = async (req, res, next) => {
+
+    const {employeeId}=req.params  
+    const employee = await Employee.findOne({employeeId: employeeId});
+    console.log(employee)
+    return res.json({ success: true, data: employee });
+};
+
+
+
 export const getEmployees = async (req, res, next) => {
     const employees = await Employee.find();
     return res.json({ success: true, data: employees });

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 const DeleteBenefitPlan = () => {
     const navigate = useNavigate();
@@ -39,10 +39,10 @@ const DeleteBenefitPlan = () => {
 
     return (
         <div>
-            <h2>Delete</h2>
+           
             <h3>Are you sure you want to delete this?</h3>
             <div>
-                <h4>Benefit_Plans</h4>
+                <h4>Delete Product</h4>
                 <hr />
                 <dl className="dl-horizontal">
                     <dt>Name</dt>
@@ -56,7 +56,7 @@ const DeleteBenefitPlan = () => {
                 </dl>
                 <form onSubmit={handleDelete}>
                     <button type="submit" className="btn btn-default">Delete</button>
-                    <a href="index.html" className="btn btn-default">Back to List</a>
+                    <Link to="/benefitplans" className="btn btn-default">Back to List</Link>
                 </form>
             </div>
         </div>

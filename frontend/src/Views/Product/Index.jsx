@@ -42,8 +42,8 @@ function ProductIndex() {
                                 <td>{product.imgURL}</td>
                                 <td>
                                 <Link to={`/benefitplans/edit/${product._id}`}>Edit</Link> |&nbsp;
-                                <Link to={`/benefitplans/details/${product._id}}`}>Details</Link> |&nbsp;
-                                <Link to={`/benefitplans/delete/${product._id}}`}>Delete</Link>
+                                <Link to={`/benefitplans/details/${product._id}`}>Details</Link> |&nbsp;
+                                <Link to={`/benefitplans/delete/${product._id}`}>Delete</Link>
                                 </td>
                             </tr>
                         ))}

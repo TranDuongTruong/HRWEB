@@ -1,27 +1,55 @@
-﻿import React from 'react';
+﻿import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useParams, Link } from 'react-router-dom';
 
-function BenefitPlanDetails({ plan }) {
+const BenefitPlanDetails = () => {
+    const { id } = useParams();
+    const [formData, setFormData] = useState({
+        name: '',
+        category: '',
+        price: '',
+        imgURL: ''
+    });
+
+    const fetchProductData = async () => {
+        try {
+            const response = await axios.get(`http://localhost:4000/api/products/${id}`);
+            const { name, category, price, imgURL } = response.data.data;
+            setFormData({ name, category, price, imgURL });
+        } catch (error) {
+            console.log('Error fetching product data:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchProductData();
+    }, [id]);
+
+    
+
+
     return (
         <div>
-            <h2>Details</h2>
+            <h2>Details product</h2>
             <div>
-                <h4>Benefit_Plans</h4>
-                <hr />
                 <dl className="dl-horizontal">
-                    <dt>Plan Name</dt>
-                    <dd>{plan.Plan_Name}</dd>
+                    <dt>Name</dt>
+                    <dd>{formData.name}</dd>
 
-                    <dt>Deductable</dt>
-                    <dd>{plan.Deductable}</dd>
+                    <dt>Category</dt>
+                    <dd>{formData.category}</dd>
 
-                    <dt>Percentage CoPay</dt>
-                    <dd>{plan.Percentage_CoPay}</dd>
+                    <dt>Price</dt>
+                    <dd>{formData.price}</dd>
+
+                    <dt>ImgURL</dt>
+                    <dd>{formData.imgURL}</dd>
                 </dl>
+                <form >
+                   
+                    <Link to="/benefitplans" className="btn btn-default">Back to List</Link>
+                </form>
             </div>
-            <p>
-                <a href={`/Edit/${plan.Benefit_Plan_ID}`} className="btn btn-default">Edit</a>
-                <a href="index.html" className="btn btn-default">Back to List</a>
-            </p>
         </div>
     );
 }

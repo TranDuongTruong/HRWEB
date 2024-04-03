@@ -48,7 +48,7 @@ const EditBenefitPlan = () => {
       }
     }
     // Kiểm tra xác minh các trường số
-    const numericFields = ['name', 'category', 'price', 'imgURL'];
+    const numericFields = ['price'];
     for (const field of numericFields) {
       if (isNaN(formData[field])) {
         setError(`The field ${field} must be a number.`);

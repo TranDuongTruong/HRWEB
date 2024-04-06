@@ -5,7 +5,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Payrate/Create.css'
 
-const EditPersonal = () => {
+const EditEmployee = () => {
   const [formData, setFormData] = useState({
     employeeId:'',
     firstName: '',
@@ -175,4 +175,4 @@ const EditPersonal = () => {
   );
 };
 
-export default EditPersonal;
+export default EditEmployee;

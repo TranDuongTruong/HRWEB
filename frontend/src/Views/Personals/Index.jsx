@@ -1,46 +1,64 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const EmployeeIndex = () => {
+const PersonalIndex = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [filteredPersonals, setFilteredPersonals] = useState([]);
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
-  const [employees, setEmployees] = useState([]);
+  const [personals, setPersonals] = useState({
+    employee_ID: '',
+    first_Name: '',
+    last_Name: '',
+    middle_Initial: '',
+    address1: '',
+    address2: '',
+    city: '',
+    state: '',
+    zip: '',
+    email: '',
+    phone_Number: '',
+    social_Security_Number: '',
+    drivers_License: '',
+    marital_Status: '',
+    gender: 'Male',
+    shareholder_Status: false,
+    benefit_Plans: '', // We will store plan name instead of ID here
+    ethnicity: ''
+  });
 
   useEffect(() => {
-    fetchEmployee();
+    fetchPersonals();
   }, []);
 
-  const fetchEmployee = async () => {
+  const fetchPersonals = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/employee');
-      setEmployees(response.data);
+      const response = await axios.get('http://localhost:4000/api/personal');
+      console.log("----------------",response.data)
+      setPersonals(response.data);
     } catch (error) {
-      console.log('Error fetching employee data:', error);
+      console.log('Error fetching personal data:', error);
     }
   };
 
   useEffect(() => {
-    if (employees && employees.data) {
-      setFilteredPersonals(employees.data);
+    if (personals && personals.data) {
+      setFilteredPersonals(personals.data);
     }
-  }, [employees]);
+  }, [personals]);
 
   const handleSearchChange = (event) => {
     const newKeyword = event.target.value.toLowerCase();
     setSearchKeyword(newKeyword);
-    if (employees && employees.data) {
-      const filteredData = employees.data.filter((item) =>
+    if (personals && personals.data) {
+      const filteredData = personals.data.filter((item) =>
         Object.values(item).some((value) =>
           value.toString().toLowerCase().includes(newKeyword)
         )
       );
       setFilteredPersonals(filteredData);
     }
-
   };
 
   const handleEntriesPerPageChange = (event) => {
@@ -50,23 +68,23 @@ const EmployeeIndex = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   const renderTableEntries = () => {
+    console.log(personals)
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
-    
+
     return filteredPersonals.slice(startIndex, endIndex).map((item) => (
-      
-      <tr key={item._id} className="odd gradeX">
-        <td>{item.firstName}</td>
-        <td>{item.lastName}</td>
-        <td>{item.vacationDays}</td>
-        <td>{item.paidToDate}</td>
-        <td>{item.paidLastYear}</td>
-        <td>{item.payRate}</td>
-        <td>{item.payRateId}</td>
+      <tr key={item.employee_ID} className="odd gradeX">
+        <td>{item.first_Name} {item.Last_Name}</td>
+        <td>{item.city}</td>
+        <td>{item.email}</td>
+        <td>{item.phone_Number}</td>
+        <td className="center">{item.gender ? "Male" : "Female"}</td>
+        <td className="center">{item.shareholder_Status ? "Yes" : "No"}</td>
         <td>
-          <Link to={`/employee/edit/${item._id}`}>Edit</Link> |
-          <Link to={`/employee/delete/${item._id}`}>Delete</Link>
+          <Link to={`/personal/edit/${item._id}`}>Edit</Link> |
+          <Link to={`/personal/delete/${item._id}`}>Delete</Link>
         </td>
       </tr>
     ));
@@ -122,7 +140,7 @@ const EmployeeIndex = () => {
     <>
       <div className="module">
         <div className="module-head">
-          <h3>Employee - <Link to="/employee/create">Create New</Link></h3>
+          <h3>Personals - <Link to="/personal/create">Create New</Link></h3>
         </div>
         <div className="module-body table">
           <div id="DataTables_Table_0_wrapper" className="dataTables_wrapper" role="grid">
@@ -151,13 +169,13 @@ const EmployeeIndex = () => {
           <table className="datatable-1 table table-bordered table-striped display" width="100%">
             <thead>
               <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Vacation Days</th>
-                <th>Paid To Date</th>
-                <th>Paid Last Year</th>
-                <th>Pay Rate</th>
-                <th>Pay Rate ID</th>
+                <th>Full Name</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Gender</th>
+                <th>Shareholder</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -168,11 +186,9 @@ const EmployeeIndex = () => {
           <div className="dataTables_info" id="DataTables_Table_0_info">Showing {Math.min(entriesPerPage, filteredPersonals.length)} of {filteredPersonals.length} entries</div>
           {renderPaginationButtons()}
         </div>
-
-        
       </div>
     </>
   );
 };
 
-export default EmployeeIndex;
+export default PersonalIndex;

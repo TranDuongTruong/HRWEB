@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../Payrate/Create.css'
 
 
-const CreatePersonal = () => {
+const CreateEmployee = () => {
   const [formData, setFormData] = useState({
     employeeId: '' ,
     firstName: '',
@@ -23,49 +23,7 @@ const CreatePersonal = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
-  // const handleSubmit = async (e) => {
-   
-  //   e.preventDefault();
-  //   setError(null)
-  //     // Kiểm tra xác minh trường không được null
-  //     const requiredFields = ['employeeId', 'firstName', 'lastName', 'vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
-  //     for (const field of requiredFields) {
-  //       if (!formData[field]) {
-  //         setError({ field: 'value', message: 'The field '+ field+' is required' });
-  //         console.log(error.message);
-  //       //  setError(`The field ${field} is required.`); 
-  //         return;
-  //       }
-  //     }
   
-  //     // Kiểm tra xác minh các trường số
-  //     const numericFields = ['vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
-  //     for (const field of numericFields) {
-  //       if (isNaN(formData[field])) {
-  //         setError(`The field ${field} must be a number.`);
-  //         return;
-  //       }
-  //     }
-
-
-  //   try { 
-       
-  //       const checkEmployeeIdResponse = await axios.get(`http://localhost:4000/api/employee/checkEmployeeId/${formData.employeeId}`);
-       
-  //       if (checkEmployeeIdResponse.data.data !=null) {
-  //         console.log(checkEmployeeIdResponse.data)
-  //         setError(`The employee ID ${formData.employeeId} already exists.`);
-  //         return;
-  //       }
-  //     const response = await axios.post('http://localhost:4000/api/employee', formData);      
-  //     console.log('New employee data created:', response);
-  //     navigate('/employee');
-
-  //   } catch (error) {   
-
-  //     console.log('Error creating new employee data:', error);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
@@ -214,4 +172,4 @@ const CreatePersonal = () => {
   );
 };
 
-export default CreatePersonal;
+export default CreateEmployee;

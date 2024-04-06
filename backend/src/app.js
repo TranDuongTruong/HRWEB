@@ -11,7 +11,7 @@ import usersRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import employeeRoutes from "./routes/employee.routes.js";
 import payrateRoutes from './routes/payrate.routes.js'
-
+import personalRoutes from './routes/personal.router.js'
 const app = express();
 
 // Settings
@@ -35,6 +35,9 @@ app.use("/api/products", productRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/employee", employeeRoutes);
+
 app.use("/api/payrate", payrateRoutes);
+app.use("/api/personal", personalRoutes);
+
 
 export default app;

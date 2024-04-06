@@ -1,11 +1,11 @@
 ﻿import React from 'react';
 
-const EmployeeDetails = ({ personal }) => {
+const PersonalDetails = ({ personal }) => {
   return (
     <div>
       <h2>Details</h2>
       <div>
-        <h4>Employee</h4>
+        <h4>Personal</h4>
         <hr />
         <dl className="dl-horizontal">
           <dt>Benefit Plan Name</dt>
@@ -74,4 +74,4 @@ const EmployeeDetails = ({ personal }) => {
   );
 };
 
-export default EmployeeDetails;
+export default PersonalDetails;

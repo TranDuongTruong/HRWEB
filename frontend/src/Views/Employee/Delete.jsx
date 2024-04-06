@@ -4,7 +4,7 @@ import { useParams,useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const DeletePersonal = () => {
+const DeleteEmployee = () => {
   const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
@@ -88,4 +88,4 @@ console.log(id)
   );
 };
 
-export default DeletePersonal;
+export default DeleteEmployee;

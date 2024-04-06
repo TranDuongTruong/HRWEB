@@ -25,6 +25,22 @@ const CreatePayrate = () => {
             setError({ field: 'name', message: 'Name is required' });
             return;
         }
+        if (value === '') {
+            setError({ field: 'value', message: 'Value is required' });
+            return;
+        }
+        if (taxPercentage === '') {
+            setError({ field: 'taxPercentage', message: 'Tax Percentage is required' });
+            return;
+        }
+        if (type === '') {
+            setError({ field: 'type', message: 'Type is required' });
+            return;
+        }
+        if (amount === '') {
+            setError({ field: 'amount', message: 'Amount is required' });
+            return;
+        }
 
         if (isNaN(value)) {
             setError({ field: 'value', message: 'Value must be numbers' });

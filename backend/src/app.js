@@ -11,7 +11,12 @@ import usersRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import employeeRoutes from "./routes/employee.routes.js";
 import payrateRoutes from './routes/payrate.routes.js'
+<<<<<<< HEAD
 import personalRoutes from './routes/personal.router.js'
+=======
+import jobHistoryRoutes from "./routes/jobHistory.routes.js";
+
+>>>>>>> be708a519a78b6e73a219ee21286fd70e97cdc8f
 const app = express();
 
 // Settings
@@ -31,6 +36,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/api", indexRoutes);
+app.use("/api/jobHistory", jobHistoryRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/auth", authRoutes);

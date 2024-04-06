@@ -67,3 +67,23 @@ export const updatePayrate = async (req, res, next) => {
         return res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 }
+export const getPaginationPayrate = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+  
+    try {
+      const payrates = await Payrate.find()
+        .limit(limit)
+        .skip((page - 1) * limit)
+        .exec();
+  
+      res.json({
+        totalPayrates: await Payrate.countDocuments(),
+        totalPages: Math.ceil(await Payrate.countDocuments() / limit),
+        currentPage: page,
+        payrates,
+      });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };

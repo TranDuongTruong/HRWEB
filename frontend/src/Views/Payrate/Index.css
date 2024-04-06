@@ -1,0 +1,36 @@
+.paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .paginate-button {
+    list-style: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    transition: background-color 0.3s ease;
+  }
+  
+  .paginate-button:hover {
+    /* background-color: #ddd; */
+  }
+  
+  .paginate-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #4a90e2;
+  }
+  
+  .paginate-button.selected {
+    background-color: #ddd;
+    font-weight: bold;
+  }
+  
+  .paginate-button.break {
+    cursor: default;
+    pointer-events: none;
+    color: #ccc;
+  }

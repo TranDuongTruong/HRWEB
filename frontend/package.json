@@ -13,7 +13,10 @@
     "axios": "^1.6.7",
     "chart.js": "^3.0.0",
     "classnames": "^2.5.1",
+<<<<<<< HEAD
     "paginate": "^0.2.0",
+=======
+>>>>>>> eca830442d0050c6c532949bd02e4f3543d84308
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-paginate": "^8.2.0",

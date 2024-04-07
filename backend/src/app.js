@@ -148,11 +148,8 @@ import employeeRoutes from "./routes/employee.routes.js";
 import payrateRoutes from './routes/payrate.routes.js'
 import personalRoutes from './routes/personal.router.js'
 import jobHistoryRoutes from "./routes/jobHistory.routes.js";
-<<<<<<< HEAD
 import sqlRoutes from "./routes/sqlRouter.js";
-=======
 
->>>>>>> eca830442d0050c6c532949bd02e4f3543d84308
 const app = express();
 
 // Settings
@@ -170,36 +167,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-<<<<<<< HEAD
-// const SQL_SERVER_CONFIG = {
-//   user: process.env.USER,
-//   password: process.env.PASSWORD,
-//   server: process.env.SERVER,
-//   database: process.env.DATABASE,
-
-// };
-// const sqlConfig = {
-//   user: SQL_SERVER_CONFIG.user,
-//   password: SQL_SERVER_CONFIG.password,
-//   server: SQL_SERVER_CONFIG.server,
-//   database: SQL_SERVER_CONFIG.database,
-//   options: {
-//     encrypt: true, // For Azure SQL
-//     trustServerCertificate: true, // For Azure SQL
-//   },
-// };
-
-// async function connectToSqlServer() {
-//   try {
-//     await sql.connect(sqlConfig);
-//     console.log("Connected to SQL Server");
-//   } catch (error) {
-//     console.error("Error connecting to SQL Server:", error.message);
-//   }
-// }
-
-// connectToSqlServer();
-=======
 const SQL_SERVER_CONFIG = {
   user: process.env.USER,
   password: process.env.PASSWORD,
@@ -228,7 +195,6 @@ async function connectToSqlServer() {
 }
 
 connectToSqlServer();
->>>>>>> eca830442d0050c6c532949bd02e4f3543d84308
 
 // Routes
 app.use("/api/sql", sqlRoutes);

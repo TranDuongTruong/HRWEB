@@ -41,7 +41,7 @@ function ProductCreate() {
 
             const response = await axios.post('http://localhost:4000/api/products', formData);
             console.log('New product data created:', response);
-            navigate('/benefitplans');
+            navigate('/product');
 
         } catch (error) {
 
@@ -113,7 +113,7 @@ function ProductCreate() {
                 </div>
             </form>
             <div>
-                <Link to="/benefitplans">Back to List</Link>
+                <Link to="/product">Back to List</Link>
             </div>
         </div>
     );

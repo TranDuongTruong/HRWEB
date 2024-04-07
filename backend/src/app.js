@@ -13,6 +13,8 @@ import employeeRoutes from "./routes/employee.routes.js";
 import payrateRoutes from './routes/payrate.routes.js'
 import personalRoutes from './routes/personal.router.js'
 import jobHistoryRoutes from "./routes/jobHistory.routes.js";
+import benefitRoutes from "./routes/benefitplan.routes.js";
+
 
 const app = express();
 
@@ -41,6 +43,7 @@ app.use("/api/employee", employeeRoutes);
 
 app.use("/api/payrate", payrateRoutes);
 app.use("/api/personal", personalRoutes);
+app.use("/api/benefitplan",benefitRoutes);
 
 
 export default app;

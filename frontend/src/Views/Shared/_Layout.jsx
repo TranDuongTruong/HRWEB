@@ -39,6 +39,7 @@ import Login from '../Login/Login';
 
 import JobHistoryIndex from '../JobHistory/Index';
 import JobHistoryDetails from '../JobHistory/Details';
+import CreateJobHistory from '../JobHistory/Create';
 
 
 
@@ -173,6 +174,7 @@ const employeeData=[];
 
                 <Route path='/jobHistory'  element={<JobHistoryIndex />} />
                 <Route path='/jobHistory/details/:id'  element={<JobHistoryDetails />} />
+                <Route path='/jobHistory/create'  element={<CreateJobHistory />} />
 
 
                 

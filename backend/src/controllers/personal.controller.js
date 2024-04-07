@@ -13,6 +13,9 @@ export const createPersonal = async (req, res) => {
   }
 };
 
+
+
+
 // Controller function to get all personal records
 export const getAllPersonal = async (req, res) => {
   try {

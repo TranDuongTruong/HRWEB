@@ -16,7 +16,6 @@ const jobHistorySchema = new mongoose.Schema({
     Pay_Period: { type: String, maxlength: 50 },
     Hours_per_Week: { type: Number },
     Hazardous_Training: { type: Boolean },
-    FullName: { type: String } 
     // Personal: { type: mongoose.Schema.Types.ObjectId, ref: 'Personal' } // Assuming 'Personal' is another Mongoose model
 },
 {

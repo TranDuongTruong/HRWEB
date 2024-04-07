@@ -1,7 +1,8 @@
 import JobHistory from '../models/Job_History.js'
 
 export const getJobHistory = async (req, res, next) => {
-    const jobHistory  = await JobHistory.find();
+    const jobHistory  = await JobHistory.find()
+    .populate('Employee') // Populate Employee field
     return res.json({ success: true, data: jobHistory });
 };
 
@@ -23,7 +24,8 @@ export const createJobHistory= async (req, res) => {
 };
 
 export const getJobHistoryById = async (req, res, next) => {
-    const jobHistory = await JobHistory.findById(req.params.jobHistoryId);
+    const jobHistory = await JobHistory.findById(req.params.jobHistoryId)
+    .populate('Employee') // Populate Employee field
     return res.json({ success: true, data: jobHistory });
 };
 export const deleteJobHistory = async (req, res, next) => {

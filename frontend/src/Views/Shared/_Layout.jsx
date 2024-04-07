@@ -38,6 +38,7 @@ import Login from '../Login/Login';
 
 
 import JobHistoryIndex from '../JobHistory/Index';
+import JobHistoryDetails from '../JobHistory/Details';
 
 
 
@@ -171,7 +172,8 @@ const employeeData=[];
                 <Route path='/personal/delete/:id' element={<DeletePersonal />} />
 
                 <Route path='/jobHistory'  element={<JobHistoryIndex />} />
-             
+                <Route path='/jobHistory/details/:id'  element={<JobHistoryDetails />} />
+
 
                 
             </Routes>

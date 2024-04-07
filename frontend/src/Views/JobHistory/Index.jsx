@@ -61,8 +61,8 @@ const JobHistoryIndex = () => {
                 <td>{history.Employee.firstName} {history.Employee.lastName}</td>
                 <td>{history.Department}</td>
                 <td>{history.Division}</td>
-                <td>{formatDateTime(history.Start_Date)}</td> {/* Format Start Date */}
-                <td>{formatDateTime(history.End_Date)}</td> {/* Format End Date */}
+                <td>{formatDateTime(history.Start_Date)}</td>
+                <td>{formatDateTime(history.End_Date)}</td>
                 <td>{history.Job_Category}</td>
                 <td>{history.Location}</td>
                 <td>
@@ -73,6 +73,7 @@ const JobHistoryIndex = () => {
               </tr>
             ))}
           </tbody>
+
         </table>
         <ReactPaginate
           previousLabel={'Previous'}

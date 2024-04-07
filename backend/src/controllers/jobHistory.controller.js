@@ -55,3 +55,29 @@ export const updateJobHistory = async (req, res, next) => {
         return res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 }
+export const getPaginationJobHistory = async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+  
+    try {
+      const jobHistories = await JobHistory.find()
+        .populate('Employee') // Populate Employee field
+        .limit(limit)
+        .skip((page - 1) * limit)
+        .exec();
+  
+    //   const formattedJobHistories = jobHistories.map(history => ({
+    //     ...history.toObject(), // Convert to plain JavaScript object
+    //     FullName: `${history.Employee.firstName} ${history.Employee.lastName}`
+    //   }));
+  
+      res.json({
+        totalJobHistories: await JobHistory.countDocuments(),
+        totalPages: Math.ceil(await JobHistory.countDocuments() / limit),
+        currentPage: page,
+        jobHistories: jobHistories, // Send formatted jobHistories
+      });
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };

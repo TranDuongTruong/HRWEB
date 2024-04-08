@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function BenefitCreate() {
     const [formData, setFormData] = useState({
+        benefitplan_id:'',
         plan_name: '',
         deductable: '',
         percentage: ''
@@ -40,8 +41,9 @@ function BenefitCreate() {
         }
 
         e.preventDefault();
+       
         try {
-
+            console.log(formData);
             const response = await axios.post('http://localhost:4000/api/benefitplan', formData);
             console.log('New benefitplan data created:', response);
             navigate('/benefitplan');
@@ -56,6 +58,19 @@ function BenefitCreate() {
         <div>
             <h2>Create</h2>
             <form onSubmit={handleSubmit}>
+            <div className="form-group">
+                    <label htmlFor="deductable" className="control-label col-md-2">Benefitplan_id</label>
+                    <div className="col-md-10">
+                        <input 
+                            type="number" 
+                            id="deductable" 
+                            className="form-control" 
+                            value={formData.benefitplan_id} 
+                            onChange={handleChange} 
+                            name="benefitplan_id" 
+                        />
+                    </div>
+                </div>
                 <div className="form-group">
                     <label htmlFor="planName" className="control-label col-md-2">Plan Name</label>
                     <div className="col-md-10">

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const EmployeeSchema = new mongoose.Schema({
       employeeId: {
-        type: String,
+        type: Number,
         unique: true,
       },
       firstName: {
@@ -40,4 +40,6 @@ const EmployeeSchema = new mongoose.Schema({
       }
 )
 
-export default mongoose.model("employee", EmployeeSchema);
+const Employee = mongoose.model("Employee", EmployeeSchema);
+
+export default Employee;

@@ -1,7 +1,7 @@
 import mongoose  from 'mongoose';
 
 const jobHistorySchema = new mongoose.Schema({
-    ID: { type: Number, required: true },
+    EmployeeID: { type: Number, required: true },
     Employee: { type: mongoose.Schema.Types.ObjectId, ref: 'Employee', required: true },
     Department: { type: String, maxlength: 50 },
     Division: { type: String, maxlength: 50 },
@@ -22,6 +22,8 @@ const jobHistorySchema = new mongoose.Schema({
   timestamps: true,
   versionKey: false,
 })
-
+// Add a virtual field to schema for FullName
+// jobHistorySchema.virtual('employeeFullName').get(function() {
+//   return `${this.Employee.firstName} ${this.Employee.lastName}`;
+// });
 export default mongoose.model("JobHistory", jobHistorySchema);
-

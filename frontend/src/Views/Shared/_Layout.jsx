@@ -43,6 +43,12 @@ import Login from '../Login/Login';
 
 
 
+import JobHistoryIndex from '../JobHistory/Index';
+import JobHistoryDetails from '../JobHistory/Details';
+import CreateJobHistory from '../JobHistory/Create';
+
+
+
 
 
 
@@ -115,7 +121,12 @@ const employeeData=[];
                   </li>
                   <li>
                     <Link to="/personal">
-                      <i className="menu-icon icon-inbox"></i>Personal
+                      <i className="menu-icon icon-bullhorn"></i>Personal
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/jobHistory">
+                      <i className="menu-icon icon-inbox"></i>JobHistory
                     </Link>
                   </li>
                   <li>
@@ -171,6 +182,10 @@ const employeeData=[];
                  <Route path='/personal/create' element={<CreatePersonal />} />
                 <Route path='/personal/edit/:id' element={<EditPersonal />} /> 
                 <Route path='/personal/delete/:id' element={<DeletePersonal />} />
+
+                <Route path='/jobHistory'  element={<JobHistoryIndex />} />
+                <Route path='/jobHistory/details/:id'  element={<JobHistoryDetails />} />
+                <Route path='/jobHistory/create'  element={<CreateJobHistory />} />
 
 
                 <Route path='/benefitplan/create' element={<BenefitPlanCreate />} />

@@ -32,7 +32,7 @@ const CreateJobHistory = () => {
 
         try {
             // Thêm mới job history
-            const response = await fetch('/api/jobHistory', {
+            const response = await fetch('http://localhost:4000/api/jobHistory', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -69,7 +69,7 @@ const CreateJobHistory = () => {
             <form onSubmit={handleSubmit}>
                 {/* Các trường nhập */}
                 <div className="form-group">
-                    <label htmlFor="employee">Employee</label>
+                    <label htmlFor="employee">EmployeeId</label>
                     <input
                         type="text"
                         id="employee"

@@ -35,7 +35,7 @@ function ProductIndex() {
     return (
         <div className="module">
             <div className="module-head">
-                <h3>Products - <Link to="/benefitplans/create">Create New</Link></h3>
+                <h3>Products - <Link to="/product/create">Create New</Link></h3>
                 <div>
                     <select value={showCount} onChange={handleShowCountChange}>
                         <option value={5}>Show 5</option>
@@ -74,9 +74,9 @@ function ProductIndex() {
                                 <td>{product.price}</td>
                                 <td>{product.imgURL}</td>
                                 <td>
-                                    <Link to={`/benefitplans/edit/${product._id}`}>Edit</Link> |&nbsp;
-                                    <Link to={`/benefitplans/details/${product._id}`}>Details</Link> |&nbsp;
-                                    <Link to={`/benefitplans/delete/${product._id}`}>Delete</Link>
+                                    <Link to={`/product/edit/${product._id}`}>Edit</Link> |&nbsp;
+                                    <Link to={`/product/details/${product._id}`}>Details</Link> |&nbsp;
+                                    <Link to={`/product/delete/${product._id}`}>Delete</Link>
                                 </td>
                             </tr>
                         ))}

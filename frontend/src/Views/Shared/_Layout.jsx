@@ -25,11 +25,17 @@ import DeletePayrate from '../Payrate/Delete';
 
 
 
-import BenefitPlanDetails from '../Product/Details';
+import DetailsProduct from '../Product/Details';
 import ProductCreate from '../Product/Create' ;
 import ProductIndex from '../Product/Index';
-import EditBenefitPlan from '../Product/Edit.'; 
-import DeleteBenefitPlan from '../Product/Delete';
+import EditProduct from '../Product/Edit.'; 
+import DeleteProduct from '../Product/Delete';
+
+import BenefitPlanCreate from '../BenefitPlans/Create';
+import BenefitPlanIndex from '../BenefitPlans/Index';
+import BenefitPlanEdit from '../BenefitPlans/Edit.';
+import BenefitPlanDetails from '../BenefitPlans/Details';
+import BenefitPlanDelete from '../BenefitPlans/Delete';
 
 import Index from '../Admin/Index';
 import Login from '../Login/Login';
@@ -104,7 +110,7 @@ const employeeData=[];
                     <Link to="/employee"><i className="menu-icon icon-bullhorn"></i >Employee</Link>
                   </li>
                   <li>
-                    <Link to="/benefitplans">
+                    <Link to="/product">
                       <i className="menu-icon icon-tasks"></i>Product
                     </Link>
                   </li>
@@ -121,6 +127,11 @@ const employeeData=[];
                   <li>
                     <Link to="/jobHistory">
                       <i className="menu-icon icon-inbox"></i>JobHistory
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/benefitplan">
+                      <i className="menu-icon icon-inbox"></i>BenefitPlans
                     </Link>
                   </li>
                 </ul>
@@ -151,12 +162,12 @@ const employeeData=[];
                 <Route path='/employee' element={<EmployeeIndex />} />
 
                 {/* <Route path='/employee'element={<PersonalIndex  personals={employeeData.data}/>} /> */}
-                 <Route path='/benefitplans'element={<ProductIndex/>} />
+                 <Route path='/product'element={<ProductIndex/>} />
                
-                 <Route path='/benefitplans/details/:id' element={<BenefitPlanDetails />} />
-                 <Route path='/benefitplans/create'  element={<ProductCreate />} />
-                 <Route path='/benefitplans/delete/:id'  element={<DeleteBenefitPlan />} />
-                  <Route path='/benefitplans/edit/:id'  element={<EditBenefitPlan />} />
+                 <Route path='/product/details/:id' element={<DetailsProduct />} />
+                 <Route path='/product/create'  element={<ProductCreate />} />
+                 <Route path='/product/delete/:id'  element={<DeleteProduct />} />
+                  <Route path='/product/edit/:id'  element={<EditProduct />} />
 
 
                
@@ -177,7 +188,12 @@ const employeeData=[];
                 <Route path='/jobHistory/create'  element={<CreateJobHistory />} />
 
 
-                
+                <Route path='/benefitplan/create' element={<BenefitPlanCreate />} />
+                <Route path='/benefitplan/delete/:id' element={<BenefitPlanDelete />} />
+                <Route path='/benefitplan/details/:id' element={<BenefitPlanDetails />} />
+                <Route path='/benefitplan/edit/:id' element={<BenefitPlanEdit />} />
+                <Route path='/benefitplan' element={<BenefitPlanIndex />} />
+
             </Routes>
             </div>
           </div>

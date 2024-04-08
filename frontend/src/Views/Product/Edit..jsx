@@ -2,7 +2,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const EditBenefitPlan = () => {
+const EditProduct = () => {
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -59,7 +59,7 @@ const EditBenefitPlan = () => {
     try {
       await axios.put(`http://localhost:4000/api/products/${id}`, formData);
       console.log('Product data updated:', formData);
-      navigate('/benefitplans');
+      navigate('/product');
     } catch (error) {
       console.log('Error updating product data:', error);
     }
@@ -104,7 +104,7 @@ const EditBenefitPlan = () => {
             <div className="control-group">
               <div className="col-md-offset-2 controls">
                 <input type="submit" value="Save" className="btn btn-default" />
-                <button className="btn btn-default" onClick={() => navigate('/benefitplans')}>Back to List</button>
+                <button className="btn btn-default" onClick={() => navigate('/product')}>Back to List</button>
               </div>
             </div>
           </div>
@@ -117,4 +117,4 @@ const EditBenefitPlan = () => {
   );
 };
 
-export default EditBenefitPlan;
+export default EditProduct;

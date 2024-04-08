@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 
-const DeleteBenefitPlan = () => {
+const DeleteProduct = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ const DeleteBenefitPlan = () => {
         try {
             await axios.delete(`http://localhost:4000/api/products/${id}`);
             console.log(`Product with ID ${id} has been deleted.`);
-            navigate('/benefitplans');
+            navigate('/product');
         } catch (error) {
             console.log('Error deleting product:', error);
         }
@@ -56,11 +56,11 @@ const DeleteBenefitPlan = () => {
                 </dl>
                 <form onSubmit={handleDelete}>
                     <button type="submit" className="btn btn-default">Delete</button>
-                    <Link to="/benefitplans" className="btn btn-default">Back to List</Link>
+                    <Link to="/product" className="btn btn-default">Back to List</Link>
                 </form>
             </div>
         </div>
     );
 };
 
-export default DeleteBenefitPlan;
+export default DeleteProduct;

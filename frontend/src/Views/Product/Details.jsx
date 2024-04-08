@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 
-const BenefitPlanDetails = () => {
+const DetailsProduct = () => {
     const { id } = useParams();
     const [formData, setFormData] = useState({
         name: '',
@@ -47,11 +47,11 @@ const BenefitPlanDetails = () => {
                 </dl>
                 <form >
                    
-                    <Link to="/benefitplans" className="btn btn-default">Back to List</Link>
+                    <Link to="/product" className="btn btn-default">Back to List</Link>
                 </form>
             </div>
         </div>
     );
 }
 
-export default BenefitPlanDetails;
+export default DetailsProduct;

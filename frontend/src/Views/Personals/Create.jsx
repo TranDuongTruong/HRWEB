@@ -67,16 +67,16 @@ const CreatePersonal = () => {
       console.log('Error creating new personal data:', error,"\n",error.response.data);
     }
 
-    // try {
+    try {
       
-    //   const response2 = await axios.post('http://localhost:4000/api/sql/personal_sql', formData);
+      const response2 = await axios.post('http://localhost:4000/api/sql/personal_sql', formData);
       
-    //   console.log('New personal data created in sql:', response2);
-    //   // Redirect to personal list page after successful creation
-    //   window.location.href = '/personal';
-    // } catch (error) {
-    //   console.log('Error creating new personal data in sql:', error,"\n",error.response.data);
-    // }
+      console.log('New personal data created in sql:', response2);
+      // Redirect to personal list page after successful creation
+      window.location.href = '/personal';
+    } catch (error) {
+      console.log('Error creating new personal data in sql:', error,"\n",error.response.data);
+    }
 
 
   };

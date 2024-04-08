@@ -149,7 +149,7 @@ import payrateRoutes from './routes/payrate.routes.js'
 import personalRoutes from './routes/personal.router.js'
 import jobHistoryRoutes from "./routes/jobHistory.routes.js";
 import sqlRoutes from "./routes/sqlRouter.js";
-
+import sqlConfig from './sqlConfig.js'
 const app = express();
 
 // Settings
@@ -167,23 +167,17 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const SQL_SERVER_CONFIG = {
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  server: process.env.SERVER,
-  database: process.env.DATABASE,
 
-};
-const sqlConfig = {
-  user: SQL_SERVER_CONFIG.user,
-  password: SQL_SERVER_CONFIG.password,
-  server: SQL_SERVER_CONFIG.server,
-  database: SQL_SERVER_CONFIG.database,
-  options: {
-    encrypt: true, // For Azure SQL
-    trustServerCertificate: true, // For Azure SQL
-  },
-};
+// const sqlConfig = {
+//   user: SQL_SERVER_CONFIG.user,
+//   password: SQL_SERVER_CONFIG.password,
+//   server: SQL_SERVER_CONFIG.server,
+//   database: SQL_SERVER_CONFIG.database,
+//   options: {
+//     encrypt: true, // For Azure SQL
+//     trustServerCertificate: true, // For Azure SQL
+//   },
+// };
 
 async function connectToSqlServer() {
   try {

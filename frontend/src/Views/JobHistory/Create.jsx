@@ -8,6 +8,7 @@ const CreateJobHistory = () => {
 
     const [jobHistoryData, setJobHistoryData] = useState({
         Employee: '',
+        EmployeeID: '',
         Department: '',
         Division: '',
         Start_Date: '',
@@ -69,7 +70,7 @@ const CreateJobHistory = () => {
             <form onSubmit={handleSubmit}>
                 {/* Các trường nhập */}
                 <div className="form-group">
-                    <label htmlFor="employee">EmployeeId</label>
+                    <label htmlFor="employee">EmployeeObjectId</label>
                     <input
                         type="text"
                         id="employee"
@@ -82,6 +83,21 @@ const CreateJobHistory = () => {
                         <div className="error-message">{error.message}</div>
                     )}
                 </div>
+                <div className="form-group">
+                    <label htmlFor="employeeId">EmployeeID</label>
+                    <input
+                        type="text"
+                        id="employeeId"
+                        value={jobHistoryData.EmployeeID}
+                        onChange={handleChange}
+                        name="EmployeeID"
+                        className="form-control"
+                    />
+                    {error && error.field === 'Employee' && (
+                        <div className="error-message">{error.message}</div>
+                    )}
+                </div>
+
 
                 <div className="form-group">
                     <label htmlFor="department">Department</label>

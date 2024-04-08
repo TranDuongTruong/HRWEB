@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const EmployeeSchema = new mongoose.Schema({
       employeeId: {
-        type: String,
+        type: Number,
         unique: true,
       },
       firstName: {

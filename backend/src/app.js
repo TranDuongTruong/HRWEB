@@ -196,7 +196,7 @@ async function connectToSqlServer() {
 
 connectToSqlServer();
 
-// Routes
+// Routes[=]
 app.use("/api/sql", sqlRoutes);
 app.use("/api", indexRoutes);
 app.use("/api/jobHistory", jobHistoryRoutes);

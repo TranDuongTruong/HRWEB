@@ -2,34 +2,34 @@ import mongoose from "mongoose";
 
 
 const EmployeeSchema = new mongoose.Schema({
-      employeeId: {
+      Employee_ID: {
         type: Number,
         unique: true,
       },
-      firstName: {
+      First_Name: {
         type: String,
         required: true,
       },
-      lastName: {
+      Last_Name: {
         type: String,
       },
-      vacationDays:{
+      VacationDays:{
         type: Number,
         required: true,
       },
-      paidToDate:{
+      PaidToDate:{
         type: Number,
         required: true,
       },
-      paidLastYear:{
+      PaidLastYear:{
         type: Number,
         required: true,
       },
-      payRate:{
+      PayRate:{
         type: Number,
         required: true,
       },
-      payRateId:{
+      PayRateId:{
         type: Number,
         required: true,
       }

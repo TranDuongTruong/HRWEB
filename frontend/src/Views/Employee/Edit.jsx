@@ -7,28 +7,77 @@ import '../Payrate/Create.css'
 
 const EditEmployee = () => {
   const [formData, setFormData] = useState({
-    employeeId:'',
-    firstName: '',
-    lastName: '',
-    vacationDays: '',
-    paidToDate: '',
-    paidLastYear: '',
-    payRate: '',
-    payRateId: ''
+    Employee_ID:'',
+    First_Name: '',
+    Last_Name: '',
+    VacationDays: '',
+    PaidToDate: '',
+    PaidLastYear: '',
+    PayRate: '',
+    PayRateId: '',
+    Middle_Initial:"",
+            Address1: '',
+            Address2: '',
+            City: '',
+            State: '',
+            Zip: '',
+            Email: '',
+            Phone_Number: '',
+            Social_Security_Number: '',
+            Drivers_License: '',
+            Marital_Status: '',
+            Gender: '',
+            Shareholder_Status: '',
+            Benefit_Plans: '',
+            Ethnicity: ''
+    
   });
   const [error, setError] = useState('');
-
+  const benefitPlans1 = [
+    { id: 1, name: 1 },
+    { id: 2, name: 2},
+    { id: 3, name: 3 },
+    // Thêm các đối tượng khác nếu cần
+  ];
   const { id } = useParams(); // Lấy employeeID từ URL
  
   useEffect(() => {
     const fetchEmployeeData = async () => {
       try {
-     
+     console.log(id)
    const response = await axios.get(`http://localhost:4000/api/employee/${id}`);
-       
-        const { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = response.data.data;
+    
+        const { Employee_ID, First_Name, Last_Name, VacationDays, PaidToDate, PaidLastYear, PayRate, PayRateId, Middle_Initial,
+          Address1,
+          Address2,
+          City,
+          State,
+          Zip,
+          Email,
+          Phone_Number,
+          Social_Security_Number,
+          Drivers_License,
+          Marital_Status,
+          Gender,
+          Shareholder_Status,
+          Benefit_Plans,
+          Ethnicity } = response.data.data;
   
-        setFormData({ employeeId,firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId });
+        setFormData({ Employee_ID,First_Name, Last_Name, VacationDays, PaidToDate, PaidLastYear, PayRate, PayRateId, Middle_Initial,
+          Address1,
+          Address2,
+          City,
+          State,
+          Zip,
+          Email,
+          Phone_Number,
+          Social_Security_Number,
+          Drivers_License,
+          Marital_Status,
+          Gender,
+          Shareholder_Status,
+          Benefit_Plans,
+          Ethnicity });
       } catch (error) {
         console.log('Error fetching employee data:', error);
       }
@@ -45,7 +94,7 @@ const EditEmployee = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    const requiredFields = ['employeeId', 'firstName', 'lastName', 'vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
+    const requiredFields = ['Employee_ID', 'First_Name', 'Last_Name', 'VacationDays', 'PaidToDate', 'PaidLastYear', 'PayRate', 'PayRateId',"Middle_Initial", "Address1", "City", "State", "Zip", "Email", "Phone_Number", "Social_Security_Number", "Drivers_License", "Marital_Status" , "Ethnicity"];
     for (const field of requiredFields) {
       if (!formData[field]) {
         setError({ field: field, message: 'The field ' + field + ' is required' });
@@ -55,7 +104,7 @@ const EditEmployee = () => {
     }
   
     // Kiểm tra xác minh các trường số
-    const numericFields = ['vacationDays', 'paidToDate', 'paidLastYear', 'payRate', 'payRateId'];
+    const numericFields = ['VacationDays', 'PaidToDate', 'PaidLastYear', 'PayRate', 'PayRateId'];
     for (const field of numericFields) {
       if (isNaN(formData[field])) {
         setError({ field: field, message: 'The field ' + field + ' must be a number.' });
@@ -88,80 +137,92 @@ const EditEmployee = () => {
           <div className="control-group">
               <label className="control-label" htmlFor="FirstName">Employee ID</label>
               <div className="controls">
-                <input type="text" id="EmployeeId" name="employeeId" className="span6" value={formData.employeeId}  readOnly  />
+                <input type="text" id="EmployeeId" name="employeeId" className="span6" value={formData.Employee_ID}  readOnly  />
               </div>
             </div>
+            {Object.keys(formData).map((key) => (
+             key !== 'Employee_ID'&& key !== 'Gender' && key !== 'Shareholder_Status' && key !== 'Benefit_Plans' &&
+              <div className="control-group" key={key}>
+                <label className="control-label" htmlFor={key}>{key.replace(/_/g, ' ')}</label>
+                <div className="controls">
+                  <input
+                    type="text"
+                    id={key}
+                    name={key}
+                    value={formData[key]}
+                    onChange={handleChange}
+                    className="span6"
+                  />
+                  {error && error.field === key && (
+                        <div className="error-message">{error.message}</div>
+                    )} 
+                </div>
+              </div>
+            ))}
+
+            {/* Gender */}
             <div className="control-group">
-              <label className="control-label" htmlFor="FirstName">First Name</label>
+              <label className="control-label" htmlFor="Gender">Gender</label>
               <div className="controls">
-                <input type="text" id="FirstName" name="firstName" className="span6" value={formData.firstName} onChange={handleChange} />
-                {error && error.field === 'firstName' && (
+                <select
+                  id="Gender"
+                  type="checkbox"
+                  name="Gender"
+                  value={formData.Gender}
+                  onChange={handleChange}
+                  className="span6"
+                >
+
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                {error && error.field === "Gender" && (
                         <div className="error-message">{error.message}</div>
                     )} 
               </div>
             </div>
 
+            {/* Shareholder Status */}
             <div className="control-group">
-              <label className="control-label" htmlFor="LastName">Last Name</label>
+              <label className="control-label" htmlFor="ShareholderStatus">Shareholder Status</label>
               <div className="controls">
-                <input type="text" id="LastName" name="lastName" className="span6" value={formData.lastName} onChange={handleChange} />
-                {error && error.field === 'lastName' && (
+                <input
+                  type="checkbox"
+                  id="ShareholderStatus"
+                  name="Shareholder_Status"
+                  checked={formData.Shareholder_Status}
+                  onChange={handleChange}
+                />
+                {error && error.field === "ShareholderStatus" && (
+                        <div className="error-message">{error.message}</div>
+                    )} 
+              </div>
+              
+            </div>
+
+            {/* Benefit Plans */}
+            <div className="control-group">
+              <label className="control-label" htmlFor="BenefitPlans">Benefit Plans</label>
+              <div className="controls">
+                <select
+                  id="BenefitPlans"
+                   type="checkbox"
+                  name="Benefit_Plans"
+                  value={formData.Benefit_Plans}
+                  onChange={handleChange}
+                  className="span6"
+                >
+                  <option value="">-- Select Benefit Plan --</option>
+                  {benefitPlans1.map((plan) => (
+                    <option key={plan.id} value={plan.name}>{plan.name}</option>
+                  ))}
+
+                </select>
+                {error && error.field === "Benefit_Plans" && (
                         <div className="error-message">{error.message}</div>
                     )} 
               </div>
             </div>
-
-            <div className="control-group">
-              <label className="control-label" htmlFor="VacationDays">Vacation Days</label>
-              <div className="controls">
-                <input type="number" id="VacationDays" name="vacationDays" className="span6" value={formData.vacationDays} onChange={handleChange} />
-                {error && error.field === 'vacationDays' && (
-                        <div className="error-message">{error.message}</div>
-                    )} 
-              </div>
-            </div>
-
-            <div className="control-group">
-              <label className="control-label" htmlFor="PaidToDate">Paid To Date</label>
-              <div className="controls">
-                <input type="number" id="PaidToDate" name="paidToDate" className="span6" value={formData.paidToDate} onChange={handleChange} />
-                {error && error.field === 'paidToDate' && (
-                        <div className="error-message">{error.message}</div>
-                    )} 
-              </div>
-            </div>
-
-            <div className="control-group">
-              <label className="control-label" htmlFor="PaidLastYear">Paid Last Year</label>
-              <div className="controls">
-                <input type="number" id="PaidLastYear" name="paidLastYear" className="span6" value={formData.paidLastYear} onChange={handleChange} />
-
-                {error && error.field === 'paidLastYear' && (
-                        <div className="error-message">{error.message}</div>
-                    )} 
-              </div>
-            </div>
-
-            <div className="control-group">
-              <label className="control-label" htmlFor="PayRate">Pay Rate</label>
-              <div className="controls">
-                <input type="number" id="PayRate" name="payRate" className="span6" value={formData.payRate} onChange={handleChange} />
-                {error && error.field === 'payRate' && (
-                        <div className="error-message">{error.message}</div>
-                    )} 
-              </div>
-            </div>
-
-            <div className="control-group">
-              <label className="control-label" htmlFor="PayRateId">Pay Rate ID</label>
-              <div className="controls">
-                <input type="number" id="PayRateId" name="payRateId" className="span6" value={formData.payRateId} onChange={handleChange} />
-                {error && error.field === 'payRateId' && (
-                        <div className="error-message">{error.message}</div>
-                    )} 
-              </div>
-            </div>
-
             <div className="control-group">
               <div className="col-md-offset-2 controls">
                 <input type="submit" value="Save" className="btn btn-default" />

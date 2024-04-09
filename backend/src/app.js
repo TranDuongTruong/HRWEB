@@ -148,14 +148,11 @@ import employeeRoutes from "./routes/employee.routes.js";
 import payrateRoutes from './routes/payrate.routes.js'
 import personalRoutes from './routes/personal.router.js'
 import jobHistoryRoutes from "./routes/jobHistory.routes.js";
-<<<<<<< HEAD
 import benefitRoutes from "./routes/benefitplan.routes.js";
 
 
-=======
 import sqlRoutes from "./routes/sqlRouter.js";
 import sqlConfig from './sqlConfig.js'
->>>>>>> fe1ba23633c03528a1e796e3ca1ad8e1681ca4a2
 const app = express();
 
 // Settings

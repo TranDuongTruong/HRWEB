@@ -16,7 +16,8 @@ const EmployeeIndex = () => {
 
   const fetchEmployee = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/employee');
+      const response = await axios.get('http://localhost:4000/api/employee/combionedData');
+      console.log("------------------------------------------------------------------\n",response.data)
       setEmployees(response.data);
     } catch (error) {
       console.log('Error fetching employee data:', error);
@@ -56,17 +57,17 @@ const EmployeeIndex = () => {
     
     return filteredPersonals.slice(startIndex, endIndex).map((item) => (
       
-      <tr key={item._id} className="odd gradeX">
-        <td>{item.firstName}</td>
-        <td>{item.lastName}</td>
-        <td>{item.vacationDays}</td>
-        <td>{item.paidToDate}</td>
-        <td>{item.paidLastYear}</td>
-        <td>{item.payRate}</td>
-        <td>{item.payRateId}</td>
+      <tr key={item.Employee_ID} className="odd gradeX">
+        <td>{item.First_Name}</td>
+        <td>{item.Last_Name}</td>
+        <td>{(item.Gender?"Male":"Female")}</td>
+        <td>{item.Email}</td>
+        <td>{item.Phone_Number}</td>
+        <td>{item.Benefit_Plans}</td>
+        <td>{item.PayRate}</td>
         <td>
-          <Link to={`/employee/edit/${item._id}`}>Edit</Link> |
-          <Link to={`/employee/delete/${item._id}`}>Delete</Link>
+          <Link to={`/employee/edit/${item.Employee_ID}`}>Edit</Link> |
+          <Link to={`/employee/delete/${item.Employee_ID}`}>Delete</Link>
         </td>
       </tr>
     ));
@@ -153,11 +154,11 @@ const EmployeeIndex = () => {
               <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Vacation Days</th>
-                <th>Paid To Date</th>
-                <th>Paid Last Year</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone_Number</th>
+                <th>Benefit_Plans</th>
                 <th>Pay Rate</th>
-                <th>Pay Rate ID</th>
               </tr>
             </thead>
             <tbody>

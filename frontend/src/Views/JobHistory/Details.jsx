@@ -14,7 +14,7 @@ function JobHistoryDetails() {
             const fetchJobHistoryById = async () => {
                 try {
                     const response = await axios.get(`http://localhost:4000/api/jobHistory/${id}`);
-                    setJobHistory(response.data.data); // Assume response.data contains the job history details
+                    setJobHistory(response.data); // Assume response.data contains the job history details
                 } catch (error) {
                     console.log('Error fetching job history:', error);
                 }
@@ -26,7 +26,7 @@ function JobHistoryDetails() {
 
     useEffect(() => {
         if (jobHistory) {
-            setHazardousTraining(jobHistory.Hazardous_Training ? 'True' : 'False');
+            setHazardousTraining(jobHistory.Hazardous_Training);
         }
     }, [jobHistory]);
 
@@ -34,7 +34,7 @@ function JobHistoryDetails() {
         return <div>Loading...</div>;
     }
 
-    const { Employee, Department, Division, Start_Date, End_Date, Job_Title, Supervisor, Job_Category, Location, Departmen_Code, Salary_Type, Pay_Period, Hours_per_Week } = jobHistory;
+    const { First_Name, Last_Name, Department, Division, Start_Date, End_Date, Job_Title, Supervisor, Job_Category, Location, Departmen_Code, Salary_Type, Pay_Period, Hours_per_Week } = jobHistory;
 
     const handleChange = (e) => {
         setHazardousTraining(e.target.value);
@@ -48,12 +48,11 @@ function JobHistoryDetails() {
             <h2>Details</h2>
             <div>
                 <h4>Job_History</h4>
-                {console.log(Employee.firstName)}
                 <hr />
                 <dl className="dl-horizontal">
 
                     <dt>Full Name</dt>
-                    <dd>{Employee.firstName} {Employee.lastName}</dd>
+                    <dd>{First_Name} {Last_Name}</dd>
 
                     <dt>Department</dt>
                     <dd>{Department}</dd>
@@ -94,9 +93,9 @@ function JobHistoryDetails() {
                     <dt>Hazardous Training</dt>
                     <dd>
                         <select value={hazardousTraining} onChange={handleChange}>
-                            <option value="Not Set">Not Set</option>
-                            <option value="True">True</option>
-                            <option value="False">False</option>
+                            <option value="NotSet">Not Set</option>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
                         </select>
                     </dd> 
                 </dl>

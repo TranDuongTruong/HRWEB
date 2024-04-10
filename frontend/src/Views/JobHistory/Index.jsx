@@ -45,7 +45,7 @@ const JobHistoryIndex = () => {
         <table className="table">
           <thead>
             <tr>
-              {/* <th>Full Name</th> */}
+              <th>Full Name</th>
               <th>Department</th>
               <th>Division</th>
               <th>Start Date</th>
@@ -58,7 +58,7 @@ const JobHistoryIndex = () => {
           <tbody>
             {jobHistories.map((history) => (
               <tr key={history._id}>
-                {/* <td>{history.Employee.firstName} {history.Employee.lastName}</td> */}
+                <td>{history.First_Name} {history.Last_Name}</td>
                 <td>{history.Department}</td>
                 <td>{history.Division}</td>
                 <td>{formatDateTime(history.Start_Date)}</td>
@@ -66,9 +66,9 @@ const JobHistoryIndex = () => {
                 <td>{history.Job_Category}</td>
                 <td>{history.Location}</td>
                 <td>
-                  <Link to={`/jobHistory/edit/${history._id}`}>Edit</Link> |{' '}
-                  <Link to={`/jobHistory/details/${history._id}`}>Details</Link> |{' '}
-                  <Link to={`/jobHistory/delete/${history._id}`}>Delete</Link>
+                  <Link to={`/jobHistory/edit/${history.ID}`}>Edit</Link> |{' '}
+                  <Link to={`/jobHistory/details/${history.ID}`}>Details</Link> |{' '}
+                  <Link to={`/jobHistory/delete/${history.ID}`}>Delete</Link>
                 </td>
               </tr>
             ))}

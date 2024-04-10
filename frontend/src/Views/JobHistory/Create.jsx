@@ -7,8 +7,7 @@ const CreateJobHistory = () => {
     const navigate = useNavigate();
 
     const [jobHistoryData, setJobHistoryData] = useState({
-        Employee: '',
-        EmployeeID: '',
+        Employee_ID: '',
         Department: '',
         Division: '',
         Start_Date: '',
@@ -21,7 +20,7 @@ const CreateJobHistory = () => {
         Salary_Type: '',
         Pay_Period: '',
         Hours_per_Week: '',
-        Hazardous_Training: false
+        Hazardous_Training: null
     });
 
     const [error, setError] = useState(null);
@@ -38,7 +37,11 @@ const CreateJobHistory = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(jobHistoryData)
+                body: JSON.stringify({
+                    ...jobHistoryData,
+                    // Chuyển giá trị "Not Set" thành null trước khi gửi dữ liệu
+                    Hazardous_Training: jobHistoryData.Hazardous_Training === 'NotSet' ? null : jobHistoryData.Hazardous_Training
+                })
             });
 
             if (!response.ok) {
@@ -69,28 +72,15 @@ const CreateJobHistory = () => {
             <hr />
             <form onSubmit={handleSubmit}>
                 {/* Các trường nhập */}
-                <div className="form-group">
-                    <label htmlFor="employee">EmployeeObjectId</label>
-                    <input
-                        type="text"
-                        id="employee"
-                        value={jobHistoryData.Employee}
-                        onChange={handleChange}
-                        name="Employee"
-                        className="form-control"
-                    />
-                    {error && error.field === 'Employee' && (
-                        <div className="error-message">{error.message}</div>
-                    )}
-                </div>
+                
                 <div className="form-group">
                     <label htmlFor="employeeId">EmployeeID</label>
                     <input
                         type="text"
                         id="employeeId"
-                        value={jobHistoryData.EmployeeID}
+                        value={jobHistoryData.Employee_ID}
                         onChange={handleChange}
-                        name="EmployeeID"
+                        name="Employee_ID"
                         className="form-control"
                     />
                     {error && error.field === 'Employee' && (
@@ -283,7 +273,7 @@ const CreateJobHistory = () => {
                     <label htmlFor="hazardous_training">Hazardous Training</label>
                     <select
                         id="hazardous_training"
-                        value={jobHistoryData.Hazardous_Training}
+                        value={jobHistoryData.Hazardous_Training || 'NotSet'} // Change default value to 'NotSet'
                         onChange={handleChange}
                         name="Hazardous_Training"
                         className="form-control"

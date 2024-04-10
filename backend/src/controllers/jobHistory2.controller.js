@@ -19,14 +19,15 @@ export const getPaginationJobHistory = async (req, res) => {
 
     try {
         const pool = await sql.connect(sqlConfig);
-        const result = await pool.request()
-            .query(`
-                SELECT * FROM (
-                    SELECT ROW_NUMBER() OVER (ORDER BY ID) AS RowNum, * FROM Job_History
-                ) AS RowConstrainedResult
-                WHERE RowNum BETWEEN ${(page - 1) * limit + 1} AND ${page * limit}
-            `);
-
+        const result = await pool.request().query(`
+        SELECT j.*, e.First_Name, e.Last_Name
+        FROM (
+            SELECT ROW_NUMBER() OVER (ORDER BY ID) AS RowNum, * 
+            FROM Job_History
+        ) AS j
+        INNER JOIN Personal e ON j.Employee_ID = e.Employee_ID
+        WHERE j.RowNum BETWEEN ${(page - 1) * limit + 1} AND ${page * limit}
+    `);
         const jobHistories = result.recordset;
         const totalJobHistories = await pool.request().query('SELECT COUNT(*) AS TotalCount FROM Job_History');
         const totalPages = Math.ceil(totalJobHistories.recordset[0].TotalCount / limit);
@@ -50,7 +51,12 @@ export const getJobHistoryById = async (req, res) => {
         const pool = await sql.connect(sqlConfig);
         const result = await pool.request()
             .input('id', sql.Decimal, id)
-            .query('SELECT * FROM Job_History WHERE ID = @id');
+            .query(`
+                SELECT j.*, e.First_Name, e.Last_Name
+                FROM Job_History j
+                INNER JOIN Personal e ON j.Employee_ID = e.Employee_ID
+                WHERE j.ID = @id
+            `);
 
         if (result.recordset.length === 0) {
             return res.status(404).json({ message: 'Job history not found' });
@@ -62,6 +68,7 @@ export const getJobHistoryById = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
+
 
 export const createJobHistory = async (req, res) => {
     const { Employee_ID, Department, Division, Start_Date, End_Date, Job_Title, Supervisor, Job_Category, Location, Departmen_Code, Salary_Type, Pay_Period, Hours_per_Week, Hazardous_Training } = req.body;

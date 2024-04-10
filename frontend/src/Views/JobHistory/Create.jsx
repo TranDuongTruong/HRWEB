@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect  } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 // import './Create.css';
 // import JobHistory from './path/to/JobHistory'; // Import JobHistory model
+import axios from 'axios';
+
 
 const CreateJobHistory = () => {
     const navigate = useNavigate();
@@ -64,6 +66,20 @@ const CreateJobHistory = () => {
             [name]: value
         }));
     };
+    const [employees, setEmployees] = useState([]); // State để lưu danh sách nhân viên
+
+    useEffect(() => {
+        const fetchEmployees = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/employee/combionedData');
+                setEmployees(response.data.data); // Assuming your data is in response.data
+            } catch (error) {
+                console.error('Error fetching employees:', error);
+            }
+        };
+    
+        fetchEmployees();
+    }, []);
 
     return (
         <div>
@@ -75,14 +91,20 @@ const CreateJobHistory = () => {
                 
                 <div className="form-group">
                     <label htmlFor="employeeId">EmployeeID</label>
-                    <input
-                        type="text"
+                    <select
                         id="employeeId"
                         value={jobHistoryData.Employee_ID}
                         onChange={handleChange}
                         name="Employee_ID"
                         className="form-control"
-                    />
+                    >
+                        {/* <option value="">Select Employee</option> */}
+                        {employees.map(employee => (
+                            <option key={employee.Employee_ID} value={employee.Employee_ID}>
+                                {employee.Employee_ID} 
+                            </option>
+                        ))}
+                    </select>
                     {error && error.field === 'Employee' && (
                         <div className="error-message">{error.message}</div>
                     )}

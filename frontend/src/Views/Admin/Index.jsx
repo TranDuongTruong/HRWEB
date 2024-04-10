@@ -1,27 +1,28 @@
 ﻿import React, { useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import MyChart from './MyChart'; 
+import ChartTable from './ChartTable'
 
 function Index() {
-    const chartData = {
-        labels: ['0', '1', '2', '3', '4', '5', '6', '7','8'],
-        datasets: [
-          {
-            label: 'Profits',
-             data: [1, 14, 5, 4, 5, 1, 14,5,5],
-             fill: false,
-                borderColor: 'rgb(85, 243, 192)',
-            tension: 0.1
-          },
-          {
-            label: 'Expenses',
-            data: [5,2,10,3,4,5,2,10,8],
-            fill: false,
-            borderColor: 'rgb(13, 179, 126)',
-            tension: 0.1
-          }
-        ]
-      };
+    // const chartData = {
+    //     labels: ['0', '1', '2', '3', '4', '5', '6', '7','8'],
+    //     datasets: [
+    //       {
+    //         label: 'Profits',
+    //          data: [1, 14, 5, 4, 5, 1, 14,5,5],
+    //          fill: false,
+    //             borderColor: 'rgb(85, 243, 192)',
+    //         tension: 0.1
+    //       },
+    //       {
+    //         label: 'Expenses',
+    //         data: [5,2,10,3,4,5,2,10,8],
+    //         fill: false,
+    //         borderColor: 'rgb(13, 179, 126)',
+    //         tension: 0.1
+    //       }
+    //     ]
+    //   };
     return (
         <div className="content">
             <div className="btn-controls">
@@ -104,7 +105,7 @@ function Index() {
         </div>
         <div className="module-body"style={{ height: '500px', width: '98%' }}>
             
-          <MyChart data={chartData} /> {/* Render your Chart component */}
+        <ChartTable /> {/* Render your Chart component */}
         </div>
       </div>
 
@@ -1116,6 +1117,7 @@ function Index() {
                     </div>
                 </div>
             </div>
+   
         </div>
     );
 }

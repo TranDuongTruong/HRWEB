@@ -9,10 +9,10 @@ import EmployeeIndex from '../Employee/Index';
 import EditEmployee from '../Employee/Edit'; 
 import DeleteEmployee from '../Employee/Delete';
 
-import PersonalIndex from '../Personals/Index';
-import CreatePersonal from '../Personals/Create';
-import EditPersonal from '../Personals/Edit';
-import DeletePersonal from '../Personals/Delete';
+// import PersonalIndex from '../Personals/Index';
+// import CreatePersonal from '../Personals/Create';
+// import EditPersonal from '../Personals/Edit';
+// import DeletePersonal from '../Personals/Delete';
 
 
 
@@ -119,11 +119,11 @@ const employeeData=[];
                       <i className="menu-icon icon-inbox"></i>Payrate
                     </Link>
                   </li>
-                  <li>
+                  {/* <li>
                     <Link to="/personal">
                       <i className="menu-icon icon-bullhorn"></i>Personal
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/jobHistory">
                       <i className="menu-icon icon-inbox"></i>JobHistory
@@ -178,10 +178,10 @@ const employeeData=[];
                  <Route path='/payrate/delete/:id'  element={<DeletePayrate />} />
                  <Route path='/payrate' element={<PayrateIndex />} />
 
-                 <Route path='/personal' element={<PersonalIndex />} />
+                 {/* <Route path='/personal' element={<PersonalIndex />} />
                  <Route path='/personal/create' element={<CreatePersonal />} />
                 <Route path='/personal/edit/:id' element={<EditPersonal />} /> 
-                <Route path='/personal/delete/:id' element={<DeletePersonal />} />
+                <Route path='/personal/delete/:id' element={<DeletePersonal />} /> */}
 
                 <Route path='/jobHistory'  element={<JobHistoryIndex />} />
                 <Route path='/jobHistory/details/:id'  element={<JobHistoryDetails />} />

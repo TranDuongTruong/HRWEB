@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import moment from 'moment';
+
 
 function EditJobHistory() {
     const [jobHistoryData, setJobHistoryData] = useState({});
@@ -8,7 +10,9 @@ function EditJobHistory() {
     const [error, setError] = useState(null);
     const { id } = useParams();
     const navigate = useNavigate();
-
+    const formatDateTime = (datetime) => {
+        return moment(datetime).format('DD/MM/YYYY hh:mm:ss A');
+      };
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -77,13 +81,13 @@ function EditJobHistory() {
                         <div className="control-group">
                             <label className="control-label col-md-2" htmlFor="Start_Date">Start Date</label>
                             <div className="controls">
-                                <input type="text" name="Start_Date" className="span6" value={jobHistoryData.Start_Date} onChange={(e) => setJobHistoryData({ ...jobHistoryData, Start_Date: e.target.value })} />
+                                <input type="text" name="Start_Date" className="span6" value={formatDateTime(jobHistoryData.Start_Date)} onChange={(e) => setJobHistoryData({ ...jobHistoryData, Start_Date: e.target.value })} />
                             </div>
                         </div>
                         <div className="control-group">
                             <label className="control-label col-md-2" htmlFor="End_Date">End Date</label>
                             <div className="controls">
-                                <input type="text" name="End_Date" className="span6" value={jobHistoryData.End_Date} onChange={(e) => setJobHistoryData({ ...jobHistoryData, End_Date: e.target.value })} />
+                                <input type="text" name="End_Date" className="span6" value={formatDateTime(jobHistoryData.End_Date)} onChange={(e) => setJobHistoryData({ ...jobHistoryData, End_Date: e.target.value })} />
                             </div>
                         </div>
                         <div className="control-group">

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
+import moment from 'moment';
+
 
 function DeleteJobHistory() {
     const [jobHistoryData, setJobHistoryData] = useState(null);
     const { id } = useParams();
     const navigate = useNavigate();
-
+    const formatDateTime = (datetime) => {
+        return moment(datetime).format('DD/MM/YYYY hh:mm:ss A');
+      };
     useEffect(() => {
         const fetchJobHistory = async () => {
             try {
@@ -54,10 +58,10 @@ function DeleteJobHistory() {
                     <dd>{Division}</dd>
 
                     <dt>Start Date</dt>
-                    <dd>{Start_Date}</dd>
+                    <dd>{formatDateTime(Start_Date)}</dd>
 
                     <dt>End Date</dt>
-                    <dd>{End_Date}</dd>
+                    <dd>{formatDateTime(End_Date)}</dd>
 
                     <dt>Job Title</dt>
                     <dd>{Job_Title}</dd>

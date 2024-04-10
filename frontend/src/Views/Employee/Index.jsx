@@ -1,7 +1,10 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import io from 'socket.io-client';
 
 import axios from 'axios';
+
+var newSocket=io("http://localhost:4000");
 
 const EmployeeIndex = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -9,12 +12,31 @@ const EmployeeIndex = () => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [employees, setEmployees] = useState([]);
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
     fetchEmployee();
+    // eslint-disable-next-line
+    newSocket.on('connect_error', (error) => {
+      console.error('Connection error:', error);
+    });
+    
+    newSocket.on('newEmployeeAdded', () => {
+      console.log("newEmployeeAdded")
+      fetchEmployees();
+    });
+
+    return () => {
+      newSocket.disconnect();
+    };
+
+    
   }, []);
 
+
+
   const fetchEmployee = async () => {
+    newSocket.emit('data')
     try {
       const response = await axios.get('http://localhost:4000/api/employee/combionedData');
       console.log("------------------------------------------------------------------\n",response.data)
@@ -170,8 +192,10 @@ const EmployeeIndex = () => {
           {renderPaginationButtons()}
         </div>
 
-        
+        <script src='/socket.io/socket.io.js'></script>
+      
       </div>
+      
     </>
   );
 };

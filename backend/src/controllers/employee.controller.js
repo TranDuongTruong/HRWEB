@@ -2,7 +2,10 @@ import Employee from "../models/Employee.js";
 import sqlConfig from "../sqlConfig.js";
 import sql from 'mssql'; // Import thư viện để kết nối với SQL Server
 import dotenv from 'dotenv';
+import { sendNotification } from "../websocket.js";
+import { io } from "../socket.js";
 dotenv.config();
+
 
 
 export const createEmployee = async (req, res) => {
@@ -224,6 +227,7 @@ export const createEmployeeData = async (req, res) => {
         // Tạo một record mới cho Personal và lưu vào SQL Server
         await sql.query(`INSERT INTO Personal (Employee_ID, First_Name, Last_Name, Middle_Initial, Address1, Address2, City, State, Zip, Email, Phone_Number, Social_Security_Number, Drivers_License, Marital_Status, Gender, Shareholder_Status, Benefit_Plans, Ethnicity) 
         VALUES ('${Employee_ID}', '${First_Name}', '${Last_Name}', '${Middle_Initial}', '${Address1}', '${Address2}', '${City}', '${State}', '${Zip}', '${Email}', '${Phone_Number}', '${Social_Security_Number}', '${Drivers_License}', '${Marital_Status}', ${Gender==="Male" ? 1 : 0}, ${Shareholder_Status ? 1 : 0}, ${Benefit_Plans}, '${Ethnicity}')`);
+        io.emit('newEmployeeAdded', { message: 'New employee added' });
 
         // Trả về kết quả thành công
         res.json({ success: true, message: 'Dữ liệu đã được thêm thành công.' });

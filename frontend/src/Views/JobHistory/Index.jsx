@@ -19,7 +19,7 @@ const JobHistoryIndex = () => {
   const fetchJobHistories = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/jobHistory?page=${currentPage}&limit=${itemsPerPage}`,
+        `http://localhost:4000/api/jobHistory/pagination?page=${currentPage}&limit=${itemsPerPage}`,
       );
       setJobHistories(response.data.jobHistories);
       setTotalPages(response.data.totalPages)
@@ -45,7 +45,7 @@ const JobHistoryIndex = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>Full Name</th>
+              {/* <th>Full Name</th> */}
               <th>Department</th>
               <th>Division</th>
               <th>Start Date</th>
@@ -58,7 +58,7 @@ const JobHistoryIndex = () => {
           <tbody>
             {jobHistories.map((history) => (
               <tr key={history._id}>
-                <td>{history.Employee.firstName} {history.Employee.lastName}</td>
+                {/* <td>{history.Employee.firstName} {history.Employee.lastName}</td> */}
                 <td>{history.Department}</td>
                 <td>{history.Division}</td>
                 <td>{formatDateTime(history.Start_Date)}</td>

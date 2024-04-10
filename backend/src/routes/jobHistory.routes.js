@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { createJobHistory, deleteJobHistory, getJobHistory, getJobHistoryById, getPaginationJobHistory, updateJobHistory } from "../controllers/jobHistory.controller.js";
+import { getAllJobHistories, getPaginationJobHistory, getJobHistoryById,createJobHistory, deleteJobHistory, updateJobHistoryById } from "../controllers/jobHistory2.controller.js";
 
 
 const router = Router();
-router.get("/", getPaginationJobHistory);
+router.get("/", getAllJobHistories);
+router.get("/pagination", getPaginationJobHistory);
 
-router.get("/", getJobHistory);
 
 
 router.get("/:jobHistoryId", getJobHistoryById);
 
 router.post("/", createJobHistory);
-router.put("/:jobHistoryId", updateJobHistory);
+router.put("/:jobHistoryId", updateJobHistoryById);
 
 router.delete("/:jobHistoryId", deleteJobHistory);
 

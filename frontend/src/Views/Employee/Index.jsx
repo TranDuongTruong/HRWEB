@@ -1,10 +1,10 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
-import io from 'socket.io-client';
+//import io from 'socket.io-client';
 
 import axios from 'axios';
 
-var newSocket=io("http://localhost:4000");
+//var newSocket=io("http://localhost:4000");
 
 const EmployeeIndex = () => {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -17,18 +17,18 @@ const EmployeeIndex = () => {
   useEffect(() => {
     fetchEmployee();
     // eslint-disable-next-line
-    newSocket.on('connect_error', (error) => {
-      console.error('Connection error:', error);
-    });
+    // newSocket.on('connect_error', (error) => {
+    //   console.error('Connection error:', error);
+    // });
     
-    newSocket.on('newEmployeeAdded', () => {
-      console.log("newEmployeeAdded")
-      fetchEmployees();
-    });
+    // newSocket.on('newEmployeeAdded', () => {
+    //   console.log("newEmployeeAdded")
+    //   fetchEmployees();
+    // });
 
-    return () => {
-      newSocket.disconnect();
-    };
+    // return () => {
+    //   newSocket.disconnect();
+    // };
 
     
   }, []);

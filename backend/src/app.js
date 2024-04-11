@@ -20,7 +20,7 @@ import jobHistoryRoutes from "./routes/jobHistory.routes.js";
 import benefitRoutes from "./routes/benefitplan.routes.js";
 import sqlRoutes from "./routes/sqlRouter.js";
 import sqlConfig from './sqlConfig.js'
-import { initializeWebSocket } from './websocket.js';
+// import { initializeWebSocket } from './websocket.js';
 
 import { PORT } from "./config.js";
 import http from "http";
@@ -52,13 +52,13 @@ async function connectToSqlServer() {
 } 
 const server = http.createServer(app);
 
-io.attach(server);
-server.PORT=4000
-console.log(io.PORT)
-console.log(app.PORT,"-----------------------------",server.PORT)
-io.on('connection', (socket) => {
-  console.log('New client connected');
-});
+// io.attach(server);
+// server.PORT=4000
+// console.log(io.PORT)
+// console.log(app.PORT,"-----------------------------",server.PORT)
+// io.on('connection', (socket) => {
+//   console.log('New client connected');
+// });
 
 
 //initializeWebSocket(server)

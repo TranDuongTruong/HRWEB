@@ -1,6 +1,9 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 //import io from 'socket.io-client';
+import io from 'socket.io-client';
+
+const socket = io('http://localhost:4000'); // Adjust the URL based on your server
 
 import axios from 'axios';
 
@@ -12,34 +15,40 @@ const EmployeeIndex = () => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [employees, setEmployees] = useState([]);
-  const [socket, setSocket] = useState(null);
+
 
   useEffect(() => {
     fetchEmployee();
-    // eslint-disable-next-line
-    // newSocket.on('connect_error', (error) => {
-    //   console.error('Connection error:', error);
-    // });
-    
-    // newSocket.on('newEmployeeAdded', () => {
-    //   console.log("newEmployeeAdded")
-    //   fetchEmployees();
-    // });
+    console.log("aaa")
+    socket.on('employeeCreated', () => {
+      console.log("employeeCreated")
+      fetchEmployee();
+    });
 
-    // return () => {
-    //   newSocket.disconnect();
-    // };
+    socket.on('employeeUpdated', () => {
+      console.log("employeeUpdated")
+      fetchEmployee();
+    });
+    socket.on('employeeDeleted', () => {
+      console.log("employeeDeleted")
+      fetchEmployee();
+    });
 
-    
+    // Clean up listeners
+    return () => {
+      socket.off('employeeCreated', fetchEmployee);
+      socket.off('employeeUpdated', fetchEmployee);
+      socket.off('employeeDeleted', fetchEmployee);
+    };
+
   }, []);
 
 
 
   const fetchEmployee = async () => {
-    newSocket.emit('data')
     try {
       const response = await axios.get('http://localhost:4000/api/employee/combionedData');
-      console.log("------------------------------------------------------------------\n",response.data)
+      console.log("------------------------------------------------------------------\n", response.data)
       setEmployees(response.data);
     } catch (error) {
       console.log('Error fetching employee data:', error);
@@ -76,13 +85,13 @@ const EmployeeIndex = () => {
   const renderTableEntries = () => {
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
-    
+
     return filteredPersonals.slice(startIndex, endIndex).map((item) => (
-      
+
       <tr key={item.Employee_ID} className="odd gradeX">
         <td>{item.First_Name}</td>
         <td>{item.Last_Name}</td>
-        <td>{(item.Gender?"Male":"Female")}</td>
+        <td>{(item.Gender ? "Male" : "Female")}</td>
         <td>{item.Email}</td>
         <td>{item.Phone_Number}</td>
         <td>{item.Benefit_Plans}</td>
@@ -150,10 +159,10 @@ const EmployeeIndex = () => {
         <div className="module-body table">
           <div id="DataTables_Table_0_wrapper" className="dataTables_wrapper" role="grid">
             <div id="DataTables_Table_0_length" className="dataTables_length">
-              <label>Show 
-                <select 
-                  size="1" 
-                  name="DataTables_Table_0_length" 
+              <label>Show
+                <select
+                  size="1"
+                  name="DataTables_Table_0_length"
                   aria-controls="DataTables_Table_0"
                   value={entriesPerPage}
                   onChange={handleEntriesPerPageChange}
@@ -162,7 +171,7 @@ const EmployeeIndex = () => {
                   <option value="25">25</option>
                   <option value="50">50</option>
                   <option value="100">100</option>
-                </select> 
+                </select>
                 entries
               </label>
             </div>
@@ -193,9 +202,9 @@ const EmployeeIndex = () => {
         </div>
 
         <script src='/socket.io/socket.io.js'></script>
-      
+
       </div>
-      
+
     </>
   );
 };

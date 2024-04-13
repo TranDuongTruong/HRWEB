@@ -21,18 +21,18 @@ const JobHistoryIndex = () => {
     // socket.on('jobHistoryCreated', fetchJobHistories);
 
     socket.on('jobHistoryCreated', () => {
-        console.log("newjobHistoryCreated")
-        fetchJobHistories();
-     });
-    
+      console.log("newjobHistoryCreated")
+      fetchJobHistories();
+    });
+
     socket.on('jobHistoryUpdated', () => {
       console.log("jobHistoryUpdated")
       fetchJobHistories();
-   });
-    socket.on('jobHistoryDeleted',  () => {
+    });
+    socket.on('jobHistoryDeleted', () => {
       console.log("jobHistoryDeleted")
       fetchJobHistories();
-   });
+    });
 
     // Clean up listeners
     return () => {

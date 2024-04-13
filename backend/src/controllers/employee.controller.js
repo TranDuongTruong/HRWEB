@@ -2,6 +2,8 @@ import Employee from "../models/Employee.js";
 import sqlConfig from "../sqlConfig.js";
 import sql from 'mssql'; // Import thư viện để kết nối với SQL Server
 import dotenv from 'dotenv';
+import { io } from '../index.js';
+
 // import { sendNotification } from "../websocket.js";
 // import { io } from "../socket.js";
 dotenv.config();
@@ -41,13 +43,13 @@ export const createEmployee = async (req, res) => {
             }
         });
     } catch (error) {
-        console.error({success: true, data: error});
+        console.error({ success: true, data: error });
     }
 };
 
 export const getEmployee = async (req, res, next) => {
 
-    const {employeeId}=req.params  
+    const { employeeId } = req.params
     const employee = await Employee.findById(employeeId);
     console.log(employee)
     return res.json({ success: true, data: employee });
@@ -55,8 +57,8 @@ export const getEmployee = async (req, res, next) => {
 
 export const getEmployeeByEmployeeID = async (req, res, next) => {
 
-    const {Employee_ID}=req.params  
-    const employee = await Employee.findOne({Employee_ID: Employee_ID});
+    const { Employee_ID } = req.params
+    const employee = await Employee.findOne({ Employee_ID: Employee_ID });
     console.log(employee)
     return res.json({ success: true, data: employee });
 };
@@ -72,7 +74,7 @@ export const deleteEmployee = async (req, res, next) => {
     try {
         const employee = await Employee.findByIdAndDelete(req.params.employeeId);
         if (!employee) {
-            console.log("backend: "+employee.employeeId)
+            console.log("backend: " + employee.employeeId)
             return res.status(404).json({ success: false, message: "Employee not found" });
         }
         return res.status(200).json({ success: true, message: "Employee deleted successfully" });
@@ -206,7 +208,7 @@ export const createEmployeeData = async (req, res) => {
             Benefit_Plans,
             Ethnicity
         } = req.body;
-        
+
         // Tạo một document mới cho Employee và lưu vào MongoDB
         const newEmployee = new Employee({
             Employee_ID,
@@ -217,17 +219,18 @@ export const createEmployeeData = async (req, res) => {
             PaidLastYear,
             PayRate,
             PayRateId
-        }); 
-        console.log("--------------",newEmployee)
+        });
+        console.log("--------------", newEmployee)
         await newEmployee.save();
-       
+
         // Kết nối tới SQL Server
         await sql.connect(sqlConfig);
 
         // Tạo một record mới cho Personal và lưu vào SQL Server
         await sql.query(`INSERT INTO Personal (Employee_ID, First_Name, Last_Name, Middle_Initial, Address1, Address2, City, State, Zip, Email, Phone_Number, Social_Security_Number, Drivers_License, Marital_Status, Gender, Shareholder_Status, Benefit_Plans, Ethnicity) 
-        VALUES ('${Employee_ID}', '${First_Name}', '${Last_Name}', '${Middle_Initial}', '${Address1}', '${Address2}', '${City}', '${State}', '${Zip}', '${Email}', '${Phone_Number}', '${Social_Security_Number}', '${Drivers_License}', '${Marital_Status}', ${Gender==="Male" ? 1 : 0}, ${Shareholder_Status ? 1 : 0}, ${Benefit_Plans}, '${Ethnicity}')`);
-       // io.emit('newEmployeeAdded', { message: 'New employee added' });
+        VALUES ('${Employee_ID}', '${First_Name}', '${Last_Name}', '${Middle_Initial}', '${Address1}', '${Address2}', '${City}', '${State}', '${Zip}', '${Email}', '${Phone_Number}', '${Social_Security_Number}', '${Drivers_License}', '${Marital_Status}', ${Gender === "Male" ? 1 : 0}, ${Shareholder_Status ? 1 : 0}, ${Benefit_Plans}, '${Ethnicity}')`);
+        // io.emit('newEmployeeAdded', { message: 'New employee added' });
+        io.emit('employeeCreated');
 
         // Trả về kết quả thành công
         res.json({ success: true, message: 'Dữ liệu đã được thêm thành công.' });
@@ -377,6 +380,7 @@ export const updateCombinedData = async (req, res) => {
         } else {
             await sql.query(`UPDATE Personal SET First_Name = '${First_Name}', Last_Name = '${Last_Name}', Middle_Initial = '${Middle_Initial}', Address1 = '${Address1}', Address2 = '${Address2}', City = '${City}', State = '${State}', Zip = ${Zip}, Email = '${Email}', Phone_Number = '${Phone_Number}', Social_Security_Number = '${Social_Security_Number}', Drivers_License = '${Drivers_License}', Marital_Status = '${Marital_Status}', Gender = ${Gender ? 1 : 0}, Shareholder_Status = ${Shareholder_Status ? 1 : 0}, Benefit_Plans = ${Benefit_Plans}, Ethnicity = '${Ethnicity}' WHERE Employee_ID = ${Employee_ID}`);
         }
+        io.emit('employeeUpdated');
 
         res.json({ success: true, message: "Dữ liệu đã được cập nhật thành công vào cả hai cơ sở dữ liệu" });
     } catch (err) {
@@ -399,8 +403,10 @@ export const deleteCombinedData = async (req, res) => {
         const result2 = await sql.query(`DELETE FROM Job_History WHERE Employee_ID = ${Employee_ID}`);
         const result3 = await sql.query(`DELETE FROM Employment WHERE Employee_ID = ${Employee_ID}`);
         const result = await sql.query(`DELETE FROM Personal WHERE Employee_ID = ${Employee_ID}`);
-        
+
         if (deletedEmployee || result.rowsAffected > 0) {
+            io.emit('employeeDeleted');
+
             res.json({ success: true, message: "Dữ liệu đã được xóa thành công khỏi cả hai cơ sở dữ liệu" });
         } else {
             res.json({ success: false, message: "Không tìm thấy dữ liệu để xóa" });

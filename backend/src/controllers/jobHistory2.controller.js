@@ -1,5 +1,6 @@
 import sql from 'mssql'
 import sqlConfig from '../sqlConfig.js'
+import { io } from '../index.js';
 
 // Function lấy tất cả các bản ghi Job_History
 export const getAllJobHistories = async (req, res) => {
@@ -96,8 +97,8 @@ export const createJobHistory = async (req, res) => {
                 VALUES
                 (@Employee_ID, @Department, @Division, @Start_Date, @End_Date, @Job_Title, @Supervisor, @Job_Category, @Location, @Departmen_Code, @Salary_Type, @Pay_Period, @Hours_per_Week, @Hazardous_Training)
             `);
-
-        res.json({ message: 'Job history created successfully' });
+            io.emit('jobHistoryCreated');
+            res.json({ message: 'Job history created successfully' });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
@@ -115,7 +116,7 @@ export const deleteJobHistory = async (req, res) => {
         if (result.rowsAffected[0] === 0) {
             return res.status(404).json({ message: 'Job history not found' });
         }
-
+        io.emit('jobHistoryDeleted'); 
         res.json({ message: 'Job history deleted successfully' });
     } catch (err) {
         console.error(err);
@@ -166,6 +167,7 @@ export const updateJobHistoryById = async (req, res) => {
             `);
 
         if (result.rowsAffected[0] > 0) {
+            io.emit('jobHistoryUpdated'); 
             res.json({ message: 'Job history updated successfully', data: result.recordset[0] });
         } else {
             res.status(404).json({ message: 'Job history not found' });

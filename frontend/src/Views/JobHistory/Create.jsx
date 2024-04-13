@@ -1,9 +1,9 @@
-import React, { useState,useEffect  } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import './Create.css';
-// import JobHistory from './path/to/JobHistory'; // Import JobHistory model
 import axios from 'axios';
 
+// import './Create.css';
+// import JobHistory from './path/to/JobHistory'; // Import JobHistory model
 
 const CreateJobHistory = () => {
     const navigate = useNavigate();
@@ -26,6 +26,21 @@ const CreateJobHistory = () => {
     });
 
     const [error, setError] = useState(null);
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+        const fetchEmployees = async () => {
+            try {
+                const response = await axios.get('http://localhost:4000/api/employee/combionedData');
+                setEmployees(response.data.data); // Cập nhật danh sách nhân viên
+            } catch (error) {
+                console.error('Error fetching employees:', error);
+                setError('Failed to fetch employees');
+            }
+        };
+
+        fetchEmployees();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,20 +81,6 @@ const CreateJobHistory = () => {
             [name]: value
         }));
     };
-    const [employees, setEmployees] = useState([]); // State để lưu danh sách nhân viên
-
-    useEffect(() => {
-        const fetchEmployees = async () => {
-            try {
-                const response = await axios.get('http://localhost:4000/api/employee/combionedData');
-                setEmployees(response.data.data); // Assuming your data is in response.data
-            } catch (error) {
-                console.error('Error fetching employees:', error);
-            }
-        };
-    
-        fetchEmployees();
-    }, []);
 
     return (
         <div>
@@ -88,7 +89,7 @@ const CreateJobHistory = () => {
             <hr />
             <form onSubmit={handleSubmit}>
                 {/* Các trường nhập */}
-                
+
                 <div className="form-group">
                     <label htmlFor="employeeId">EmployeeID</label>
                     <select
@@ -98,18 +99,14 @@ const CreateJobHistory = () => {
                         name="Employee_ID"
                         className="form-control"
                     >
-                        {/* <option value="">Select Employee</option> */}
+                        <option value="">Select Employee</option>
                         {employees.map(employee => (
                             <option key={employee.Employee_ID} value={employee.Employee_ID}>
-                                {employee.Employee_ID} 
+                              {employee.Employee_ID}
                             </option>
                         ))}
                     </select>
-                    {error && error.field === 'Employee' && (
-                        <div className="error-message">{error.message}</div>
-                    )}
                 </div>
-
 
                 <div className="form-group">
                     <label htmlFor="department">Department</label>

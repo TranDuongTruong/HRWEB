@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 
 
 const SQL_SERVER_CONFIG = {
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  server: process.env.SERVER,
-  database: process.env.DATABASE,
+  user: "sa",
+  password: "quyen28@",
+  server: "localhost",
+  database: "HR",
 };
 
 const sqlConfig = {

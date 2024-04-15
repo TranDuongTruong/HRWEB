@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+
 function BenefitCreate() {
+    
     const [formData, setFormData] = useState({
-        benefitplan_id:'',
-        plan_name: '',
-        deductable: '',
-        percentage: ''
+        Benefit_Plan_ID: '',
+        Plan_Name: '',
+        Deductable: '',
+        Percentage_CoPay: ''
     });
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Sử dụng hook useNavigate
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -21,7 +23,7 @@ function BenefitCreate() {
         e.preventDefault();
 
         // Kiểm tra xác minh trường không được null
-        const requiredFields = ['plan_name', 'deductable', 'percentage'];
+        const requiredFields = ['Plan_Name', 'Deductable', 'Percentage_CoPay'];
         for (const field of requiredFields) {
             if (!formData[field]) {
                 setError(`The field ${field} is required.`);
@@ -32,7 +34,7 @@ function BenefitCreate() {
             }
         }
         // Kiểm tra xác minh các trường số
-        const numericFields = ['deductable', 'percentage'];
+        const numericFields = ['Deductable', 'Percentage_CoPay'];
         for (const field of numericFields) {
             if (isNaN(formData[field])) {
                 setError(`The field ${field} must be a number.`);
@@ -40,8 +42,6 @@ function BenefitCreate() {
             }
         }
 
-        e.preventDefault();
-       
         try {
             console.log(formData);
             const response = await axios.post('http://localhost:4000/api/benefitplan', formData);
@@ -49,7 +49,6 @@ function BenefitCreate() {
             navigate('/benefitplan');
 
         } catch (error) {
-
             console.log('Error creating new benefitplan data:', error);
         }
     };
@@ -58,16 +57,16 @@ function BenefitCreate() {
         <div>
             <h2>Create</h2>
             <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                    <label htmlFor="deductable" className="control-label col-md-2">Benefitplan_id</label>
+                <div className="form-group">
+                    <label htmlFor="benefitPlanId" className="control-label col-md-2">Benefit Plan ID</label>
                     <div className="col-md-10">
                         <input 
                             type="number" 
-                            id="deductable" 
+                            id="benefitPlanId" 
                             className="form-control" 
-                            value={formData.benefitplan_id} 
+                            value={formData.Benefit_Plan_ID} 
                             onChange={handleChange} 
-                            name="benefitplan_id" 
+                            name="Benefit_Plan_ID" 
                         />
                     </div>
                 </div>
@@ -78,9 +77,9 @@ function BenefitCreate() {
                             type="text" 
                             id="planName" 
                             className="form-control" 
-                            value={formData.plan_name} 
+                            value={formData.Plan_Name} 
                             onChange={handleChange} 
-                            name="plan_name" 
+                            name="Plan_Name" 
                         />
                     </div>
                 </div>
@@ -91,22 +90,22 @@ function BenefitCreate() {
                             type="number" 
                             id="deductable" 
                             className="form-control" 
-                            value={formData.deductable} 
+                            value={formData.Deductable} 
                             onChange={handleChange} 
-                            name="deductable" 
+                            name="Deductable" 
                         />
                     </div>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="percentage" className="control-label col-md-2">Percentage</label>
+                    <label htmlFor="percentageCoPay" className="control-label col-md-2">Percentage CoPay</label>
                     <div className="col-md-10">
                         <input 
                             type="number" 
-                            id="percentage" 
+                            id="percentageCoPay" 
                             className="form-control" 
-                            value={formData.percentage} 
+                            value={formData.Percentage_CoPay} 
                             onChange={handleChange} 
-                            name="percentage" 
+                            name="Percentage_CoPay" 
                         />
                     </div>
                 </div>

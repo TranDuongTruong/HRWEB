@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
 
 const BenefitPlanSchema = new mongoose.Schema({
-  benefitplan_id: {
+  Benefit_Plan_ID: {
     type: Number,
     unique: true
   },
-  plan_name: {
+  Plan_Name: {
     type: String,
     maxlength: 50
   },
-  deductable: {
+  Deductable: {
     type: Number,
     maxlength: 50
   },
-  percentage: {
+  Percentage_CoPay: {
     type: Number,
     maxlength: 50
   }

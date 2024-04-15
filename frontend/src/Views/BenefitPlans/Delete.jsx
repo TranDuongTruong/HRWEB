@@ -6,17 +6,17 @@ const BenefitPlanDelete = () => {
     const navigate = useNavigate();
     const { id } = useParams();
     const [plan, setPlan] = useState({
-        plan_name: '',
-        deductable: '',
-        percentage: ''
+        Plan_Name: '',
+        Deductable: '',
+        Percentage_CoPay: ''
     });
 
     const fetchPlanData = async () => {
         try {
             const response = await axios.get(`http://localhost:4000/api/benefitplan/${id}`);
-            const { plan_name, deductable, percentage } = response.data.data;
-            console.log(plan_name, deductable, percentage);
-            setPlan({plan_name, deductable, percentage });
+            const { Plan_Name, Deductable, Percentage_CoPay } = response.data.data;
+            console.log(Plan_Name, Deductable, Percentage_CoPay);
+            setPlan({Plan_Name, Deductable, Percentage_CoPay });
         } catch (error) {
             console.log('Error fetching plan data:', error);
         }
@@ -46,11 +46,11 @@ const BenefitPlanDelete = () => {
                 <hr />
                 <dl className="dl-horizontal">
                     <dt>Plan Name</dt>
-                    <dd>{plan.plan_name}</dd>
+                    <dd>{plan.Plan_Name}</dd>
                     <dt>Deductable</dt>
-                    <dd>{plan.deductable}</dd>
+                    <dd>{plan.Deductable}</dd>
                     <dt>Percentage CoPay</dt>
-                    <dd>{plan.percentage}</dd>
+                    <dd>{plan.Percentage_CoPay}</dd>
                 </dl>
                 <form onSubmit={handleDelete}>
                     <button type="submit" className="btn btn-default">Delete</button>

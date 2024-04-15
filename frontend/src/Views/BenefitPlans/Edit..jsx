@@ -4,9 +4,9 @@ import axios from 'axios';
 
 const EditBenefitPlan = () => {
   const [formData, setFormData] = useState({
-    plan_name: '',
-    deductable: '',
-    percentage: ''
+    Plan_Name: '',
+        Deductable: '',
+        Percentage_CoPay: ''
   });
   const [error, setError] = useState('');
 
@@ -17,8 +17,8 @@ const EditBenefitPlan = () => {
     const fetchBenefitPlanData = async () => {
       try {
         const response = await axios.get(`http://localhost:4000/api/benefitplan/${id}`);
-        const { plan_name, deductable, percentage } = response.data.data;
-        setFormData({ plan_name, deductable, percentage });
+        const { Plan_Name, Deductable, Percentage_CoPay } = response.data.data;
+        setFormData({ Plan_Name, Deductable, Percentage_CoPay });
       } catch (error) {
         console.log('Error fetching benefit plan data:', error);
       }
@@ -36,7 +36,7 @@ const EditBenefitPlan = () => {
     e.preventDefault();
 
     // Kiểm tra xác minh trường không được null
-    const requiredFields = ['plan_name', 'deductable', 'percentage'];
+    const requiredFields = ['Plan_Name', 'Deductable', 'Percentage_CoPay'];
     for (const field of requiredFields) {
       if (!formData[field]) {
         setError(`The field ${field} is required.`);
@@ -47,7 +47,7 @@ const EditBenefitPlan = () => {
       }
     }
     // Kiểm tra xác minh các trường số
-    const numericFields = ['deductable', 'percentage'];
+    const numericFields = ['Deductable', 'Percentage_CoPay'];
     for (const field of numericFields) {
       if (isNaN(formData[field])) {
         setError(`The field ${field} must be a number.`);
@@ -75,21 +75,21 @@ const EditBenefitPlan = () => {
             <div className="control-group">
               <label className="control-label" htmlFor="PlanName">Plan Name</label>
               <div className="controls">
-                <input type="text" id="PlanName" name="plan_name" className="span6" value={formData.plan_name} onChange={handleChange} />
+                <input type="text" id="PlanName" name="plan_name" className="span6" value={formData.Plan_Name} onChange={handleChange} />
               </div>
             </div>
 
             <div className="control-group">
               <label className="control-label" htmlFor="Deductable">Deductable</label>
               <div className="controls">
-                <input type="text" id="Deductable" name="deductable" className="span6" value={formData.deductable} onChange={handleChange} />
+                <input type="text" id="Deductable" name="deductable" className="span6" value={formData.Deductable} onChange={handleChange} />
               </div>
             </div>
 
             <div className="control-group">
               <label className="control-label" htmlFor="Percentage">Percentage</label>
               <div className="controls">
-                <input type="text" id="Percentage" name="percentage" className="span6" value={formData.percentage} onChange={handleChange} />
+                <input type="text" id="Percentage" name="percentage" className="span6" value={formData.Percentage_CoPay} onChange={handleChange} />
               </div>
             </div>
 

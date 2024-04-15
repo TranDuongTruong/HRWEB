@@ -5,11 +5,12 @@ import { Routes, Route, Link } from 'react-router-dom';
 function BenefitPlanIndex() {
     const [benefitPlans, setBenefitPlans] = useState([]);
     const [searchKeyword, setSearchKeyword] = useState('');
-    const [showCount, setShowCount] = useState(5); // mặc định
+    const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
+    const [itemsPerPage, setItemsPerPage] = useState(10); // Số lượng dòng trên mỗi trang
 
     useEffect(() => {
         fetchBenefitPlans();
-    }, []);
+    }, [currentPage]); // Fetch lại dữ liệu khi trang thay đổi
 
     const fetchBenefitPlans = async () => {
         try {
@@ -25,7 +26,16 @@ function BenefitPlanIndex() {
     };
 
     const handleShowCountChange = (event) => {
-        setShowCount(parseInt(event.target.value));
+        setItemsPerPage(parseInt(event.target.value));
+    };
+
+    // Tính toán index bắt đầu và index kết thúc của dòng cần hiển thị
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = benefitPlans.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
     };
 
     return (
@@ -33,7 +43,7 @@ function BenefitPlanIndex() {
             <div className="module-head">
                 <h3>Benefit Plans - <Link to="/benefitplan/create">Create New</Link></h3>
                 <div>
-                    <select value={showCount} onChange={handleShowCountChange}>
+                    <select value={itemsPerPage} onChange={handleShowCountChange}>
                         <option value={5}>Show 5</option>
                         <option value={10}>Show 10</option>
                         <option value={15}>Show 15</option>
@@ -62,20 +72,31 @@ function BenefitPlanIndex() {
                         </tr>
                     </thead>
                     <tbody>
-                        {benefitPlans.slice(0, showCount).map(plan => (
-                            <tr key={plan.benefitplan_id}>
-                                <td>{plan.plan_name}</td>
-                                <td>{plan.deductable}</td>
-                                <td>{plan.percentage}</td>
-                                <td>
-                                    <Link to={`/benefitplan/edit/${plan._id}`}>Edit</Link> |&nbsp;
-                                    <Link to={`/benefitplan/details/${plan._id}`}>Details</Link> |&nbsp;
-                                    <Link to={`/benefitplan/delete/${plan._id}`}>Delete</Link>
-                                </td>
-                            </tr>
-                        ))}
+                    {currentItems.map((plan, index) => (
+                        <tr key={index}>
+                            <td>{plan.Plan_Name}</td>
+                            <td>{plan.Deductable}</td>
+                            <td>{plan.Percentage_CoPay}</td>
+                            <td>
+                                <Link to={`/benefitplan/edit/${plan._id}`}>Edit</Link> |&nbsp;
+                                <Link to={`/benefitplan/details/${plan._id}`}>Details</Link> |&nbsp;
+                                <Link to={`/benefitplan/delete/${plan._id}`}>Delete</Link>
+                            </td>
+                        </tr>
+                    ))}
+
                     </tbody>
                 </table>
+                {/* Nút chuyển trang */}
+                <div>
+                    {benefitPlans.length > itemsPerPage && (
+                        <div>
+                            {Array.from({ length: Math.ceil(benefitPlans.length / itemsPerPage) }, (_, i) => (
+                                <button key={i} onClick={() => paginate(i + 1)}>{i + 1}</button>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

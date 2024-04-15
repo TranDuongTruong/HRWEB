@@ -5,16 +5,16 @@ import { useParams, Link } from 'react-router-dom';
 const BenefitPlanDetails = () => {
     const { id } = useParams();
     const [formData, setFormData] = useState({
-        plan_name: '',
-        deductable: '',
-        percentage: ''
+        Plan_Name: '',
+        Deductable: '',
+        Percentage_CoPay: ''
     });
 
     const fetchProductData = async () => {
         try {
             const response = await axios.get(`http://localhost:4000/api/benefitplan/${id}`);
-            const { plan_name, deductable, percentage } = response.data.data;
-            setFormData({ plan_name, deductable, percentage});
+            const {  Plan_Name, Deductable, Percentage_CoPay } = response.data.data;
+            setFormData({  Plan_Name, Deductable, Percentage_CoPay});
         } catch (error) {
             console.log('Error fetching benefitplan data:', error);
         }
@@ -36,13 +36,13 @@ const BenefitPlanDetails = () => {
                 <hr />
                 <dl className="dl-horizontal">
                     <dt>Plan Name</dt>
-                    <dd>{formData.plan_name}</dd>
+                    <dd>{formData.Plan_Name}</dd>
 
                     <dt>Deductable</dt>
-                    <dd>{formData.deductable}</dd>
+                    <dd>{formData.Deductable}</dd>
 
                     <dt>Percentage CoPay</dt>
-                    <dd>{formData.percentage}</dd>
+                    <dd>{formData.Percentage_CoPay}</dd>
                 </dl>
             </div>
             <p>

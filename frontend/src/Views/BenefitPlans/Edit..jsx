@@ -5,8 +5,8 @@ import axios from 'axios';
 const EditBenefitPlan = () => {
   const [formData, setFormData] = useState({
     Plan_Name: '',
-        Deductable: '',
-        Percentage_CoPay: ''
+    Deductable: '',
+    Percentage_CoPay: ''
   });
   const [error, setError] = useState('');
 
@@ -75,21 +75,21 @@ const EditBenefitPlan = () => {
             <div className="control-group">
               <label className="control-label" htmlFor="PlanName">Plan Name</label>
               <div className="controls">
-                <input type="text" id="PlanName" name="plan_name" className="span6" value={formData.Plan_Name} onChange={handleChange} />
+                <input type="text" id="PlanName" name="Plan_Name" className="span6" value={formData.Plan_Name} onChange={handleChange} />
               </div>
             </div>
 
             <div className="control-group">
               <label className="control-label" htmlFor="Deductable">Deductable</label>
               <div className="controls">
-                <input type="text" id="Deductable" name="deductable" className="span6" value={formData.Deductable} onChange={handleChange} />
+                <input type="text" id="Deductable" name="Deductable" className="span6" value={formData.Deductable} onChange={handleChange} />
               </div>
             </div>
 
             <div className="control-group">
-              <label className="control-label" htmlFor="Percentage">Percentage</label>
+              <label className="control-label" htmlFor="Percentage">Percentage CoPay</label>
               <div className="controls">
-                <input type="text" id="Percentage" name="percentage" className="span6" value={formData.Percentage_CoPay} onChange={handleChange} />
+                <input type="text" id="Percentage" name="Percentage_CoPay" className="span6" value={formData.Percentage_CoPay} onChange={handleChange} />
               </div>
             </div>
 

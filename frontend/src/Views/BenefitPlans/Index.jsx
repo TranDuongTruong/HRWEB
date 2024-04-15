@@ -78,9 +78,9 @@ function BenefitPlanIndex() {
                             <td>{plan.Deductable}</td>
                             <td>{plan.Percentage_CoPay}</td>
                             <td>
-                                <Link to={`/benefitplan/edit/${plan._id}`}>Edit</Link> |&nbsp;
-                                <Link to={`/benefitplan/details/${plan._id}`}>Details</Link> |&nbsp;
-                                <Link to={`/benefitplan/delete/${plan._id}`}>Delete</Link>
+                                <Link to={`/benefitplan/edit/${plan.Benefit_Plan_ID}`}>Edit</Link> |&nbsp;
+                                <Link to={`/benefitplan/details/${plan.Benefit_Plan_ID}`}>Details</Link> |&nbsp;
+                                <Link to={`/benefitplan/delete/${plan.Benefit_Plan_ID}`}>Delete</Link>
                             </td>
                         </tr>
                     ))}
@@ -96,6 +96,10 @@ function BenefitPlanIndex() {
                             ))}
                         </div>
                     )}
+                </div>
+                {/* Hiển thị tổng số phần tử */}
+                <div>
+                    Total entries: {benefitPlans.length}
                 </div>
             </div>
         </div>

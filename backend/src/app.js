@@ -49,7 +49,7 @@ async function connectToSqlServer() {
   } catch (error) {
     console.error("Error connecting to SQL Server:", error.message);
   }
-} 
+}
 
 //Connect to SQL Server
 connectToSqlServer();
@@ -67,8 +67,8 @@ app.use("/api/employee", employeeRoutes);
 
 app.use("/api/payrate", payrateRoutes);
 app.use("/api/personal", personalRoutes);
-app.use("/api/benefitplan",benefitRoutes);
-app.get('/', (req, res)=> {
+app.use("/api/benefitplan", benefitRoutes);
+app.get('/', (req, res) => {
   res.json("helmet")
 
 });

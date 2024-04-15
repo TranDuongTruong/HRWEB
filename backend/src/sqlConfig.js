@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 
 
 const SQL_SERVER_CONFIG = {
-  user: "sa",
-  password: "quyen28@",
-  server: "localhost",
-  database: "HR",
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  server: "DESKTOP-VLSVRCN\\TRANTRUONG",
+  database: process.env.DATABASE,
 };
 
 const sqlConfig = {
@@ -16,8 +16,8 @@ const sqlConfig = {
   server: SQL_SERVER_CONFIG.server,
   database: SQL_SERVER_CONFIG.database,
   options: {
-      encrypt: true, // For Azure SQL
-      trustServerCertificate: true, // For Azure SQL
+    encrypt: true, // For Azure SQL
+    trustServerCertificate: true, // For Azure SQL
   },
 };
 

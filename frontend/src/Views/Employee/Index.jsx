@@ -4,7 +4,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import io from 'socket.io-client';
 
 const socket1 = io('http://localhost:4000'); // Adjust the URL based on your server
-const socket2 = io('http://localhost:9000');
+const socket2 = io('http://localhost:8080/');
 
 import axios from 'axios';
 
@@ -34,28 +34,20 @@ const EmployeeIndex = () => {
       console.log("employeeDeleted")
       fetchEmployee();
     });
+    socket2.emit("addNewUser")
 
-    socket2.on('employeeCreated', () => {
-      console.log("employeeCreated")
+    socket2.on('getNewEmployee', () => {
+      console.log("getNewEmployee")
       fetchEmployee();
     });
 
-    socket2.on('employeeUpdated', () => {
-      console.log("employeeUpdated")
-      fetchEmployee();
-    });
-    socket2.on('employeeDeleted', () => {
-      console.log("employeeDeleted")
-      fetchEmployee();
-    });
     // Clean up listeners
     return () => {
       socket1.off('employeeCreated', fetchEmployee);
       socket1.off('employeeUpdated', fetchEmployee);
       socket1.off('employeeDeleted', fetchEmployee);
       socket2.off('employeeCreated', fetchEmployee);
-      socket2.off('employeeUpdated', fetchEmployee);
-      socket2.off('employeeDeleted', fetchEmployee);
+
     };
 
 

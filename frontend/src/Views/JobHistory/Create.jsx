@@ -44,6 +44,7 @@ const CreateJobHistory = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
 
         setError(null); // Reset previous error
 
@@ -102,7 +103,7 @@ const CreateJobHistory = () => {
                         <option value="">Select Employee</option>
                         {employees.map(employee => (
                             <option key={employee.Employee_ID} value={employee.Employee_ID}>
-                              {employee.Employee_ID}
+                              {employee.First_Name}   {employee.Last_Name}
                             </option>
                         ))}
                     </select>

@@ -8,7 +8,7 @@ import moment from 'moment'; // Import moment library
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:4000'); // Adjust the URL based on your server
-
+const socket2 = io('http://localhost:8080/');
 const JobHistoryIndex = () => {
   const [jobHistories, setJobHistories] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,6 +31,11 @@ const JobHistoryIndex = () => {
     });
     socket.on('jobHistoryDeleted', () => {
       console.log("jobHistoryDeleted")
+      fetchJobHistories();
+    });
+    socket2.emit("addNewUser")
+
+    socket2.on('getNewEmployee', () => {
       fetchJobHistories();
     });
 

@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 const SQL_SERVER_CONFIG = {
   user: process.env.USER,
   password: process.env.PASSWORD,
-  server: "DESKTOP-VLSVRCN\\TRANTRUONG",
+  server: process.env.SERVER,
   database: process.env.DATABASE,
 };
 

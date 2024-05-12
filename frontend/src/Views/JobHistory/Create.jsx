@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import io from 'socket.io-client';
 
 // import './Create.css';
 // import JobHistory from './path/to/JobHistory'; // Import JobHistory model
 
 const CreateJobHistory = () => {
+    const socket = io('http://localhost:8080');
+
     const navigate = useNavigate();
 
     const [jobHistoryData, setJobHistoryData] = useState({
@@ -44,7 +47,7 @@ const CreateJobHistory = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
 
         setError(null); // Reset previous error
 
@@ -64,6 +67,9 @@ const CreateJobHistory = () => {
 
             if (!response.ok) {
                 throw new Error('Failed to create job history');
+            } else {
+                socket.emit("createdJobHistory")
+
             }
 
             // Quay lại trang /jobhistory sau khi thêm mới thành công
@@ -103,7 +109,7 @@ const CreateJobHistory = () => {
                         <option value="">Select Employee</option>
                         {employees.map(employee => (
                             <option key={employee.Employee_ID} value={employee.Employee_ID}>
-                              {employee.First_Name}   {employee.Last_Name}
+                                {employee.First_Name}   {employee.Last_Name}
                             </option>
                         ))}
                     </select>

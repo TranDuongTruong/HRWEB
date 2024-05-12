@@ -3,8 +3,11 @@ import axios from 'axios';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 
+import io from 'socket.io-client';
 
 function EditJobHistory() {
+    const socket = io('http://localhost:8080');
+
     const [jobHistoryData, setJobHistoryData] = useState({});
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -12,7 +15,7 @@ function EditJobHistory() {
     const navigate = useNavigate();
     const formatDateTime = (datetime) => {
         return moment(datetime).format('DD/MM/YYYY hh:mm:ss A');
-      };
+    };
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -32,6 +35,7 @@ function EditJobHistory() {
         event.preventDefault();
         try {
             await axios.put(`http://localhost:4000/api/jobHistory/${id}`, jobHistoryData);
+            socket.emit("editJobHistory")
             navigate('/jobHistory');
         } catch (error) {
             console.error('Error updating data:', error);
@@ -63,7 +67,7 @@ function EditJobHistory() {
                         <div className="control-group">
                             <label className="control-label col-md-2" htmlFor="Employee_ID">Employee_ID</label>
                             <div className="controls">
-                                <input readOnly  type="text" name="Employee_ID" className="span6" value={jobHistoryData.Employee_ID} onChange={(e) => setJobHistoryData({ ...jobHistoryData, Department: e.target.value })} />
+                                <input readOnly type="text" name="Employee_ID" className="span6" value={jobHistoryData.Employee_ID} onChange={(e) => setJobHistoryData({ ...jobHistoryData, Department: e.target.value })} />
                             </div>
                         </div>
                         <div className="control-group">

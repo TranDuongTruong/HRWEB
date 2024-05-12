@@ -3,7 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 //import io from 'socket.io-client';
 import io from 'socket.io-client';
 
-const socket1 = io('http://localhost:4000'); // Adjust the URL based on your server
+//const socket1 = io('http://localhost:4000'); // Adjust the URL based on your server
 const socket2 = io('http://localhost:8080/');
 
 import axios from 'axios';
@@ -21,19 +21,19 @@ const EmployeeIndex = () => {
   useEffect(() => {
     fetchEmployee();
     console.log("aaa")
-    socket1.on('employeeCreated', () => {
-      console.log("employeeCreated")
-      fetchEmployee();
-    });
+    // socket1.on('employeeCreated', () => {
+    //   console.log("employeeCreated")
+    //   fetchEmployee();
+    // });
 
-    socket1.on('employeeUpdated', () => {
-      console.log("employeeUpdated")
-      fetchEmployee();
-    });
-    socket1.on('employeeDeleted', () => {
-      console.log("employeeDeleted")
-      fetchEmployee();
-    });
+    // socket1.on('employeeUpdated', () => {
+    //   console.log("employeeUpdated")
+    //   fetchEmployee();
+    // });
+    // socket1.on('employeeDeleted', () => {
+    //   console.log("employeeDeleted")
+    //   fetchEmployee();
+    // });
     socket2.emit("addNewUser")
 
     socket2.on('getNewEmployee', () => {
@@ -43,9 +43,9 @@ const EmployeeIndex = () => {
 
     // Clean up listeners
     return () => {
-      socket1.off('employeeCreated', fetchEmployee);
-      socket1.off('employeeUpdated', fetchEmployee);
-      socket1.off('employeeDeleted', fetchEmployee);
+      // socket1.off('employeeCreated', fetchEmployee);
+      // socket1.off('employeeUpdated', fetchEmployee);
+      // socket1.off('employeeDeleted', fetchEmployee);
       socket2.off('employeeCreated', fetchEmployee);
 
     };

@@ -39,6 +39,29 @@ io.on("connection", (socket) => {
 
 
     })
+
+
+    socket.on("createdJobHistory", (message) => {
+
+
+        io.emit("getNewJobHistory", message)
+
+
+    })
+    socket.on("deletedJobHistory", (message) => {
+
+
+        io.emit("getNewJobHistory", message)
+
+
+    })
+    socket.on("editJobHistory", (message) => {
+
+
+        io.emit("getNewJobHistory", message)
+
+
+    })
     socket.on("disconnect", () => {
 
 

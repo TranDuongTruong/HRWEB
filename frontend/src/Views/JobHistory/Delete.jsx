@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import moment from 'moment';
+import io from 'socket.io-client';
 
 
 function DeleteJobHistory() {
+    const socket = io('http://localhost:8080');
+
     const [jobHistoryData, setJobHistoryData] = useState(null);
     const { id } = useParams();
     const navigate = useNavigate();
@@ -28,6 +31,7 @@ function DeleteJobHistory() {
         e.preventDefault();
         try {
             await axios.delete(`http://localhost:4000/api/jobHistory/${id}`);
+            socket.emit("deletedJobHistory")
             navigate('/jobHistory');
         } catch (error) {
             console.log('Error deleting job history:', error);

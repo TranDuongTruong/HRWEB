@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import moment from 'moment'; // Import moment library
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:4000'); // Adjust the URL based on your server
+//const socket = io('http://localhost:4000'); // Adjust the URL based on your server
 const socket2 = io('http://localhost:8080/');
 const JobHistoryIndex = () => {
   const [jobHistories, setJobHistories] = useState([]);
@@ -20,30 +20,30 @@ const JobHistoryIndex = () => {
     // Listen for Socket.io events
     // socket.on('jobHistoryCreated', fetchJobHistories);
 
-    socket.on('jobHistoryCreated', () => {
-      console.log("newjobHistoryCreated")
-      fetchJobHistories();
-    });
+    // socket.on('jobHistoryCreated', () => {
+    //   console.log("newjobHistoryCreated")
+    //   fetchJobHistories();
+    // });
 
-    socket.on('jobHistoryUpdated', () => {
-      console.log("jobHistoryUpdated")
-      fetchJobHistories();
-    });
-    socket.on('jobHistoryDeleted', () => {
-      console.log("jobHistoryDeleted")
-      fetchJobHistories();
-    });
+    // socket.on('jobHistoryUpdated', () => {
+    //   console.log("jobHistoryUpdated")
+    //   fetchJobHistories();
+    // });
+    // socket.on('jobHistoryDeleted', () => {
+    //   console.log("jobHistoryDeleted")
+    //   fetchJobHistories();
+    // });
     socket2.emit("addNewUser")
 
-    socket2.on('getNewEmployee', () => {
+    socket2.on('getNewJobHistory', () => {
       fetchJobHistories();
     });
 
     // Clean up listeners
     return () => {
-      socket.off('jobHistoryCreated', fetchJobHistories);
-      socket.off('jobHistoryUpdated', fetchJobHistories);
-      socket.off('jobHistoryDeleted', fetchJobHistories);
+      // socket.off('jobHistoryCreated', fetchJobHistories);
+      // socket.off('jobHistoryUpdated', fetchJobHistories);
+      // socket.off('jobHistoryDeleted', fetchJobHistories);
     };
   }, [currentPage]); // Refresh when page changes
 

@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Payrate/Create.css'
+import io from 'socket.io-client';
 
 
 const CreatePersonal = () => {
+  const socket = io('http://localhost:8080');
+
   const [formData, setFormData] = useState({
     Employee_ID: '',
     First_Name: '',
@@ -58,6 +61,8 @@ const CreatePersonal = () => {
 
       const response = await axios.post('http://localhost:5000/api/employee', formData);
       console.log('New employee data created:', response);
+      socket.emit("createdEmployee")
+
       navigate('/employee');
     } catch (error) {
       console.log('Error creating new employee data:', error);

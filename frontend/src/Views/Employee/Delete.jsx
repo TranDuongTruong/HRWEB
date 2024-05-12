@@ -3,8 +3,11 @@ import { useParams,useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import io from 'socket.io-client';
 
 const DeleteEmployee = () => {
+  const socket = io('http://localhost:8080');
+
   const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
@@ -93,7 +96,8 @@ const DeleteEmployee = () => {
     try {
       await axios.delete(`http://localhost:4000/api/employee/${id}`);
       console.log(`Employee with ID ${id} has been deleted.`); 
-            
+      socket.emit("deletedEmployee")
+
       navigate( '/employee' );   
     } catch (error) {
       console.log('Error deleting employee:', error);

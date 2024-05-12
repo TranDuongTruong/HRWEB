@@ -4,8 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Payrate/Create.css'
+import io from 'socket.io-client';
 
 const EditPersonal = () => {
+  const socket = io('http://localhost:8080');
+
   const [formData, setFormData] = useState({
     Employee_ID: '',
     First_Name: '',
@@ -68,6 +71,7 @@ const EditPersonal = () => {
     try {
       await axios.put(`http://localhost:5000/api/employee/${id}`, formData);
       console.log('Employee data updated:', formData);
+      socket.emit("editEmployee")
 
       navigate('/employee');
 

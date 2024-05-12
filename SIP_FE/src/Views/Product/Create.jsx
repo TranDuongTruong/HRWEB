@@ -17,13 +17,31 @@ function ProductCreate() {
     const navigate = useNavigate(); // Sử dụng hook useNavigate
 
     const handleSubmit = async (e) => {
-
+        // Kiểm tra xác minh trường không được null
+    const requiredFields = ['name', 'category', 'price', 'imgURL'];
+    for (const field of requiredFields) {
+      if (!formData[field]) {
+        setError(`The field ${field} is required.`);
+        setTimeout(() => {
+          setError('');
+        }, 15000); // Xóa thông báo sau 15 giây
+        return;
+      }
+    }
+    // Kiểm tra xác minh các trường số
+    const numericFields = ['price'];
+    for (const field of numericFields) {
+      if (isNaN(formData[field])) {
+        setError(`The field ${field} must be a number.`);
+        return;
+      }
+    }
         e.preventDefault();
         try {
 
-            const response = await axios.post('http://localhost:4000/api/products', formData);
+            const response = await axios.post('http://localhost:5000/api/products', formData);
             console.log('New product data created:', response);
-            navigate('/benefitplans');
+            navigate('/product');
 
         } catch (error) {
 
@@ -95,7 +113,7 @@ function ProductCreate() {
                 </div>
             </form>
             <div>
-                <Link to="/benefitplans">Back to List</Link>
+                <Link to="/product">Back to List</Link>
             </div>
         </div>
     );

@@ -3,11 +3,16 @@ import axios from 'axios';
 
 import { Routes,Route ,Link} from 'react-router-dom';
 
-import PersonalDetails from '../Employee/Details';
-import CreatePersonal from '../Employee/Create' ;
-import PersonalIndex from '../Employee/Index';
-import EditPersonal from '../Employee/Edit'; 
-import DeletePersonal from '../Employee/Delete';
+import EmployeeDetails from '../Employee/Details';
+import CreateEmployee from '../Employee/Create' ;
+import EmployeeIndex from '../Employee/Index';
+import EditEmployee from '../Employee/Edit'; 
+import DeleteEmployee from '../Employee/Delete';
+
+// import PersonalIndex from '../Personals/Index';
+// import CreatePersonal from '../Personals/Create';
+// import EditPersonal from '../Personals/Edit';
+// import DeletePersonal from '../Personals/Delete';
 
 
 
@@ -20,17 +25,15 @@ import DeletePayrate from '../Payrate/Delete';
 
 
 
-import BenefitPlanDetails from '../Product/Details';
+import DetailsProduct from '../Product/Details';
 import ProductCreate from '../Product/Create' ;
 import ProductIndex from '../Product/Index';
-import EditBenefitPlan from '../Product/Edit.'; 
-import DeleteBenefitPlan from '../Product/Delete';
+import EditProduct from '../Product/Edit.'; 
+import DeleteProduct from '../Product/Delete';
 
 import Index from '../Admin/Index';
 import Login from '../Login/Login';
 //import AdminDashboard from this;
-
-
 
 
 
@@ -93,7 +96,7 @@ const employeeData=[];
                     <Link to="/employee"><i className="menu-icon icon-bullhorn"></i >Employee</Link>
                   </li>
                   <li>
-                    <Link to="/benefitplans">
+                    <Link to="/product">
                       <i className="menu-icon icon-tasks"></i>Product
                     </Link>
                   </li>
@@ -102,6 +105,13 @@ const employeeData=[];
                       <i className="menu-icon icon-inbox"></i>Payrate
                     </Link>
                   </li>
+                  {/* <li>
+                    <Link to="/personal">
+                      <i className="menu-icon icon-bullhorn"></i>Personal
+                    </Link>
+                  </li> */}
+                 
+                 
                 </ul>
                 <ul className="widget widget-menu unstyled">
                   <li>
@@ -124,18 +134,18 @@ const employeeData=[];
             <Routes>
                  <Route path='/' element={<Index />} />
                 
-                 <Route path='/employee/create' element={<CreatePersonal />} />
-                <Route path='/employee/edit/:id' element={<EditPersonal />} /> 
-                <Route path='/employee/delete/:id' element={<DeletePersonal />} />
-                <Route path='/employee' element={<PersonalIndex />} />
+                 <Route path='/employee/create' element={<CreateEmployee />} />
+                <Route path='/employee/edit/:id' element={<EditEmployee />} /> 
+                <Route path='/employee/delete/:id' element={<DeleteEmployee />} />
+                <Route path='/employee' element={<EmployeeIndex />} />
 
                 {/* <Route path='/employee'element={<PersonalIndex  personals={employeeData.data}/>} /> */}
-                 <Route path='/benefitplans'element={<ProductIndex/>} />
+                 <Route path='/product'element={<ProductIndex/>} />
                
-                 <Route path='/benefitplans/details/:id' element={<BenefitPlanDetails />} />
-                 <Route path='/benefitplans/create'  element={<ProductCreate />} />
-                 <Route path='/benefitplans/delete/:id'  element={<DeleteBenefitPlan />} />
-                  <Route path='/benefitplans/edit/:id'  element={<EditBenefitPlan />} />
+                 <Route path='/product/details/:id' element={<DetailsProduct />} />
+                 <Route path='/product/create'  element={<ProductCreate />} />
+                 <Route path='/product/delete/:id'  element={<DeleteProduct />} />
+                  <Route path='/product/edit/:id'  element={<EditProduct />} />
 
 
                
@@ -146,7 +156,15 @@ const employeeData=[];
                  <Route path='/payrate/delete/:id'  element={<DeletePayrate />} />
                  <Route path='/payrate' element={<PayrateIndex />} />
 
+                 {/* <Route path='/personal' element={<PersonalIndex />} />
+                 <Route path='/personal/create' element={<CreatePersonal />} />
+                <Route path='/personal/edit/:id' element={<EditPersonal />} /> 
+                <Route path='/personal/delete/:id' element={<DeletePersonal />} /> */}
+
                 
+
+            
+
             </Routes>
             </div>
           </div>

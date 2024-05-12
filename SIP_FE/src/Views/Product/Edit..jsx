@@ -1,49 +1,120 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-function EditBenefitPlan() {
- 
-    return (
-        <div>
-            <h2>Edit</h2>
-            <form >
-                <div className="form-horizontal">
-                    <h4>Benefit_Plans</h4>
-                    <hr />
-                    <input type="hidden" name="Benefit_Plan_ID"  />
+const EditProduct = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    category: '',
+    price: '',
+    imgURL: ''
+  });
+  const [error, setError] = useState('');
 
-                    <div className="form-group">
-                        <label htmlFor="Plan_Name" className="control-label col-md-2">Plan Name</label>
-                        <div className="col-md-10">
-                            <input type="text" className="form-control" id="Plan_Name"  />
-                        </div>
-                    </div>
+  const { id } = useParams(); // Lấy product ID từ URL
+  const navigate = useNavigate();
 
-                    <div className="form-group">
-                        <label htmlFor="Deductable" className="control-label col-md-2">Deductable</label>
-                        <div className="col-md-10">
-                            <input type="text" className="form-control" id="Deductable" />
-                        </div>
-                    </div>
+  useEffect(() => {
+    const fetchProductData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const { name, category, price, imgURL } = response.data.data;
+        setFormData({ name, category, price, imgURL });
+      } catch (error) {
+        console.log('Error fetching product data:', error);
+      }
+    };
 
-                    <div className="form-group">
-                        <label htmlFor="Percentage_CoPay" className="control-label col-md-2">Percentage CoPay</label>
-                        <div className="col-md-10">
-                            <input type="text" className="form-control" id="Percentage_CoPay"  />
-                        </div>
-                    </div>
+    fetchProductData();
+  }, [id]);
 
-                    <div className="form-group">
-                        <div className="col-md-offset-2 col-md-10">
-                            <button type="submit" className="btn btn-default">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div>
-                <a href="index.html" className="btn btn-default">Back to List</a>
-            </div>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Kiểm tra xác minh trường không được null
+    const requiredFields = ['name', 'category', 'price', 'imgURL'];
+    for (const field of requiredFields) {
+      if (!formData[field]) {
+        setError(`The field ${field} is required.`);
+        setTimeout(() => {
+          setError('');
+        }, 15000); // Xóa thông báo sau 15 giây
+        return;
+      }
+    }
+    // Kiểm tra xác minh các trường số
+    const numericFields = ['price'];
+    for (const field of numericFields) {
+      if (isNaN(formData[field])) {
+        setError(`The field ${field} must be a number.`);
+        return;
+      }
+    }
+
+    try {
+      await axios.put(`http://localhost:4000/api/products/${id}`, formData);
+      console.log('Product data updated:', formData);
+      navigate('/product');
+    } catch (error) {
+      console.log('Error updating product data:', error);
+    }
+  };
+
+  return (
+    <div className="content">
+      <div className="module">
+        <div className="module-head">
+          <h3>Edit Product</h3>
         </div>
-    );
-}
+        <form className="form-horizontal row-fluid" onSubmit={handleSubmit}>
+          <div className="module-body">
+            <div className="control-group">
+              <label className="control-label" htmlFor="Name">Name</label>
+              <div className="controls">
+                <input type="text" id="Name" name="name" className="span6" value={formData.name} onChange={handleChange} />
+              </div>
+            </div>
 
-export default EditBenefitPlan;
+            <div className="control-group">
+              <label className="control-label" htmlFor="Category">Category</label>
+              <div className="controls">
+                <input type="text" id="Category" name="category" className="span6" value={formData.category} onChange={handleChange} />
+              </div>
+            </div>
+
+            <div className="control-group">
+              <label className="control-label" htmlFor="Price">Price</label>
+              <div className="controls">
+                <input type="text" id="Price" name="price" className="span6" value={formData.price} onChange={handleChange} />
+              </div>
+            </div>
+
+            <div className="control-group">
+              <label className="control-label" htmlFor="ImgURL">ImgURL</label>
+              <div className="controls">
+                <input type="text" id="ImgURL" name="imgURL" className="span6" value={formData.imgURL} onChange={handleChange} />
+              </div>
+            </div>
+
+            <div className="control-group">
+              <div className="col-md-offset-2 controls">
+                <input type="submit" value="Save" className="btn btn-default" />
+                <button className="btn btn-default" onClick={() => navigate('/product')}>Back to List</button>
+              </div>
+            </div>
+          </div>
+          {error && <div className="alert alert-danger">{error}</div>}
+          
+        </form>
+       
+      </div>
+    </div>
+  );
+};
+
+export default EditProduct;

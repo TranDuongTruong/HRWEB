@@ -11,7 +11,7 @@ function PayrateDetails() {
         if (id) {
             const fetchPayrateById = async () => {
                 try {
-                    const response = await axios.get(`http://localhost:4000/api/payrate/${id}`);
+                    const response = await axios.get(`http://localhost:5000/api/payrate/${id}`);
                     setPayrate(response.data.data); // Assume response.data contains the payrate details
                 } catch (error) {
                     console.log('Error fetching payrate:', error);

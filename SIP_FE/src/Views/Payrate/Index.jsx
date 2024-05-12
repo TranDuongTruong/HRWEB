@@ -18,7 +18,7 @@ const PayrateIndex = () => {
   const fetchPayrates = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/payrate?page=${currentPage}&limit=${itemsPerPage}`
+        `http://localhost:5000/api/payrate?page=${currentPage}&limit=${itemsPerPage}`
       );
       setPayrates(response.data.payrates);
       setTotalPages(response.data.totalPages)

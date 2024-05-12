@@ -16,7 +16,7 @@ function EditPayRate() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/payrate/${id}`);
+                const response = await axios.get(`http://localhost:5000/api/payrate/${id}`);
                 setPayRateData(response.data.data);
                 setLoading(false);
             } catch (error) {

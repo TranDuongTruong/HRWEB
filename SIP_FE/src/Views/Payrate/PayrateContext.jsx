@@ -37,7 +37,7 @@ export const PayrateProvider = ({ children }) => {
 
     const addPayrate = async (payrateData) => {
         try {
-            const response = await axios.post('http://localhost:4000/api/payrate', payrateData);
+            const response = await axios.post('http://localhost:5000/api/payrate', payrateData);
             dispatch({ type: 'ADD_PAYRATE_SUCCESS', payload: response.data });
         } catch (error) {
             console.log('Error adding payrate:', error);
@@ -46,7 +46,7 @@ export const PayrateProvider = ({ children }) => {
 
     const deletePayrate = async (id) => {
         try {
-            await axios.delete(`http://localhost:4000/api/payrate/${id}`);
+            await axios.delete(`http://localhost:5000/api/payrate/${id}`);
             dispatch({ type: 'DELETE_PAGE_SUCCESS', payload: id });
         } catch (error) {
             console.log('Error deleting page:', error);
@@ -54,7 +54,7 @@ export const PayrateProvider = ({ children }) => {
     };
     const updatePayrate = async (id, payrateData) => {
         try {
-            const response = await axios.put(`http://localhost:4000/api/payrate/${id}`, payrateData);
+            const response = await axios.put(`http://localhost:5000/api/payrate/${id}`, payrateData);
             dispatch({ type: 'UPDATE_PAYRATE_SUCCESS', payload: response.data });
         } catch (error) {
             console.log('Error updating payrate:', error);

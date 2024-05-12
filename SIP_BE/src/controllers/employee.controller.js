@@ -2,18 +2,11 @@ import Employee from "../models/Employee.js";
 
 export const createEmployee = async (req, res) => {
     try {
-        const { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = req.body;
+        const { Employee_ID, First_Name, Last_Name, VacationDays, PaidToDate, PaidLastYear, PayRate, PayRateId } = req.body;
 
         // creating a new Employee object
         const employee = new Employee({
-            employeeId,
-            firstName,
-            lastName,
-            vacationDays,
-            paidToDate,
-            paidLastYear,
-            payRate,
-            payRateId
+            Employee_ID, First_Name, Last_Name, VacationDays, PaidToDate, PaidLastYear, PayRate, PayRateId
         });
 
         // saving the new employee
@@ -21,25 +14,17 @@ export const createEmployee = async (req, res) => {
 
         return res.status(200).json({
             success: true, data: {
-                _id: savedUser._id,
-                employeeId: savedUser.employeeId,
-                firstName: savedUser.firstName,
-                lastName: savedUser.lastName,
-                vacationDays: savedUser.vacationDays,
-                paidToDate: savedUser.paidToDate,
-                paidLastYear: savedUser.paidLastYear,
-                payRate: savedUser.payRate,
-                payRateId: savedUser.payRateId
+                savedUser
             }
         });
     } catch (error) {
-        console.error({success: true, data: error});
+        console.error({ success: true, data: error });
     }
 };
 
 export const getEmployee = async (req, res, next) => {
 
-    const {employeeId}=req.params  
+    const { employeeId } = req.params
     const employee = await Employee.findById(employeeId);
     console.log(employee)
     return res.json({ success: true, data: employee });
@@ -47,10 +32,13 @@ export const getEmployee = async (req, res, next) => {
 
 export const getEmployeeByEmployeeID = async (req, res, next) => {
 
-    const {employeeId}=req.params  
-    const employee = await Employee.findOne({employeeId: employeeId});
-    console.log(employee)
+    const { Employee_ID } = req.params
+    console.log("id", Employee_ID)
+    const employee = await Employee.findOne({ Employee_ID: Employee_ID });
+    console.log("employee", employee)
+
     return res.json({ success: true, data: employee });
+
 };
 
 
@@ -64,7 +52,7 @@ export const deleteEmployee = async (req, res, next) => {
     try {
         const employee = await Employee.findByIdAndDelete(req.params.employeeId);
         if (!employee) {
-            console.log("backend: "+employee.employeeId)
+            console.log("backend: " + employee.employeeId)
             return res.status(404).json({ success: false, message: "Employee not found" });
         }
         return res.status(200).json({ success: true, message: "Employee deleted successfully" });
@@ -76,10 +64,11 @@ export const deleteEmployee = async (req, res, next) => {
 
 export const updateEmployee = async (req, res, next) => {
     try {
-        const { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = req.body;
+        const { Employee_ID, First_Name, Last_Name, VacationDays, PaidToDate, PaidLastYear, PayRate, PayRateId } = req.body;
+        console.log("updatedEmployee", Employee_ID, First_Name, Last_Name, VacationDays, PaidToDate, PaidLastYear, PayRate, PayRateId)
         const updatedEmployee = await Employee.findByIdAndUpdate(
             req.params.employeeId,
-            { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId },
+            { Employee_ID, First_Name, Last_Name, VacationDays, PaidToDate, PaidLastYear, PayRate, PayRateId },
             { new: true }
         );
         if (!updatedEmployee) {

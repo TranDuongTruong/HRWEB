@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import io from 'socket.io-client';
 
 import axios from 'axios';
 
@@ -9,9 +10,22 @@ const PersonalIndex = () => {
   const [entriesPerPage, setEntriesPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [personals, setPersonals] = useState([]);
-
+  const socket = io('http://localhost:8080/');
+  
   useEffect(() => {
     fetchEmployee();
+    socket.emit("addNewUser")
+    socket.on('getNewEmployee', () => {
+      console.log("getNewEmployee")
+      fetchEmployee();
+    });
+
+    // Clean up listeners
+    return () => {
+      socket.off('employeeCreated', fetchEmployee);
+
+    };
+
   }, []);
 
   const fetchEmployee = async () => {
@@ -53,17 +67,17 @@ const PersonalIndex = () => {
   const renderTableEntries = () => {
     const startIndex = (currentPage - 1) * entriesPerPage;
     const endIndex = startIndex + entriesPerPage;
-    
+
     return filteredPersonals.slice(startIndex, endIndex).map((item) => (
-      
+
       <tr key={item._id} className="odd gradeX">
-        <td>{item.firstName}</td>
-        <td>{item.lastName}</td>
-        <td>{item.vacationDays}</td>
-        <td>{item.paidToDate}</td>
-        <td>{item.paidLastYear}</td>
-        <td>{item.payRate}</td>
-        <td>{item.payRateId}</td>
+        <td>{item.First_Name}</td>
+        <td>{item.Last_Name}</td>
+        <td>{item.VacationDays}</td>
+        <td>{item.PaidToDate}</td>
+        <td>{item.PaidLastYear}</td>
+        <td>{item.PayRate}</td>
+        <td>{item.PayRateId}</td>
         <td>
           <Link to={`/employee/edit/${item._id}`}>Edit</Link> |
           <Link to={`/employee/delete/${item._id}`}>Delete</Link>
@@ -127,10 +141,10 @@ const PersonalIndex = () => {
         <div className="module-body table">
           <div id="DataTables_Table_0_wrapper" className="dataTables_wrapper" role="grid">
             <div id="DataTables_Table_0_length" className="dataTables_length">
-              <label>Show 
-                <select 
-                  size="1" 
-                  name="DataTables_Table_0_length" 
+              <label>Show
+                <select
+                  size="1"
+                  name="DataTables_Table_0_length"
                   aria-controls="DataTables_Table_0"
                   value={entriesPerPage}
                   onChange={handleEntriesPerPageChange}
@@ -139,7 +153,7 @@ const PersonalIndex = () => {
                   <option value="25">25</option>
                   <option value="50">50</option>
                   <option value="100">100</option>
-                </select> 
+                </select>
                 entries
               </label>
             </div>
@@ -169,7 +183,7 @@ const PersonalIndex = () => {
           {renderPaginationButtons()}
         </div>
 
-        
+
       </div>
     </>
   );

@@ -8,6 +8,7 @@ const DeletePersonal = () => {
   const navigate = useNavigate(); 
 
   const [formData, setFormData] = useState({
+    employeeId:'',
     firstName: '',
     lastName: '',
     vacationDays: '',
@@ -23,11 +24,11 @@ const DeletePersonal = () => {
     const fetchEmployeeData = async () => {
       try {
      
-   const response = await axios.get(`http://localhost:4000/api/employee/${id}`);
+   const response = await axios.get(`http://localhost:5000/api/employee/${id}`);
   
-        const { firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = response.data.data;
-        setFormData({ firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId });
-
+       const { employeeId, firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId } = response.data.data;
+  
+      setFormData({ employeeId,firstName, lastName, vacationDays, paidToDate, paidLastYear, payRate, payRateId });
       } catch (error) {
         console.log('Error fetching employee data:', error);
       }
@@ -39,7 +40,7 @@ const DeletePersonal = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.delete(`http://localhost:4000/api/employee/${id}`);
+      await axios.delete(`http://localhost:5000/api/employee/${id}`);
       console.log(`Employee with ID ${id} has been deleted.`); 
             
       navigate( '/employee' );   
@@ -59,6 +60,8 @@ console.log(id)
       <div>
         <h4>Employee</h4>
       <dl className="dl-horizontal">
+                    <dt>Employee Id</dt>
+                    <dd>{formData.employeeId}</dd>
                     <dt>Name</dt>
                     <dd>{formData.firstName+formData.lastName}</dd>
 

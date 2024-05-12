@@ -16,7 +16,7 @@ const PersonalIndex = () => {
 
   const fetchEmployee = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/employee');
+      const response = await axios.get('http://localhost:5000/api/employee');
       setPersonals(response.data);
     } catch (error) {
       console.log('Error fetching employee data:', error);

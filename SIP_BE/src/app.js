@@ -12,7 +12,7 @@ import indexRoutes from "./routes/index.routes.js";
 import productRoutes from "./routes/products.routes.js";
 import usersRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
-// import employeeRoutes from "./routes/employee.routes.js";
+import employeeRoutes from "./routes/employee.routes.js";
 import payrateRoutes from './routes/payrate.routes.js'
 // import personalRoutes from './routes/personal.router.js'
 import sqlRoutes from "./routes/sqlRouter.js";
@@ -48,7 +48,7 @@ app.use("/api/users", usersRoutes)
 
 // });Routes);
 app.use("/api/auth", authRoutes);
-// app.use("/api/employee", employeeRoutes);
+app.use("/api/employee", employeeRoutes);
 
 app.use("/api/payrate", payrateRoutes);
 // app.use("/api/personal", personalRoutes);

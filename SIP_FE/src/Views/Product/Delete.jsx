@@ -29,7 +29,7 @@ const DeleteProduct = () => {
     const handleDelete = async (event) => {
         event.preventDefault();
         try {
-            await axios.delete(`http://localhost:4000/api/products/${id}`);
+            await axios.delete(`http://localhost:5000/api/products/${id}`);
             console.log(`Product with ID ${id} has been deleted.`);
             navigate('/product');
         } catch (error) {

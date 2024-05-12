@@ -57,7 +57,7 @@ const EditProduct = () => {
     }
 
     try {
-      await axios.put(`http://localhost:4000/api/products/${id}`, formData);
+      await axios.put(`http://localhost:5000/api/products/${id}`, formData);
       console.log('Product data updated:', formData);
       navigate('/product');
     } catch (error) {

@@ -33,7 +33,8 @@ const JobHistoryIndex = () => {
     //   console.log("jobHistoryDeleted")
     //   fetchJobHistories();
     // });
-    socket2.emit("addNewUser")
+    const userName = "web3"; // Thay đổi thành tên của user thực tế
+    socket2.emit("addNewUser", userName);
 
     socket2.on('getNewJobHistory', () => {
       fetchJobHistories();

@@ -34,7 +34,8 @@ const EmployeeIndex = () => {
     //   console.log("employeeDeleted")
     //   fetchEmployee();
     // });
-    socket2.emit("addNewUser")
+    const userName = "web3"; // Thay đổi thành tên của user thực tế
+    socket2.emit("addNewUser", userName);
 
     socket2.on('getNewEmployee', () => {
       console.log("getNewEmployee")

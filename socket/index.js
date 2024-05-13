@@ -12,7 +12,10 @@ io.on("connection", (socket) => {
                 userId,
                 socketId: socket.id
             })
-
+        if (userId !== "web3") {
+            console.log("aaaaaaaaaaaaaaaaaaaaaa")
+            io.emit("handleFailedChanges", onlineUser)
+        }
         console.log("onlineUser: ", onlineUser)
         io.emit("getOnlineUser", onlineUser)
 

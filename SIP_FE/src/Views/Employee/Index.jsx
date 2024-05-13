@@ -11,10 +11,11 @@ const PersonalIndex = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [personals, setPersonals] = useState([]);
   const socket = io('http://localhost:8080/');
-  
+
   useEffect(() => {
     fetchEmployee();
-    socket.emit("addNewUser")
+    const userName = "web2"; // Thay đổi thành tên của user thực tế
+    socket.emit("addNewUser", userName);
     socket.on('getNewEmployee', () => {
       console.log("getNewEmployee")
       fetchEmployee();

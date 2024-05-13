@@ -6,7 +6,6 @@ import "./libs/initialSetup.js";
 
 import http from "http";
 import { Server } from 'socket.io'
-
 const server = http.createServer(app)
 // const io = new Server(server)
 
@@ -29,3 +28,4 @@ io.on('connection', (socket) => {
 });
 server.listen(PORT);
 console.log("Server on port", app.get("port"));
+

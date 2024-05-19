@@ -1,6 +1,6 @@
 import sql from 'mssql'
 import sqlConfig from '../sqlConfig.js'
-import { io } from '../index.js';
+import { connectToQueue, consumeMessageFromQueue, sendMessageToQueue } from '../rabbitmq.js';
 
 // Function lấy tất cả các bản ghi Job_History
 export const getAllJobHistories = async (req, res) => {
@@ -72,36 +72,18 @@ export const getJobHistoryById = async (req, res) => {
 
 
 export const createJobHistory = async (req, res) => {
-    const { Employee_ID, Department, Division, Start_Date, End_Date, Job_Title, Supervisor, Job_Category, Location, Departmen_Code, Salary_Type, Pay_Period, Hours_per_Week, Hazardous_Training } = req.body;
+    const newJobHistory = req.body;
 
     try {
-        const pool = await sql.connect(sqlConfig);
-        const result = await pool.request()
-            .input('Employee_ID', sql.Decimal, Employee_ID)
-            .input('Department', sql.NVarChar(50), Department)
-            .input('Division', sql.NVarChar(50), Division)
-            .input('Start_Date', sql.DateTime, Start_Date)
-            .input('End_Date', sql.DateTime, End_Date)
-            .input('Job_Title', sql.NVarChar(50), Job_Title)
-            .input('Supervisor', sql.Decimal, Supervisor)
-            .input('Job_Category', sql.NVarChar(50), Job_Category)
-            .input('Location', sql.NVarChar(50), Location)
-            .input('Departmen_Code', sql.Decimal, Departmen_Code)
-            .input('Salary_Type', sql.Decimal, Salary_Type)
-            .input('Pay_Period', sql.NVarChar(50), Pay_Period)
-            .input('Hours_per_Week', sql.Decimal, Hours_per_Week)
-            .input('Hazardous_Training', sql.Bit, Hazardous_Training)
-            .query(`
-                INSERT INTO Job_History 
-                (Employee_ID, Department, Division, Start_Date, End_Date, Job_Title, Supervisor, Job_Category, Location, Departmen_Code, Salary_Type, Pay_Period, Hours_per_Week, Hazardous_Training)
-                VALUES
-                (@Employee_ID, @Department, @Division, @Start_Date, @End_Date, @Job_Title, @Supervisor, @Job_Category, @Location, @Departmen_Code, @Salary_Type, @Pay_Period, @Hours_per_Week, @Hazardous_Training)
-            `);
-            io.emit('jobHistoryCreated');
-            res.json({ message: 'Job history created successfully' });
+        const channel = await connectToQueue();
+        await sendMessageToQueue(channel, newJobHistory);
+
+        await consumeMessageFromQueue(channel)
+
+        res.json({ success: true, message: "Job history created successfully." });
     } catch (err) {
         console.error(err);
-        res.status(500).send('Server Error');
+        res.status(500).json({ success: false, message: "An error occurred while creating job history." });
     }
 };
 export const deleteJobHistory = async (req, res) => {
@@ -116,7 +98,6 @@ export const deleteJobHistory = async (req, res) => {
         if (result.rowsAffected[0] === 0) {
             return res.status(404).json({ message: 'Job history not found' });
         }
-        io.emit('jobHistoryDeleted'); 
         res.json({ message: 'Job history deleted successfully' });
     } catch (err) {
         console.error(err);
@@ -167,7 +148,6 @@ export const updateJobHistoryById = async (req, res) => {
             `);
 
         if (result.rowsAffected[0] > 0) {
-            io.emit('jobHistoryUpdated'); 
             res.json({ message: 'Job history updated successfully', data: result.recordset[0] });
         } else {
             res.status(404).json({ message: 'Job history not found' });

@@ -22,8 +22,11 @@ import sqlRoutes from "./routes/sqlRouter.js";
 import sqlConfig from './sqlConfig.js'
 
 import { PORT } from "./config.js";
+import { connectToQueue, consumeMessageFromQueue } from "./rabbitmq.js";
 
+// const channel = await connectToQueue();
 
+// consumeMessageFromQueue(channel)
 
 const app = express();
 
@@ -53,6 +56,9 @@ async function connectToSqlServer() {
 
 //Connect to SQL Server
 connectToSqlServer();
+
+
+
 
 // Routes[=]
 app.use("/api/sql", sqlRoutes);

@@ -3,7 +3,7 @@ const { Server } = require("socket.io");
 const io = new Server({ cors: ["http://localhost:19335", "http://localhost:5173", "http://localhost:5174"] });
 let onlineUser = [];
 io.on("connection", (socket) => {
-    console.log("new connection", socket.id)
+    console.log("xanew connection", socket.id)
 
     //listen to a connection
     socket.on("addNewUser", (userId) => {

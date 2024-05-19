@@ -493,6 +493,7 @@ export const deleteCombinedData = async (req, res) => {
 
 
 export const handleFailedChanges = async () => {
+    console.log("handleFailedChanges")
 
     try {
         console.log("handleFailedChanges")

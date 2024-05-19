@@ -53,6 +53,7 @@ import '../src/bootstrap/css/bootstrapresponsivemin.css'
 import '../src/images/icons/css/font-awesome.css';
 import { PayrateProvider } from './Views/Payrate/PayrateContext.jsx';
 import io from 'socket.io-client';
+import axios from 'axios';
 
 //const socket1 = io('http://localhost:4000'); // Adjust the URL based on your server
 const socket = io('http://localhost:8080/');
@@ -69,7 +70,7 @@ const RootComponent = () => {
       const handleFailedChanges = async () => {
         try {
           console.log("handleFailedChanges")
-          const response = await axios.get(`http://localhost:4000/api/employee/handleFailedChanges`);
+          //  const response = await axios.get(`http://localhost:4000/api/employee/handleFailedChanges`);
 
         } catch (error) {
           console.log('ErrorhandleFailedChanges:', error);

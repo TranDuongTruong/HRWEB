@@ -1,9 +1,5 @@
 import amqp from 'amqplib';
-import {
-    createJobHistoryHandler,
-    updateJobHistoryHandler,
-    deleteJobHistoryHandler
-} from './handler/jobhistory.js';
+
 
 import {
     createPayrateHandler,
@@ -57,15 +53,7 @@ export const consumeMessageFromQueue = async (queue) => {
 };
 
 const handleMessage = async (data, queue) => {
-    if (queue === 'job_history_queue') {
-        if (data.action === 'create') {
-            await createJobHistoryHandler(data);
-        } else if (data.action === 'update') {
-            await updateJobHistoryHandler(data);
-        } else if (data.action === 'delete') {
-            await deleteJobHistoryHandler(data);
-        }
-    } else if (queue === 'payrate_queue') {
+    if (queue === 'payrate_queue') {
         if (data.action === 'create') {
             await createPayrateHandler(data);
         } else if (data.action === 'update') {

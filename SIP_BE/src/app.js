@@ -19,6 +19,11 @@ import sqlRoutes from "./routes/sqlRouter.js";
 
 import { PORT } from "./config.js";
 
+import { connectToQueue, consumeMessageFromQueue } from "./rabbitmq.js";
+
+// const channel = await connectToQueue();
+
+// consumeMessageFromQueue(channel)
 
 
 const app = express();
